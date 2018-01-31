@@ -33,17 +33,17 @@ tab.patreon.linkText=Patreon besuchen
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=Minechem unterstützen
 
-achievement.minechem.item.journal=Fange an, zu lernen
-achievement.minechem.item.journal.desc=Das Nachschlagewerk ist das Tor zu allem Minechem-Wissen.
-achievement.minechem.tile.opticalMicroscope=Schaue dir Dinge an
-achievement.minechem.tile.opticalMicroscope.desc=Benutze das Mikroskop zum ersten Mal.
-achievement.minechem.tile.electrolysis=Elektrolysiere Dinge
-achievement.minechem.tile.electrolysis.desc=Benutze die Elektrolysemaschine zum ersten Mal.
-achievement.minechem.tile.electricCrucible=Schmelze Dinge
-achievement.minechem.tile.electricCrucible.desc=Benutzen den elektrischen Tiegel zum ersten Mal.
+advancement.minechem.item.journal=Fange an, zu lernen
+advancement.minechem.item.journal.desc=Das Nachschlagewerk ist das Tor zu allem Minechem-Wissen.
+advancement.minechem.tile.opticalMicroscope=Schaue dir Dinge an
+advancement.minechem.tile.opticalMicroscope.desc=Benutze das Mikroskop zum ersten Mal.
+advancement.minechem.tile.electrolysis=Elektrolysiere Dinge
+advancement.minechem.tile.electrolysis.desc=Benutze die Elektrolysemaschine zum ersten Mal.
+advancement.minechem.tile.electricCrucible=Schmelze Dinge
+advancement.minechem.tile.electricCrucible.desc=Benutzen den elektrischen Tiegel zum ersten Mal.
 
-achievement.minechem.element=Du hast %s entdeckt
-achievement.minechem.element.desc=Entdecke %s zum Freischalten
+advancement.minechem.element=Du hast %s entdeckt
+advancement.minechem.element.desc=Entdecke %s zum Freischalten
 
 augment.augmentedItem=Augmentiert
 augment.light=Beleuchtung

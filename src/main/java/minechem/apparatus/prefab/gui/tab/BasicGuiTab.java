@@ -1,8 +1,8 @@
 package minechem.apparatus.prefab.gui.tab;
 
-import cofh.lib.gui.GuiBase;
-import cofh.lib.gui.element.TabBase;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.gui.GuiContainerCore;
+import cofh.core.gui.element.tab.TabBase;
+import cofh.core.util.helpers.MathHelper;
 import java.util.List;
 import minechem.Compendium;
 import minechem.helper.LocalizationHelper;
@@ -22,13 +22,13 @@ public abstract class BasicGuiTab extends TabBase
     protected String tabTooltip;
     protected boolean enabled = true;
 
-    public BasicGuiTab(GuiBase gui, String tabText)
+    public BasicGuiTab(GuiContainerCore  gui, String tabText)
     {
         this(gui, tabText, 1);
 
     }
 
-    public BasicGuiTab(GuiBase gui, String tabText, int side)
+    public BasicGuiTab(GuiContainerCore  gui, String tabText, int side)
     {
         super(gui, side);
         textColor = Compendium.Color.TrueColor.white;

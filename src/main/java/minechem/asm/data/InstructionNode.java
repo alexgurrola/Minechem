@@ -10,7 +10,7 @@ import org.objectweb.asm.tree.VarInsnNode;
 public enum InstructionNode implements IInsnList
 {
     RECOLOUR("bindTexture", "func_110577_a ", "glEnable", "glEnable", false),
-    RESET("glDisable", "glDisable", "canUnlockAchievement", "func_77442_b", false),
+    RESET("glDisable", "glDisable", "canUnlockAdvancement", "func_77442_b", false),
     ICON("getTextureManager", "func_110434_K", "renderItemAndEffectIntoGUI", "func_82406_b", true),
     SET_SCALE("", "", "", "", false);
 
@@ -76,9 +76,9 @@ public enum InstructionNode implements IInsnList
         InsnList insnList = new InsnList();
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getDesc()));
         insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, Hook.SET_SCALE.getClazz().getASMName(), Hook.SET_SCALE.getName(), Hook.SET_SCALE.getParams(), false));
-        insnList.add(new FieldInsnNode(Opcodes.PUTFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.PUTFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getDesc()));
         return insnList;
     }
 

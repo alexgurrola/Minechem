@@ -1,7 +1,7 @@
 package minechem.compatibility.lua.events.triggered.peripheral;
 
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.EventBus;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 import minechem.apparatus.prefab.peripheral.TilePeripheralBase;
 import minechem.compatibility.lua.events.triggered.TriggerEvent;
 

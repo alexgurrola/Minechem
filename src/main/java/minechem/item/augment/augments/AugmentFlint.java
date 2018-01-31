@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
 public class AugmentFlint extends AugmentBase
 {
@@ -22,7 +22,7 @@ public class AugmentFlint extends AugmentBase
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int level)
     {
-        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        EnumFacing dir = EnumFacing.getOrientation(side);
         x += dir.offsetX;
         y += dir.offsetY;
         z += dir.offsetZ;

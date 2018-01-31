@@ -33,17 +33,17 @@ tab.patreon.linkText=Visitez Patreon
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=Soutien à Minechem
 
-achievement.minechem.item.journal=Début d'apprentissage
-achievement.minechem.item.journal.desc=Le journal est votre pont vers toutes les connaissances Minechem
-achievement.minechem.tile.opticalMicroscope=Observer les objets
-achievement.minechem.tile.opticalMicroscope.desc=Utilisez le microscope pour le première fois
-achievement.minechem.tile.electrolysis=Electrolyser des objets
-achievement.minechem.tile.electrolysis.desc=Utilisez l'appareil à électrolyse pour le première fois
-achievement.minechem.tile.electricCrucible=Fusioner des objets
-achievement.minechem.tile.electricCrucible.desc=Utilisez le creuset électrique pour le première fois
+advancement.minechem.item.journal=Début d'apprentissage
+advancement.minechem.item.journal.desc=Le journal est votre pont vers toutes les connaissances Minechem
+advancement.minechem.tile.opticalMicroscope=Observer les objets
+advancement.minechem.tile.opticalMicroscope.desc=Utilisez le microscope pour le première fois
+advancement.minechem.tile.electrolysis=Electrolyser des objets
+advancement.minechem.tile.electrolysis.desc=Utilisez l'appareil à électrolyse pour le première fois
+advancement.minechem.tile.electricCrucible=Fusioner des objets
+advancement.minechem.tile.electricCrucible.desc=Utilisez le creuset électrique pour le première fois
 
-achievement.minechem.element=%s découvertes
-achievement.minechem.element.desc=%s découvertes à débloquer
+advancement.minechem.element=%s découvertes
+advancement.minechem.element.desc=%s découvertes à débloquer
 
 augment.augmentedItem=Augmenté
 augment.light=Lumineux

@@ -1,25 +1,25 @@
 package minechem.asm;
 
-import minechem.achievement.IAchievementPageRenderer;
-import minechem.achievement.IAchievementRenderer;
-import minechem.achievement.MinecraftAchievementPage;
+import minechem.advancement.IAdvancementListRenderer;
+import minechem.advancement.IAdvancementRenderer;
+import minechem.advancement.MinecraftAdvancementList;
 import minechem.item.IOverlay;
 import minechem.proxy.client.render.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementList;
 
 public class MinechemHooks
 {
-    public static void recolourAchievement(Achievement achievement, float greyscale)
+    public static void recolourAdvancement(Advancement advancement, float greyscale)
     {
-        if (achievement instanceof IAchievementRenderer)
+        if (advancement instanceof IAdvancementRenderer)
         {
-            int colour = ((IAchievementRenderer) achievement).recolourBackground(greyscale);
+            int colour = ((IAdvancementRenderer) advancement).recolourBackground(greyscale);
             RenderHelper.setOpenGLColour(colour);
         }
     }
@@ -29,39 +29,39 @@ public class MinechemHooks
         RenderHelper.setGreyscaleOpenGLColour(greyscale);
     }
 
-    public static void drawIconAchievement(RenderItem renderItem, FontRenderer fontRenderer, TextureManager textureManager, final ItemStack itemStack, int x, int y, Achievement achievement)
+    public static void drawIconAdvancement(RenderItem renderItem, FontRenderer fontRenderer, TextureManager textureManager, final ItemStack itemStack, int x, int y, Advancement advancement)
     {
-        if (achievement instanceof IAchievementRenderer && ((IAchievementRenderer) achievement).hasSpecialIconRenderer())
+        if (advancement instanceof IAdvancementRenderer && ((IAdvancementRenderer) advancement).hasSpecialIconRenderer())
         {
-            ((IAchievementRenderer) achievement).renderIcon(fontRenderer, textureManager, itemStack, x, y);
+            ((IAdvancementRenderer) advancement).renderIcon(fontRenderer, textureManager, itemStack, x, y);
         } else
         {
             renderItem.renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
         }
     }
 
-    public static void drawAchievementPageBackground(Minecraft mc, float scale, int columnWidth, int rowHeight, int currentPage)
+    public static void drawAdvancementListBackground(Minecraft mc, float scale, int columnWidth, int rowHeight, int currentPage)
     {
         if (currentPage != -1)
         {
-            AchievementPage achievementPage = AchievementPage.getAchievementPage(currentPage);
-            if (achievementPage instanceof IAchievementPageRenderer)
+            AdvancementList advancementList = AdvancementList.getAdvancementList(currentPage);
+            if (advancementList instanceof IAdvancementListRenderer)
             {
-                ((IAchievementPageRenderer) achievementPage).drawBackground(mc, 0, scale, columnWidth, rowHeight);
+                ((IAdvancementListRenderer) advancementList).drawBackground(mc, 0, scale, columnWidth, rowHeight);
                 return;
             }
         }
-        MinecraftAchievementPage.drawBackground(mc, 0, scale, columnWidth, rowHeight);
+        MinecraftAdvancementList.drawBackground(mc, 0, scale, columnWidth, rowHeight);
     }
 
     public static float setScaleOnLoad(int currentPage)
     {
         if (currentPage != -1)
         {
-            AchievementPage achievementPage = AchievementPage.getAchievementPage(currentPage);
-            if (achievementPage instanceof IAchievementPageRenderer)
+            AdvancementList advancementList = AdvancementList.getAdvancementList(currentPage);
+            if (advancementList instanceof IAdvancementListRenderer)
             {
-                return ((IAchievementPageRenderer) achievementPage).setScaleOnLoad();
+                return ((IAdvancementListRenderer) advancementList).setScaleOnLoad();
             }
         }
         return 1.0F;
@@ -71,10 +71,10 @@ public class MinechemHooks
     {
         if (currentPage != -1)
         {
-            AchievementPage achievementPage = AchievementPage.getAchievementPage(currentPage);
-            if (achievementPage instanceof IAchievementPageRenderer)
+            AdvancementList advancementList = AdvancementList.getAdvancementList(currentPage);
+            if (advancementList instanceof IAdvancementListRenderer)
             {
-                return ((IAchievementPageRenderer) achievementPage).getMaxZoomOut();
+                return ((IAdvancementListRenderer) advancementList).getMaxZoomOut();
             }
         }
         return 2.0F;
@@ -84,10 +84,10 @@ public class MinechemHooks
     {
         if (currentPage != -1)
         {
-            AchievementPage achievementPage = AchievementPage.getAchievementPage(currentPage);
-            if (achievementPage instanceof IAchievementPageRenderer)
+            AdvancementList advancementList = AdvancementList.getAdvancementList(currentPage);
+            if (advancementList instanceof IAdvancementListRenderer)
             {
-                return ((IAchievementPageRenderer) achievementPage).getMaxZoomIn();
+                return ((IAdvancementListRenderer) advancementList).getMaxZoomIn();
             }
         }
         return 1.0F;

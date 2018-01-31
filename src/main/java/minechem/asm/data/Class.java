@@ -6,7 +6,7 @@ import minechem.asm.LoadingPlugin;
 
 public enum Class
 {
-    GUI_ACHIEVEMENTS("net.minecraft.client.gui.achievement.GuiAchievements", "bei"),
+    GUI_ADVANCEMENTS("net.minecraft.client.gui.advancement.GuiAdvancements", "bei"),
     RENDER_ITEM("net.minecraft.client.renderer.entity.RenderItem", "bny"),
     MATH_HELPER("net.minecraft.util.MathHelper", "qh"),
     MINECHEM_HOOKS("minechem.asm.MinechemHooks", "minechem.asm.MinechemHooks");
@@ -24,12 +24,12 @@ public enum Class
 
     static
     {
-        GUI_ACHIEVEMENTS.addField(new Field("field_146570_r", "F"));
-        GUI_ACHIEVEMENTS.addField(new Field("currentPage", "I"));
-        GUI_ACHIEVEMENTS.addField(new Field("mc", "field_146297_k", "Lnet/minecraft/client/Minecraft;", "Lbao;"));
+        GUI_ADVANCEMENTS.addField(new Field("field_146570_r", "F"));
+        GUI_ADVANCEMENTS.addField(new Field("currentPage", "I"));
+        GUI_ADVANCEMENTS.addField(new Field("mc", "field_146297_k", "Lnet/minecraft/client/Minecraft;", "Lbao;"));
         RENDER_ITEM.addField(new Field("zLevel", "field_77023_b", "F"));
 
-        GUI_ACHIEVEMENTS.setMethods(Method.GUI_DRAW, Method.DRAW_SCREEN, Method.ACTION_PREFORMED);
+        GUI_ADVANCEMENTS.setMethods(Method.GUI_DRAW, Method.DRAW_SCREEN, Method.ACTION_PREFORMED);
         RENDER_ITEM.setMethods(Method.RENDER_ITEM_AND_EFFECT_INTO_GUI);
     }
 

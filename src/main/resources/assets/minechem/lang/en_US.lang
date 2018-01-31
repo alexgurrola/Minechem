@@ -33,17 +33,17 @@ tab.patreon.linkText=Visit Patreon
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=Supporting Minechem
 
-achievement.minechem.item.journal=Start learning
-achievement.minechem.item.journal.desc=The journal is your gate to all the Minechem knowledge
-achievement.minechem.tile.opticalMicroscope=Looking at Things
-achievement.minechem.tile.opticalMicroscope.desc=Use the Microscope for the first time
-achievement.minechem.tile.electrolysis=Electrolysing things
-achievement.minechem.tile.electrolysis.desc=Use the Electrolysis Machine for the first time
-achievement.minechem.tile.electricCrucible=Melting things
-achievement.minechem.tile.electricCrucible.desc=Use the Electric Crucible for the first time
+advancement.minechem.item.journal=Start learning
+advancement.minechem.item.journal.desc=The journal is your gate to all the Minechem knowledge
+advancement.minechem.tile.opticalMicroscope=Looking at Things
+advancement.minechem.tile.opticalMicroscope.desc=Use the Microscope for the first time
+advancement.minechem.tile.electrolysis=Electrolysing things
+advancement.minechem.tile.electrolysis.desc=Use the Electrolysis Machine for the first time
+advancement.minechem.tile.electricCrucible=Melting things
+advancement.minechem.tile.electricCrucible.desc=Use the Electric Crucible for the first time
 
-achievement.minechem.element=Discovered %s
-achievement.minechem.element.desc=Discover %s to unlock
+advancement.minechem.element=Discovered %s
+advancement.minechem.element.desc=Discover %s to unlock
 
 augment.augmentedItem=Augmented
 augment.light=Lighting

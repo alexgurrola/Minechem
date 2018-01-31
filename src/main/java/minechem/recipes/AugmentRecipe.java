@@ -7,8 +7,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.RecipeSorter;
+
+import javax.annotation.Nullable;
 
 public class AugmentRecipe implements IRecipe
 {
@@ -100,6 +103,11 @@ public class AugmentRecipe implements IRecipe
     }
 
     @Override
+    public boolean canFit(int width, int height) {
+        return false;
+    }
+
+    @Override
     public int getRecipeSize()
     {
         return 2;
@@ -108,6 +116,22 @@ public class AugmentRecipe implements IRecipe
     @Override
     public ItemStack getRecipeOutput()
     {
+        return null;
+    }
+
+    @Override
+    public IRecipe setRegistryName(ResourceLocation name) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public ResourceLocation getRegistryName() {
+        return null;
+    }
+
+    @Override
+    public Class<IRecipe> getRegistryType() {
         return null;
     }
 }

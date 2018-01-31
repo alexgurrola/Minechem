@@ -2,7 +2,7 @@ package minechem.apparatus.tier1.opticalMicroscope;
 
 import minechem.proxy.client.render.RenderHelper;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -14,14 +14,14 @@ public class MicroscopeRenderItem extends RenderItem
 
     public MicroscopeRenderItem(OpticalMicroscopeGUI microscopeGui)
     {
-        super();
+        super.render();
         this.microscopeGui = microscopeGui;
     }
 
     @Override
-    public void renderItemAndEffectIntoGUI(FontRenderer fontRenderer, TextureManager textureManager, ItemStack itemStack, int x, int y)
+    public void renderItemAndEffectIntoGUI(FontRenderer fontRenderer, TextureManager textureManager, ItemStack stack, int xPosition, int yPosition)
     {
-        if (itemStack == null)
+        if (stack == null)
         {
             return;
         }
@@ -43,14 +43,14 @@ public class MicroscopeRenderItem extends RenderItem
             GL11.glPopMatrix();
         }
 
-        if (itemStack == microscopeGui.getContainer().getInventoryPlayer().getItemStack() && microscopeGui.isMouseInMicroscope())
+        if (stack == microscopeGui.getContainer().getInventoryPlayer().getItemStack() && microscopeGui.isMouseInMicroscope())
         {
             GL11.glPushMatrix();
             RenderHelper.setScissor(microscopeGui.getXSize(), microscopeGui.getYSize(), OpticalMicroscopeGUI.eyePieceX, OpticalMicroscopeGUI.eyePieceY, OpticalMicroscopeGUI.eyePieceW, OpticalMicroscopeGUI.eyePieceH);
-            GL11.glTranslatef(x, y, 0.0F);
+            GL11.glTranslatef(xPosition, yPosition, 0.0F);
             GL11.glScalef(3.0F, 3.0F, 1.0F);
-            GL11.glTranslatef(-x - 8.0F, -y - 8.0F, 540.0F);
-            super.renderItemAndEffectIntoGUI(fontRenderer, textureManager, itemStack, x, y);
+            GL11.glTranslatef(-xPosition - 8.0F, -yPosition - 8.0F, 540.0F);
+            super.renderItemAndEffectIntoGUI(fontRenderer, textureManager, stack, xPosition, yPosition);
             RenderHelper.stopScissor();
             GL11.glPopMatrix();
         }

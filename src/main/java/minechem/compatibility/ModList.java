@@ -1,6 +1,6 @@
 package minechem.compatibility;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.Loader;
 import minechem.Compendium;
 import minechem.compatibility.computercraft.ComputerCraftCompat;
 import minechem.compatibility.openblocks.OpenBlocksCompat;

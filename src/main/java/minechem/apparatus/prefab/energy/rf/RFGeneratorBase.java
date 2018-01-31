@@ -1,36 +1,36 @@
 package minechem.apparatus.prefab.energy.rf;
 
-import cofh.api.energy.IEnergyProvider;
-import cpw.mods.fml.common.Optional;
-import net.minecraftforge.common.util.ForgeDirection;
+import cofh.redstoneflux.api.IEnergyProvider;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraft.util.EnumFacing;
 
-@Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHAPI|energy")
+@Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyProvider", modid = "CoFHAPI|energy")
 public class RFGeneratorBase extends RFBase implements IEnergyProvider
 {
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public boolean canConnectEnergy(ForgeDirection forgeDirection)
+    public boolean canConnectEnergy(EnumFacing enumFacing)
     {
         return true;
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int extractEnergy(ForgeDirection forgeDirection, int amount, boolean doExtract)
+    public int extractEnergy(EnumFacing enumFacing, int amount, boolean doExtract)
     {
         return this.energy.extractEnergy(amount, doExtract);
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int getEnergyStored(ForgeDirection forgeDirection)
+    public int getEnergyStored(EnumFacing enumFacing)
     {
         return this.energy.getStored();
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int getMaxEnergyStored(ForgeDirection forgeDirection)
+    public int getMaxEnergyStored(EnumFacing enumFacing)
     {
         return this.energy.getCapacity();
     }

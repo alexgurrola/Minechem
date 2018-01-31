@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import minechem.Compendium;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class LuaGetTankInfo extends LuaFluidMethod
 {
@@ -18,13 +18,13 @@ public class LuaGetTankInfo extends LuaFluidMethod
     @Override
     public Object[] action(TileEntity te, Object[] args) throws Exception
     {
-        ForgeDirection direction;
+        EnumFacing direction;
         if (args.length == 0)
         {
-            direction = ForgeDirection.UNKNOWN;
+            direction = EnumFacing.UNKNOWN;
         } else
         {
-            direction = ForgeDirection.valueOf((String) args[1]);
+            direction = EnumFacing.valueOf((String) args[1]);
             if (direction == null)
             {
                 throw new Exception("Invalid Direction");

@@ -1,20 +1,17 @@
 package minechem.registry;
 
-import java.util.HashMap;
-import java.util.Map;
+import cofh.api.fluid.IFluidContainerItem;
 import minechem.collections.ItemStackMap;
 import minechem.item.augment.IAugmentItem;
-import minechem.item.augment.augments.AugmentFlint;
-import minechem.item.augment.augments.AugmentLight;
-import minechem.item.augment.augments.AugmentRedstone;
-import minechem.item.augment.augments.AugmentTnt;
-import minechem.item.augment.augments.IAugment;
+import minechem.item.augment.augments.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.IFluidContainerItem;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AugmentRegistry
 {

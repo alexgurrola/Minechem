@@ -1,6 +1,6 @@
 package minechem;
 
-import cpw.mods.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.ModMetadata;
 import java.util.Arrays;
 
 import minechem.helper.LogHelper;
@@ -226,7 +226,7 @@ public class Compendium
         {
             public static final ResourceLocation journal = new ResourceLocation(Compendium.Naming.id, Compendium.Texture.GUI.journal);
             public static final ResourceLocation opticalMicroscope = new ResourceLocation(Compendium.Naming.id, Compendium.Texture.GUI.opticalMicroscope);
-            public static final ResourceLocation achievements = new ResourceLocation(Compendium.Naming.id, Compendium.Texture.GUI.achievements);
+            public static final ResourceLocation advancements = new ResourceLocation(Compendium.Naming.id, Compendium.Texture.GUI.advancements);
             public static final ResourceLocation noContent = new ResourceLocation(Compendium.Naming.id, Compendium.Texture.GUI.noContent);
 
             public static ResourceLocation getResourceForStructure(String name)
@@ -296,7 +296,7 @@ public class Compendium
             public static final String opticalMicroscope = Compendium.Texture.GUI.prefix + "opticalMicroscope.png";
             public static final String tab_left = Compendium.Texture.GUI.prefix + "tabLeft.png";
             public static final String tab_right = Compendium.Texture.GUI.prefix + "tabRight.png";
-            public static final String achievements = Compendium.Texture.GUI.prefix + "achievementPage.png";
+            public static final String advancements = Compendium.Texture.GUI.prefix + "advancementList.png";
             public static final String noContent = Compendium.Texture.GUI.prefix + "noContent.png";
 
             public static final class Element

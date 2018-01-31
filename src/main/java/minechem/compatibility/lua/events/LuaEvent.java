@@ -1,6 +1,6 @@
 package minechem.compatibility.lua.events;
 
-import cpw.mods.fml.common.Optional;
+import net.minecraftforge.fml.common.Optional;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import li.cil.oc.api.machine.Context;
 import minechem.Compendium;

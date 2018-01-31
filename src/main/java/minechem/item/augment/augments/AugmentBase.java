@@ -1,7 +1,7 @@
 package minechem.item.augment.augments;
 
+import cofh.api.fluid.IFluidContainerItem;
 import com.google.common.collect.Multimap;
-import java.util.Random;
 import minechem.Compendium;
 import minechem.helper.LocalizationHelper;
 import minechem.item.augment.IAugmentItem;
@@ -15,7 +15,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.IFluidContainerItem;
+
+import java.util.Random;
 
 public abstract class AugmentBase implements IAugment
 {

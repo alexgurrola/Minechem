@@ -33,17 +33,17 @@ tab.patreon.linkText=Bezoek Patreon
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=Ondersteun Minechem
 
-achievement.minechem.item.journal=begin met leren
-achievement.minechem.item.journal.desc=Het dagboek is jouw bron voor al je informatie
-achievement.minechem.tile.opticalMicroscope=Kijken naar Dingen
-achievement.minechem.tile.opticalMicroscope.desc=Gebruik de Optische Microscoop voor de eerste maal
-achievement.minechem.tile.electrolysis=Electrolyseer Dingen
-achievement.minechem.tile.electrolysis.desc=Gebruik het Elektrolyse Apparaat voor de eerste maal
-achievement.minechem.tile.electricCrucible=Smelt Dingen
-achievement.minechem.tile.electricCrucible.desc=Gebruik de Electrische Smeltkroes voor de eerste maal
+advancement.minechem.item.journal=begin met leren
+advancement.minechem.item.journal.desc=Het dagboek is jouw bron voor al je informatie
+advancement.minechem.tile.opticalMicroscope=Kijken naar Dingen
+advancement.minechem.tile.opticalMicroscope.desc=Gebruik de Optische Microscoop voor de eerste maal
+advancement.minechem.tile.electrolysis=Electrolyseer Dingen
+advancement.minechem.tile.electrolysis.desc=Gebruik het Elektrolyse Apparaat voor de eerste maal
+advancement.minechem.tile.electricCrucible=Smelt Dingen
+advancement.minechem.tile.electricCrucible.desc=Gebruik de Electrische Smeltkroes voor de eerste maal
 
-achievement.minechem.element=%s Ontdekt
-achievement.minechem.element.desc=Ontdek %s om te ontgrendelen
+advancement.minechem.element=%s Ontdekt
+advancement.minechem.element.desc=Ontdek %s om te ontgrendelen
 
 augment.augmentedItem=Aangepast
 augment.light=Bliksem

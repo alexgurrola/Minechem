@@ -1,18 +1,13 @@
 package minechem.proxy.client.gui;
 
-import cpw.mods.fml.client.IModGuiFactory;
-import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.client.IModGuiFactory;
+
+import java.util.Set;
 
 public class GuiFactory implements IModGuiFactory
 {
-    @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
-    {
-        return null;
-    }
-
     @Override
     public void initialize(Minecraft minecraftInstance)
     {
@@ -20,9 +15,13 @@ public class GuiFactory implements IModGuiFactory
     }
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass()
-    {
-        return GuiModConfig.class;
+    public boolean hasConfigGui() {
+        return false;
+    }
+
+    @Override
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return null;
     }
 
     @Override

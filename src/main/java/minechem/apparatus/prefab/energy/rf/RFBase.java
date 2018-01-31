@@ -51,9 +51,8 @@ public abstract class RFBase extends TileEntity
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound)
-    {
-        super.writeToNBT(tagCompound);
-        energy.writeToNBT(tagCompound);
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        energy.writeToNBT(compound);
+        return super.writeToNBT(compound);
     }
 }

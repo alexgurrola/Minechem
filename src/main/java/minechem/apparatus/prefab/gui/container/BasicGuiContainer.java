@@ -1,12 +1,12 @@
 package minechem.apparatus.prefab.gui.container;
 
-import codechicken.nei.VisiblityData;
+import codechicken.nei.VisibilityData;
 import codechicken.nei.api.INEIGuiHandler;
 import codechicken.nei.api.TaggedInventoryArea;
 import cofh.lib.gui.GuiBase;
 import cofh.lib.gui.element.TabBase;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Optional;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.Optional;
 import java.util.ArrayList;
 import java.util.List;
 import minechem.apparatus.prefab.gui.tab.BasicGuiTab;
@@ -134,9 +134,9 @@ public class BasicGuiContainer extends GuiBase implements INEIGuiHandler
 
     @Optional.Method(modid = "NotEnoughItems")
     @Override
-    public VisiblityData modifyVisiblity(GuiContainer gui, VisiblityData visiblityData)
+    public VisibilityData modifyVisiblity(GuiContainer gui, VisibilityData visibilityData)
     {
-        return visiblityData;
+        return visibilityData;
     }
 
     @Override

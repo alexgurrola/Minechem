@@ -5,13 +5,13 @@ import minechem.apparatus.prefab.gui.container.BasicGuiContainer;
 import minechem.chemical.ChemicalBase;
 import minechem.chemical.Element;
 import minechem.chemical.Molecule;
-import minechem.helper.AchievementHelper;
+import minechem.helper.AdvancementHelper;
 import minechem.helper.LocalizationHelper;
 import minechem.helper.ResearchHelper;
 import minechem.item.chemical.ChemicalItem;
 import minechem.proxy.client.render.RenderHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -80,7 +80,7 @@ public class OpticalMicroscopeGUI extends BasicGuiContainer
                     prevStack = itemStack;
                     if (chemicalBase.isElement())
                     {
-                        AchievementHelper.giveAchievement(getPlayer(), (Element) chemicalBase, getWorld().isRemote);
+                        AdvancementHelper.giveAdvancement(getPlayer(), (Element) chemicalBase, getWorld().isRemote);
                     }
                     ResearchHelper.addResearch(getPlayer(), chemicalBase.getResearchKey(), getWorld().isRemote);
                 }

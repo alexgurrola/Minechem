@@ -81,7 +81,7 @@ public abstract class BasicContainer extends Container
                 }
             }
 
-            if (stack.stackSize == 0)
+            if (stack.isEmpty())
             {
                 slot.putStack((ItemStack) null);
             } else

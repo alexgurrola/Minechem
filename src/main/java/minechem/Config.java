@@ -1,12 +1,12 @@
 package minechem;
 
-import cpw.mods.fml.client.config.IConfigElement;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.client.config.IConfigElement;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -53,40 +53,40 @@ public class Config
         Property prop;
         List<String> configList = new ArrayList<String>();
 
-        config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, StatCollector.translateToLocal("config.general.description"));
+        config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, I18n.translateToLocal("config.general.description"));
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "debugMode", Config.debugMode);
-        prop.comment = StatCollector.translateToLocal("config.debugMode");
+        prop.setComment(I18n.translateToLocal("config.debugMode"));
         prop.setLanguageKey("config.debugMode.tooltip");
         debugMode = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "useDefaultElements", Config.useDefaultElements);
-        prop.comment = StatCollector.translateToLocal("config.useDefaultElements");
+        prop.setComment(I18n.translateToLocal("config.useDefaultElements"));
         prop.setLanguageKey("config.useDefaultElements.tooltip");
         useDefaultElements = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "useDefaultMolecules", Config.useDefaultMolecules);
-        prop.comment = StatCollector.translateToLocal("config.useDefaultMolecules");
+        prop.setComment(I18n.translateToLocal("config.useDefaultMolecules"));
         prop.setLanguageKey("config.useDefaultMolecules.tooltip");
         useDefaultMolecules = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "useDefaultResearchPages", Config.useDefaultResearchPages);
-        prop.comment = StatCollector.translateToLocal("config.useDefaultResearchPages");
+        prop.setComment(I18n.translateToLocal("config.useDefaultResearchPages"));
         prop.setLanguageKey("config.useDefaultResearchPages.tooltip");
         useDefaultResearchPages = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "enablePatreon", Config.enablePatreon);
-        prop.comment = StatCollector.translateToLocal("config.enablePatreon");
+        prop.setComment(I18n.translateToLocal("config.enablePatreon"));
         prop.setLanguageKey("config.enablePatreon.tooltip");
         enablePatreon = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "playerPrivateKnowledge", Config.playerPrivateKnowledge);
-        prop.comment = StatCollector.translateToLocal("config.playerPrivateKnowledge");
+        prop.setComment(I18n.translateToLocal("config.playerPrivateKnowledge"));
         prop.setLanguageKey("config.playerPrivateKnowledge.tooltip");
         playerPrivateKnowledge = prop.getBoolean();
         configList.add(prop.getName());
@@ -100,7 +100,7 @@ public class Config
     @SubscribeEvent
     public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
     {
-        if (event.modID.equalsIgnoreCase(Compendium.Naming.id))
+        if (event.getModID().equalsIgnoreCase(Compendium.Naming.id))
         {
             loadConfig();
         }

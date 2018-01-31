@@ -56,13 +56,13 @@ public enum CodeBlock implements IInsnList
     {
         InsnList insnList = new InsnList();
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("mc").getName(), Class.GUI_ACHIEVEMENTS.getField("mc").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("mc").getName(), Class.GUI_ADVANCEMENTS.getField("mc").getDesc()));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getDesc()));
         insnList.add(new VarInsnNode(Opcodes.ILOAD, 4));
         insnList.add(new VarInsnNode(Opcodes.ILOAD, 5));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getDesc()));
         insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, Hook.BACKGROUND.getClazz().getASMName(), Hook.BACKGROUND.getName(), Hook.BACKGROUND.getParams(), false));
         return insnList;
     }
@@ -72,15 +72,15 @@ public enum CodeBlock implements IInsnList
         InsnList insnList = new InsnList();
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getDesc()));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getDesc()));
         insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, Hook.GET_MAX_ZOOM_IN.getClazz().getASMName(), Hook.GET_MAX_ZOOM_IN.getName(), Hook.GET_MAX_ZOOM_IN.getParams(), false));
         insnList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getName(), Class.GUI_ACHIEVEMENTS.getField("currentPage").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.GETFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getName(), Class.GUI_ADVANCEMENTS.getField("currentPage").getDesc()));
         insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, Hook.GET_MAX_ZOOM_OUT.getClazz().getASMName(), Hook.GET_MAX_ZOOM_OUT.getName(), Hook.GET_MAX_ZOOM_OUT.getParams(), false));
         insnList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, Class.MATH_HELPER.getASMName(), LoadingPlugin.runtimeDeobfEnabled ? "func_76131_a" : "clamp_float", "(FFF)F", false));
-        insnList.add(new FieldInsnNode(Opcodes.PUTFIELD, Class.GUI_ACHIEVEMENTS.getASMName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getName(), Class.GUI_ACHIEVEMENTS.getField("field_146570_r").getDesc()));
+        insnList.add(new FieldInsnNode(Opcodes.PUTFIELD, Class.GUI_ADVANCEMENTS.getASMName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getName(), Class.GUI_ADVANCEMENTS.getField("field_146570_r").getDesc()));
         return insnList;
     }
 

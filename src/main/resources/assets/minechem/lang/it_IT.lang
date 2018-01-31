@@ -33,17 +33,17 @@ tab.patreon.linkText=Visita Patreon
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=Supporta Minechem
 
-achievement.minechem.item.journal=Inizia ad Imparare
-achievement.minechem.item.journal.desc=Il diario è la tua via d'accesso al mondo di Minechem
-achievement.minechem.tile.opticalMicroscope=Guardare oggetti
-achievement.minechem.tile.opticalMicroscope.desc=Usa il microscopio per la prima volta
-achievement.minechem.tile.electrolysis=Elettrolizzare Oggetti
-achievement.minechem.tile.electrolysis.desc=Usa l'impianto di elettrolisi per la prima volta
-achievement.minechem.tile.electricCrucible=Fondere Oggetti
-achievement.minechem.tile.electricCrucible.desc=Usa il crogiolo elettrico per la prima volta
+advancement.minechem.item.journal=Inizia ad Imparare
+advancement.minechem.item.journal.desc=Il diario è la tua via d'accesso al mondo di Minechem
+advancement.minechem.tile.opticalMicroscope=Guardare oggetti
+advancement.minechem.tile.opticalMicroscope.desc=Usa il microscopio per la prima volta
+advancement.minechem.tile.electrolysis=Elettrolizzare Oggetti
+advancement.minechem.tile.electrolysis.desc=Usa l'impianto di elettrolisi per la prima volta
+advancement.minechem.tile.electricCrucible=Fondere Oggetti
+advancement.minechem.tile.electricCrucible.desc=Usa il crogiolo elettrico per la prima volta
 
-achievement.minechem.element=Scoperto %s
-achievement.minechem.element.desc=Scopri %s per sbloccare
+advancement.minechem.element=Scoperto %s
+advancement.minechem.element.desc=Scopri %s per sbloccare
 
 augment.augmentedItem=Potenziato
 augment.light=Illuminato

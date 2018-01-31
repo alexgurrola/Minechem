@@ -2,7 +2,7 @@ package minechem.compatibility.lua.methods.liquids;
 
 import minechem.compatibility.lua.methods.LuaMethod;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public abstract class LuaFluidMethod extends LuaMethod
 {

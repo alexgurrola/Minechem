@@ -1,8 +1,8 @@
 package minechem.item.augment;
 
 import com.google.common.collect.Multimap;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 public class AugmentedItem extends WrapperItem implements IAugmentedItem, IOverlay
@@ -260,7 +260,7 @@ public class AugmentedItem extends WrapperItem implements IAugmentedItem, IOverl
     @Override
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return (getWrappedItemStack(stack) != null ? StatCollector.translateToLocal("augment.augmentedItem") + " " : "") + super.getItemStackDisplayName(stack);
+        return (getWrappedItemStack(stack) != null ? I18n.translateToLocal("augment.augmentedItem") + " " : "") + super.getItemStackDisplayName(stack);
     }
 
     //################################Augment Effect Stuff####################################

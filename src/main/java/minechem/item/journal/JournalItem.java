@@ -1,7 +1,7 @@
 package minechem.item.journal;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
 import minechem.Config;
 import minechem.handler.MessageHandler;
 import minechem.handler.message.JournalMessage;
-import minechem.helper.AchievementHelper;
+import minechem.helper.AdvancementHelper;
 import minechem.helper.ArrayHelper;
 import minechem.helper.LocalizationHelper;
 import minechem.item.prefab.BasicItem;
@@ -50,7 +50,7 @@ public class JournalItem extends BasicItem
                 Minecraft.getMinecraft().displayGuiScreen(new JournalGUI(player, getKnowledgeKeys(stack), getAuthors(stack)));
             }
         }
-        AchievementHelper.giveAchievement(player, this.getUnlocalizedName(), world.isRemote);
+        AdvancementHelper.giveAdvancement(player, this.getUnlocalizedName(), world.isRemote);
         return stack;
     }
 

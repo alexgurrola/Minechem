@@ -1,6 +1,6 @@
 package minechem.handler;
 
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 import minechem.apparatus.tier1.opticalMicroscope.OpticalMicroscopeContainer;
 import minechem.apparatus.tier1.opticalMicroscope.OpticalMicroscopeGUI;
 import minechem.apparatus.tier1.opticalMicroscope.OpticalMicroscopeTileEntity;

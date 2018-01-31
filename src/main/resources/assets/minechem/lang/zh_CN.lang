@@ -33,17 +33,17 @@ tab.patreon.linkText=查看Patreon
 tab.patreon.headerText=Patreon
 tab.patreon.tooltip=支持Minechem
 
-achievement.minechem.item.journal=开始研究
-achievement.minechem.item.journal.desc=这本日记是你通向所有化学知识的大门
-achievement.minechem.tile.opticalMicroscope=Looking at Things
-achievement.minechem.tile.opticalMicroscope.desc=第一次使用显微镜
-achievement.minechem.tile.electrolysis=Electrolysing things
-achievement.minechem.tile.electrolysis.desc=第一次使用电解器
-achievement.minechem.tile.electricCrucible=Melting things
-achievement.minechem.tile.electricCrucible.desc=第一次使用电动坩埚
+advancement.minechem.item.journal=开始研究
+advancement.minechem.item.journal.desc=这本日记是你通向所有化学知识的大门
+advancement.minechem.tile.opticalMicroscope=Looking at Things
+advancement.minechem.tile.opticalMicroscope.desc=第一次使用显微镜
+advancement.minechem.tile.electrolysis=Electrolysing things
+advancement.minechem.tile.electrolysis.desc=第一次使用电解器
+advancement.minechem.tile.electricCrucible=Melting things
+advancement.minechem.tile.electricCrucible.desc=第一次使用电动坩埚
 
-achievement.minechem.element=发现%s
-achievement.minechem.element.desc=发现%s以解锁
+advancement.minechem.element=发现%s
+advancement.minechem.element.desc=发现%s以解锁
 
 augment.augmentedItem=增强的
 augment.light=照明

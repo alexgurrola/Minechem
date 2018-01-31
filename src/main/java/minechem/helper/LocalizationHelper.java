@@ -1,8 +1,8 @@
 package minechem.helper;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraft.util.text.translation.I18n;
 
 import java.util.IllegalFormatException;
 
@@ -22,12 +22,12 @@ public class LocalizationHelper
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             String localString;
-            if (StatCollector.canTranslate(key))
+            if (I18n.canTranslate(key))
             {
-                localString = StatCollector.translateToLocal(key);
+                localString = I18n.translateToLocal(key);
             } else
             {
-                localString = StatCollector.translateToFallback(key);
+                localString = I18n.translateToFallback(key);
             }
             if (capitalize)
             {
@@ -48,12 +48,12 @@ public class LocalizationHelper
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             String localString;
-            if (StatCollector.canTranslate(key))
+            if (I18n.canTranslate(key))
             {
-                localString = StatCollector.translateToLocalFormatted(key, objects);
+                localString = I18n.translateToLocalFormatted(key, objects);
             } else
             {
-                localString = StatCollector.translateToFallback(key);
+                localString = I18n.translateToFallback(key);
                 try
                 {
                     localString = String.format(localString, objects);

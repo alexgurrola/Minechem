@@ -1,36 +1,36 @@
 package minechem.apparatus.prefab.energy.rf;
 
-import cofh.api.energy.IEnergyReceiver;
-import cpw.mods.fml.common.Optional;
-import net.minecraftforge.common.util.ForgeDirection;
+import cofh.redstoneflux.api.IEnergyReceiver;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraft.util.EnumFacing;
 
-@Optional.Interface(iface = "cofh.api.energy.IEnergyReceiver", modid = "CoFHAPI|energy")
-public class RFMachineBase extends RFBase implements IEnergyReceiver
+@Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyReceiver", modid = "CoFHAPI|energy")
+public abstract class RFMachineBase extends RFBase implements IEnergyReceiver
 {
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public boolean canConnectEnergy(ForgeDirection forgeDirection)
+    public boolean canConnectEnergy(EnumFacing enumFacing)
     {
         return true;
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int getEnergyStored(ForgeDirection forgeDirection)
+    public int getEnergyStored(EnumFacing enumFacing)
     {
         return this.energy.getStored();
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int getMaxEnergyStored(ForgeDirection forgeDirection)
+    public int getMaxEnergyStored(EnumFacing enumFacing)
     {
         return this.energy.getCapacity();
     }
 
     @Optional.Method(modid = "CoFHAPI|energy")
     @Override
-    public int receiveEnergy(ForgeDirection forgeDirection, int amount, boolean doInsert)
+    public int receiveEnergy(EnumFacing enumFacing, int amount, boolean doInsert)
     {
         return this.energy.inputEnergy(amount, doInsert);
     }

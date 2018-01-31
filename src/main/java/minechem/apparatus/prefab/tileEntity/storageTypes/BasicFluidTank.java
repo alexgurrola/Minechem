@@ -1,11 +1,11 @@
 package minechem.apparatus.prefab.tileEntity.storageTypes;
 
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 /**
  * Implementation of a basic single fluid type tank
@@ -32,7 +32,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return boolean based on the fluid
      */
     @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid)
+    public boolean canDrain(EnumFacing from, Fluid fluid)
     {
         if (fluid != null && fluid.getID() == tank.getFluid().getFluidID())
         {
@@ -49,7 +49,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return boolean based on the fluid
      */
     @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid)
+    public boolean canFill(EnumFacing from, Fluid fluid)
     {
         if (tank != null)
         {
@@ -73,7 +73,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return FluidStack object
      */
     @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+    public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
     {
         if (resource != null && resource.isFluidEqual(tank.getFluid()))
         {
@@ -91,7 +91,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return FluidStack object
      */
     @Override
-    public FluidStack drain(ForgeDirection from, int amount, boolean doDrain)
+    public FluidStack drain(EnumFacing from, int amount, boolean doDrain)
     {
         if (amount <= tank.getFluidAmount())
         {
@@ -109,7 +109,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return how much was actually filled
      */
     @Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+    public int fill(EnumFacing from, FluidStack resource, boolean doFill)
     {
         if (tank != null & resource != null)
         {
@@ -129,7 +129,7 @@ public class BasicFluidTank implements IFluidHandler
      * @return FluidTankInfo array
      */
     @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from)
+    public FluidTankInfo[] getTankInfo(EnumFacing from)
     {
         FluidTankInfo[] tankInfo = new FluidTankInfo[1];
         tankInfo[0] = tank.getInfo();

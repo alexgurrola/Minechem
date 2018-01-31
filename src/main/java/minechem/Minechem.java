@@ -1,31 +1,17 @@
 package minechem;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.event.FMLServerStoppingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import minechem.handler.AchievementHandler;
-import minechem.handler.ElementHandler;
-import minechem.handler.GuiHandler;
-import minechem.handler.ResearchHandler;
-import minechem.handler.MessageHandler;
-import minechem.handler.MoleculeHandler;
+import minechem.handler.*;
 import minechem.helper.LogHelper;
 import minechem.proxy.CommonProxy;
-import minechem.registry.AugmentRegistry;
-import minechem.registry.BlockRegistry;
-import minechem.registry.CreativeTabRegistry;
-import minechem.registry.ItemRegistry;
-import minechem.registry.JournalRegistry;
-import minechem.registry.RecipeRegistry;
+import minechem.registry.*;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = Compendium.Naming.id, name = Compendium.Naming.name, version = Compendium.Version.full, useMetadata = false, guiFactory = "minechem.proxy.client.gui.GuiFactory", acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class Minechem
@@ -58,7 +44,7 @@ public class Minechem
         try
         {
             // Shouldn't we be using Loader.isModLoaded here?
-            Class.forName("cofh.api.energy.IEnergyHandler");
+            Class.forName("cofh.redstoneflux.api.IEnergyHandler");
             isCoFHAAPILoaded = true;
         } catch (Exception e)
         {
@@ -119,8 +105,8 @@ public class Minechem
         LogHelper.debug("Registering Fonts...");
         proxy.registerFonts();
 
-        LogHelper.debug("Registering Achievements...");
-        AchievementHandler.init();
+        LogHelper.debug("Registering Advancements...");
+        AdvancementHandler.init();
     }
 
     @EventHandler
