@@ -28,6 +28,7 @@ natives/
 ## Gradle
 .gradle/
 build/
+classes/
 gradle/
 gradlew
 out/
@@ -51,3 +52,6 @@ eclipse/
 ## netbeans
 nbbuild/
 nbproject/
+
+## Misc
+local.properties
