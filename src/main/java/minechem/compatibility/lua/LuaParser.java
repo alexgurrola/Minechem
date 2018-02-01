@@ -22,7 +22,7 @@ public class LuaParser
                 return null;
             }
             result.put(Compendium.NBTTags.item, id.toString());
-            result.put(Compendium.NBTTags.amount, stack.stackSize);
+            result.put(Compendium.NBTTags.amount, stack.getMaxStackSize());
             result.put(Compendium.NBTTags.damage, stack.getItemDamage());
             if (stack.hasTagCompound()) {
                 result.put(Compendium.NBTTags.nbt, stack.getTagCompound().toString());

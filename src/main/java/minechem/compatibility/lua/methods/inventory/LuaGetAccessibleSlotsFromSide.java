@@ -4,6 +4,7 @@ import minechem.compatibility.lua.LuaParser;
 import minechem.compatibility.lua.methods.LuaMethod;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 
 public class LuaGetAccessibleSlotsFromSide extends LuaMethod
 {
@@ -17,7 +18,7 @@ public class LuaGetAccessibleSlotsFromSide extends LuaMethod
     {
         return new Object[]
                 {
-                        LuaParser.toLua(((ISidedInventory) te).getAccessibleSlotsFromSide(((Number) args[0]).intValue()))
+                        LuaParser.toLua(((ISidedInventory) te).getSlotsForFace((EnumFacing) args[0]))
                 };
     }
 

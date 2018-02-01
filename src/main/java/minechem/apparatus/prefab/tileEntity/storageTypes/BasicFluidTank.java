@@ -34,10 +34,7 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public boolean canDrain(EnumFacing from, Fluid fluid)
     {
-        if (fluid != null && fluid.getID() == tank.getFluid().getFluidID()) {
-            return tank.getFluidAmount() > 0;
-        }
-        return false;
+        return fluid != null && fluid == tank.getFluid().getFluid() && tank.getFluidAmount() > 0;
     }
 
     /**

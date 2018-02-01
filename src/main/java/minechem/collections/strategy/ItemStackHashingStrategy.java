@@ -8,7 +8,7 @@ public class ItemStackHashingStrategy implements HashingStrategy<ItemStack>
     @Override
     public int computeHashCode(ItemStack stack)
     {
-        return stack.getItem().hashCode() ^ stack.getItemDamage() ^ (stack.stackSize << 16) ^ (stack.hasTagCompound() ? stack.stackTagCompound.hashCode() : 0);
+        return stack.getItem().hashCode() ^ stack.getItemDamage() ^ (stack.getMaxStackSize() << 16) ^ (stack.hasTagCompound() ? stack.getTagCompound().hashCode() : 0);
     }
 
     @Override

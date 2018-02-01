@@ -65,7 +65,7 @@ public class JournalItem extends BasicItem
             return;
         }
 
-        NBTTagCompound tagCompound = itemStack.stackTagCompound;
+        NBTTagCompound tagCompound = itemStack.getTagCompound();
         Set<String> playerKnowledge = ResearchRegistry.getInstance().getResearchFor(player);
         if (playerKnowledge == null) {
             return;
@@ -110,8 +110,8 @@ public class JournalItem extends BasicItem
      */
     public String[] getAuthors(ItemStack itemStack)
     {
-        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("authors")) {
-            NBTTagList authorsTag = itemStack.stackTagCompound.getTagList("authors", 8);
+        if (itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("authors")) {
+            NBTTagList authorsTag = itemStack.getTagCompound().getTagList("authors", 8);
             String[] authors = new String[authorsTag.tagCount()];
             for (int i = 0; i < authorsTag.tagCount(); i++) {
                 authors[i] = authorsTag.getStringTagAt(i);
@@ -129,8 +129,8 @@ public class JournalItem extends BasicItem
      */
     public String[] getKnowledgeKeys(ItemStack itemStack)
     {
-        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("research")) {
-            NBTTagList authorsTag = itemStack.stackTagCompound.getTagList("research", 8);
+        if (itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("research")) {
+            NBTTagList authorsTag = itemStack.getTagCompound().getTagList("research", 8);
             String[] knowledgeKeys = new String[authorsTag.tagCount()];
             for (int i = 0; i < authorsTag.tagCount(); i++) {
                 knowledgeKeys[i] = authorsTag.getStringTagAt(i);

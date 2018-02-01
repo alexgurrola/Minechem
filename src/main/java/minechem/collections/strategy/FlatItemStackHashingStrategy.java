@@ -9,7 +9,7 @@ public class FlatItemStackHashingStrategy implements HashingStrategy<ItemStack>
     @Override
     public int computeHashCode(ItemStack stack)
     {
-        return stack.getItem().hashCode() ^ (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE ? 0 : stack.getItemDamage()) ^ (stack.hasTagCompound() ? stack.stackTagCompound.hashCode() : 0);
+        return stack.getItem().hashCode() ^ (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE ? 0 : stack.getItemDamage()) ^ (stack.hasTagCompound() ? stack.getTagCompound().hashCode() : 0);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class LuaGetInventoryName extends LuaInventoryMethod
     {
         return new Object[]
                 {
-                        ((IInventory) te).getInventoryName()
+                        ((IInventory) te).getName()
                 };
     }
 }

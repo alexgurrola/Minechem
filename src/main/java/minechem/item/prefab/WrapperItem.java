@@ -290,7 +290,7 @@ public abstract class WrapperItem extends BasicItem
         }
         boolean result = wrapped.getItem().hitEntity(wrapped, target, user);
         setDamage(stack, wrapped.getItemDamage());
-        if (stack.stackSize < 1 && user instanceof EntityPlayer) {
+        if (stack.getMaxStackSize() < 1 && user instanceof EntityPlayer) {
             ((EntityPlayer) user).destroyCurrentEquippedItem();
         }
         return result;
@@ -364,7 +364,7 @@ public abstract class WrapperItem extends BasicItem
             return super.itemInteractionForEntity(stack, player, entityLivingBase);
         }
         boolean result = wrapped.getItem().itemInteractionForEntity(wrapped, player, entityLivingBase);
-        if (stack.stackSize < 1 && entityLivingBase instanceof EntityPlayer) {
+        if (stack.getMaxStackSize() < 1 && entityLivingBase instanceof EntityPlayer) {
             ((EntityPlayer) entityLivingBase).destroyCurrentEquippedItem();
         }
         return result;
@@ -390,7 +390,7 @@ public abstract class WrapperItem extends BasicItem
         }
         boolean result = wrapped.getItem().onBlockDestroyed(wrapped, world, block, x, y, z, entityLivingBase);
         setDamage(stack, wrapped.getItemDamage());
-        if (stack.stackSize < 1 && entityLivingBase instanceof EntityPlayer) {
+        if (stack.getMaxStackSize() < 1 && entityLivingBase instanceof EntityPlayer) {
             ((EntityPlayer) entityLivingBase).destroyCurrentEquippedItem();
         }
         return result;
@@ -405,7 +405,7 @@ public abstract class WrapperItem extends BasicItem
         }
         boolean result = wrapped.getItem().onBlockStartBreak(wrapped, X, Y, Z, player);
         setDamage(stack, wrapped.getItemDamage());
-        if (stack.stackSize < 1) {
+        if (stack.getMaxStackSize() < 1) {
             player.destroyCurrentEquippedItem();
         }
         return result;
@@ -460,7 +460,7 @@ public abstract class WrapperItem extends BasicItem
             return super.onItemRightClick(stack, world, player);
         }
         wrapped = wrapped.getItem().onItemRightClick(wrapped, world, player);
-        if (wrapped == null || wrapped.stackSize == 0) {
+        if (wrapped == null || wrapped.getMaxStackSize() == 0) {
             return null;
         }
         setWrappedItemStack(stack, wrapped);
@@ -476,7 +476,7 @@ public abstract class WrapperItem extends BasicItem
         }
         boolean result = wrapped.getItem().onItemUse(wrapped, player, world, x, y, z, side, hitX, hitY, hitZ);
         setDamage(stack, wrapped.getItemDamage());
-        if (stack.stackSize < 1) {
+        if (stack.getMaxStackSize() < 1) {
             player.destroyCurrentEquippedItem();
         }
         return result;
@@ -491,7 +491,7 @@ public abstract class WrapperItem extends BasicItem
         }
         boolean result = wrapped.getItem().onItemUse(wrapped, player, world, x, y, z, side, hitX, hitY, hitZ);
         setDamage(stack, wrapped.getItemDamage());
-        if (stack.stackSize < 1) {
+        if (stack.getMaxStackSize() < 1) {
             player.destroyCurrentEquippedItem();
         }
         return result;
@@ -549,7 +549,7 @@ public abstract class WrapperItem extends BasicItem
         } else {
             wrapped.getItem().setDamage(wrapped, damage);
             if (wrapped.getMaxDamage() <= damage) {
-                stack.stackSize--;
+                stack.getMaxStackSize()--;
             }
             setWrappedItemStack(stack, wrapped);
         }
