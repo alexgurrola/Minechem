@@ -6,6 +6,9 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
@@ -75,6 +78,7 @@ dependencies {
     //compile "extracells:ExtraCells:${config.minecraft.version}-${config.ec.version}:api"
     //provided name: "ExtraCells", version: config.ec.version, ext: "jar", classifier: "api"
     compile "li.cil.oc:OpenComputers:MC${config.oc.mc}-${config.oc.api}:api"
+    //compile "org.lwjgl:lwjgl:${lwjgl.version}"
     compile "mezz.jei:jei_${config.minecraft.version}:${config.jei.version}"
 }
 
