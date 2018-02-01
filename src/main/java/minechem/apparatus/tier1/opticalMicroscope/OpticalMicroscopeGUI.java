@@ -60,26 +60,21 @@ public class OpticalMicroscopeGUI extends BasicGuiContainer
     private void drawInfo()
     {
         Slot slot = inventorySlots.getSlotFromInventory(opticalMicroscope, 0);
-        if (slot.getHasStack())
-        {
+        if (slot.getHasStack()) {
             ItemStack itemStack = slot.getStack();
-            if (itemStack.getItem() instanceof ChemicalItem)
-            {
+            if (itemStack.getItem() instanceof ChemicalItem) {
                 ChemicalBase chemicalBase = ChemicalBase.readFromNBT(itemStack.getTagCompound());
                 fontRendererObj.drawString(chemicalBase.fullName, eyePieceX + eyePieceH + 5, eyePieceY, 0);
                 fontRendererObj.drawString("Formula:", eyePieceX + eyePieceH + 5, eyePieceY + 10, 0);
                 fontRendererObj.drawString(chemicalBase.getFormula(), eyePieceX + eyePieceH + 5, eyePieceY + 20, 0);
 
-                if (!chemicalBase.isElement())
-                {
+                if (!chemicalBase.isElement()) {
                     RenderHelper.drawScaledTexturedRectUV(eyePieceX + eyePieceW + 50, eyePieceY + 5, 0, 0, 0, 200, 200, 0.3F, ((Molecule) chemicalBase).getStructureResource());
                 }
 
-                if (prevStack != itemStack)
-                {
+                if (prevStack != itemStack) {
                     prevStack = itemStack;
-                    if (chemicalBase.isElement())
-                    {
+                    if (chemicalBase.isElement()) {
                         AdvancementHelper.giveAdvancement(getPlayer(), (Element) chemicalBase, getWorld().isRemote);
                     }
                     ResearchHelper.addResearch(getPlayer(), chemicalBase.getResearchKey(), getWorld().isRemote);

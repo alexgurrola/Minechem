@@ -2,6 +2,7 @@ package minechem.asm.data;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import minechem.asm.LoadingPlugin;
 
 public enum Class
@@ -22,8 +23,7 @@ public enum Class
         this.fields = new TreeMap<String, Field>();
     }
 
-    static
-    {
+    static {
         GUI_ADVANCEMENTS.addField(new Field("field_146570_r", "F"));
         GUI_ADVANCEMENTS.addField(new Field("currentPage", "I"));
         GUI_ADVANCEMENTS.addField(new Field("mc", "field_146297_k", "Lnet/minecraft/client/Minecraft;", "Lbao;"));

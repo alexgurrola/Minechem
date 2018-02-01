@@ -7,8 +7,10 @@ import cofh.lib.gui.GuiBase;
 import cofh.lib.gui.element.TabBase;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Optional;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import minechem.apparatus.prefab.gui.tab.BasicGuiTab;
 import minechem.apparatus.prefab.gui.tab.PatreonGuiTab;
 import minechem.handler.IconHandler;
@@ -68,10 +70,8 @@ public class BasicGuiContainer extends GuiBase implements INEIGuiHandler
     public List<BasicGuiTab> getTabs()
     {
         List<BasicGuiTab> basicGuiTabs = new ArrayList<BasicGuiTab>();
-        for (TabBase tabBase : tabs)
-        {
-            if (tabBase instanceof BasicGuiTab)
-            {
+        for (TabBase tabBase : tabs) {
+            if (tabBase instanceof BasicGuiTab) {
                 basicGuiTabs.add((BasicGuiTab) tabBase);
             }
         }
@@ -109,15 +109,12 @@ public class BasicGuiContainer extends GuiBase implements INEIGuiHandler
     @Override
     public boolean hideItemPanelSlot(GuiContainer gui, int x, int y, int w, int h)
     {
-        if (gui instanceof BasicGuiContainer)
-        {
+        if (gui instanceof BasicGuiContainer) {
             GuiIntersectHelper item = new GuiIntersectHelper(x, y, w, h);
             BasicGuiContainer container = (BasicGuiContainer) gui;
-            for (BasicGuiTab tab : getTabs())
-            {
+            for (BasicGuiTab tab : getTabs()) {
                 GuiIntersectHelper tabRect = new GuiIntersectHelper(tab.getCurrentShiftX() + container.guiLeft, tab.getCurrentShiftY() + container.guiTop, tab.currentWidth, tab.currentHeight);
-                if (item.intersectsWith(tabRect))
-                {
+                if (item.intersectsWith(tabRect)) {
                     return true;
                 }
             }
@@ -145,14 +142,11 @@ public class BasicGuiContainer extends GuiBase implements INEIGuiHandler
 
         TabBase guiTab = getTabAtPosition(mouseX, mouseY);
 
-        if (guiTab instanceof PatreonGuiTab)
-        {
+        if (guiTab instanceof PatreonGuiTab) {
             PatreonGuiTab patreonTab = (PatreonGuiTab) guiTab;
 
-            if (patreonTab.isFullyOpened())
-            {
-                if (patreonTab.isLinkAtOffsetPosition(x - this.guiLeft, y - this.guiTop))
-                {
+            if (patreonTab.isFullyOpened()) {
+                if (patreonTab.isLinkAtOffsetPosition(x - this.guiLeft, y - this.guiTop)) {
                     LinkHelper.openLink(patreonTab.getLink(), this);
                     // return here so the machine tab doesn't get closed
                     return;

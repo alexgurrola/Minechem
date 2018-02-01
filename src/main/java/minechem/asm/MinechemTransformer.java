@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import minechem.asm.data.Class;
 import minechem.asm.data.CodeBlock;
 import minechem.asm.data.IInsnList;
@@ -22,10 +23,8 @@ public class MinechemTransformer implements IClassTransformer
 {
     private static Map<String, Class> classMap = new HashMap<String, Class>();
 
-    static
-    {
-        for (Class className : Class.values())
-        {
+    static {
+        for (Class className : Class.values()) {
             classMap.put(className.getName(), className);
         }
     }
@@ -34,17 +33,12 @@ public class MinechemTransformer implements IClassTransformer
     public byte[] transform(String name, String transformedName, byte[] bytes)
     {
         Class clazz = classMap.get(name);
-        if (clazz != null)
-        {
-            for (Method method : clazz.getMethods())
-            {
-                for (IInsnList node : method.getiInsnLists())
-                {
-                    if (node instanceof InstructionNode)
-                    {
+        if (clazz != null) {
+            for (Method method : clazz.getMethods()) {
+                for (IInsnList node : method.getiInsnLists()) {
+                    if (node instanceof InstructionNode) {
                         bytes = injectBytes(method, (InstructionNode) node, bytes);
-                    } else if (node instanceof CodeBlock)
-                    {
+                    } else if (node instanceof CodeBlock) {
                         bytes = replaceBytes(method, (CodeBlock) node, bytes);
                     }
                 }
@@ -69,36 +63,28 @@ public class MinechemTransformer implements IClassTransformer
         int start = codeBlock.getLinesAfterStart();
         int end = codeBlock.getLinesAfterEnd() + 1;
 
-        for (Iterator<AbstractInsnNode> itr = methodNode.instructions.iterator(); itr.hasNext();)
-        {
+        for (Iterator<AbstractInsnNode> itr = methodNode.instructions.iterator(); itr.hasNext(); ) {
             AbstractInsnNode node = itr.next();
-            if (node instanceof LineNumberNode)
-            {
+            if (node instanceof LineNumberNode) {
                 LineNumberNode lineNode = (LineNumberNode) node;
-                if (lineNode.line >= codeBlock.getStartLine())
-                {
+                if (lineNode.line >= codeBlock.getStartLine()) {
                     delete = true;
                 }
-                if (lineNode.line >= codeBlock.getEndLine())
-                {
+                if (lineNode.line >= codeBlock.getEndLine()) {
                     done = true;
                 }
             }
 
-            if (delete)
-            {
-                if (done)
-                {
-                    if (end-- > 0)
-                    {
+            if (delete) {
+                if (done) {
+                    if (end-- > 0) {
                         methodNode.instructions.remove(node);
                         continue;
                     }
                     pos = node;
                     break;
                 }
-                if (--start < 0)
-                {
+                if (--start < 0) {
                     methodNode.instructions.remove(node);
                 }
             }
@@ -119,12 +105,10 @@ public class MinechemTransformer implements IClassTransformer
 
         MethodNode methodNode = getMethodByName(classNode, method);
         AbstractInsnNode pos = findInstructionNode(instructionNode, methodNode);
-        if (instructionNode.replace)
-        {
+        if (instructionNode.replace) {
             methodNode.instructions.insertBefore(pos, instructionNode.getInsnList());
             methodNode.instructions.remove(pos);
-        } else
-        {
+        } else {
             methodNode.instructions.insertBefore(pos, instructionNode.getInsnList());
         }
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
@@ -136,24 +120,18 @@ public class MinechemTransformer implements IClassTransformer
     {
         boolean close = false;
         AbstractInsnNode result = null;
-        for (Iterator<AbstractInsnNode> itr = methodNode.instructions.iterator(); itr.hasNext();)
-        {
+        for (Iterator<AbstractInsnNode> itr = methodNode.instructions.iterator(); itr.hasNext(); ) {
             AbstractInsnNode node = itr.next();
-            if (node instanceof MethodInsnNode)
-            {
-                if (close)
-                {
-                    if (((MethodInsnNode) node).name.equals(instructionNode.getBefore()))
-                    {
+            if (node instanceof MethodInsnNode) {
+                if (close) {
+                    if (((MethodInsnNode) node).name.equals(instructionNode.getBefore())) {
                         return instructionNode.replace ? node : result;
-                    } else
-                    {
+                    } else {
                         close = false;
                     }
                 }
 
-                if (((MethodInsnNode) node).name.equals(instructionNode.getAfter()))
-                {
+                if (((MethodInsnNode) node).name.equals(instructionNode.getAfter())) {
                     close = true;
                     result = node;
                 }
@@ -165,10 +143,8 @@ public class MinechemTransformer implements IClassTransformer
     private static MethodNode getMethodByName(ClassNode classNode, Method method)
     {
         List<MethodNode> methods = classNode.methods;
-        for (MethodNode methodNode : methods)
-        {
-            if (methodNode.name.equals(method.getName()) && methodNode.desc.equals(method.getArgs()))
-            {
+        for (MethodNode methodNode : methods) {
+            if (methodNode.name.equals(method.getName()) && methodNode.desc.equals(method.getArgs())) {
                 return methodNode;
             }
         }

@@ -1,6 +1,7 @@
 package minechem.blocks;
 
 import java.util.Random;
+
 import minechem.Compendium;
 import minechem.apparatus.prefab.block.SpecialRenderBlock;
 import net.minecraft.block.material.Material;

@@ -5,12 +5,14 @@ import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import li.cil.oc.api.Network;
 import li.cil.oc.api.machine.Arguments;
 import li.cil.oc.api.machine.Context;
@@ -29,11 +31,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 @Optional.InterfaceList(
-    {
-        @Optional.Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = Compendium.Naming.Mods.computerCraft),
-        @Optional.Interface(iface = "li.cil.oc.api.network.Environment", modid = Compendium.Naming.Mods.openComputers),
-        @Optional.Interface(iface = "li.cil.oc.api.network.ManagedPeripheral", modid = Compendium.Naming.Mods.openComputers)
-    })
+        {
+                @Optional.Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = Compendium.Naming.Mods.computerCraft),
+                @Optional.Interface(iface = "li.cil.oc.api.network.Environment", modid = Compendium.Naming.Mods.openComputers),
+                @Optional.Interface(iface = "li.cil.oc.api.network.ManagedPeripheral", modid = Compendium.Naming.Mods.openComputers)
+        })
 public abstract class TilePeripheralBase extends BaseTileEntity implements ManagedPeripheral, Environment, IPeripheral
 {
     protected final String name;
@@ -56,12 +58,10 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     {
         // TODO: Look into getUpdatePacket as a possible workaround
         super.updateEntity();
-        if (!worldObj.isRemote)
-        {
+        if (!worldObj.isRemote) {
             serverUpdate();
         }
-        if (initialize)
-        {
+        if (initialize) {
             init();
         }
     }
@@ -71,10 +71,8 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
      */
     protected void init()
     {
-        if (ModList.opencomputers.isLoaded())
-        {
-            if (node instanceof Component && ((Component) node).network() == null)
-            {
+        if (ModList.opencomputers.isLoaded()) {
+            if (node instanceof Component && ((Component) node).network() == null) {
                 Network.joinOrCreateNetwork(this);
             }
         }
@@ -86,10 +84,8 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
      */
     public void serverUpdate()
     {
-        for (CheckEvent event : events)
-        {
-            if (event.checkEvent(this))
-            {
+        for (CheckEvent event : events) {
+            if (event.checkEvent(this)) {
                 event.triggerEvent(this);
             }
         }
@@ -99,10 +95,8 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        if (ModList.opencomputers.isLoaded())
-        {
-            if (node instanceof Component)
-            {
+        if (ModList.opencomputers.isLoaded()) {
+            if (node instanceof Component) {
                 ((Component) node).load(compound);
             }
         }
@@ -112,10 +106,8 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        if (ModList.opencomputers.isLoaded())
-        {
-            if (node instanceof Component)
-            {
+        if (ModList.opencomputers.isLoaded()) {
+            if (node instanceof Component) {
                 ((Component) node).save(compound);
             }
         }
@@ -129,11 +121,9 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
 
     public void addMethod(LuaMethod method)
     {
-        if (ModList.computercraft.isLoaded() || ModList.opencomputers.isLoaded())
-        {
+        if (ModList.computercraft.isLoaded() || ModList.opencomputers.isLoaded()) {
             int num = methodIDs.size();
-            if (!methodNames.containsKey(method.getMethodName()))
-            {
+            if (!methodNames.containsKey(method.getMethodName())) {
                 methodIDs.put(num, method.getMethodName());
                 methodNames.put(method.getMethodName(), method);
             }
@@ -142,8 +132,7 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
 
     public void addEvent(CheckEvent event)
     {
-        if (ModList.computercraft.isLoaded() || ModList.opencomputers.isLoaded())
-        {
+        if (ModList.computercraft.isLoaded() || ModList.opencomputers.isLoaded()) {
             events.add(event);
         }
     }
@@ -165,11 +154,9 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     @Optional.Method(modid = Compendium.Naming.Mods.computerCraft)
     public Object[] callMethod(IComputerAccess iComputerAccess, ILuaContext iLuaContext, int i, Object[] objects) throws LuaException, InterruptedException
     {
-        try
-        {
+        try {
             return methodIDs.containsKey(i) ? methodNames.get(methodIDs.get(i)).call(this, objects) : null;
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
         }
         return null;
     }
@@ -219,8 +206,7 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     public Object[] invoke(String method, Context context, Arguments args) throws Exception
     {
         Object[] objs = new Object[args.count()];
-        for (int i = 0; i < objs.length; i++)
-        {
+        for (int i = 0; i < objs.length; i++) {
             objs[i] = args.checkAny(i);
         }
         return methodNames.containsKey(method) ? methodNames.get(method).call(this, objs) : null;
@@ -231,10 +217,8 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     public final void onChunkUnload()
     {
         super.onChunkUnload();
-        if (ModList.opencomputers.isLoaded())
-        {
-            if (node instanceof Component)
-            {
+        if (ModList.opencomputers.isLoaded()) {
+            if (node instanceof Component) {
                 ((Component) node).remove();
             }
         }
@@ -246,8 +230,7 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     public final void invalidate()
     {
         super.invalidate();
-        if (node instanceof Component)
-        {
+        if (node instanceof Component) {
             ((Component) node).remove();
         }
         this.onInvalidateOrUnload(worldObj, xCoord, yCoord, zCoord, true);
@@ -281,8 +264,7 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     @Optional.Method(modid = Compendium.Naming.Mods.openComputers)
     public void onConnect(Node node)
     {
-        if (node.host() instanceof Context)
-        {
+        if (node.host() instanceof Context) {
             context.add(node.host());
         }
     }
@@ -291,8 +273,7 @@ public abstract class TilePeripheralBase extends BaseTileEntity implements Manag
     @Optional.Method(modid = Compendium.Naming.Mods.openComputers)
     public void onDisconnect(Node node)
     {
-        if (node.host() instanceof Context)
-        {
+        if (node.host() instanceof Context) {
             context.remove(node.host());
         }
     }

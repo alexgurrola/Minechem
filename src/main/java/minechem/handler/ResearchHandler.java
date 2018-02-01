@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.io.OutputStreamWriter;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
 import minechem.Compendium;
 import minechem.Minechem;
 import minechem.helper.FileHelper;
@@ -29,20 +31,17 @@ public class ResearchHandler
      */
     public static void saveResearch()
     {
-        try
-        {
+        try {
             OutputStream outputStream = FileUtils.openOutputStream(new File(Minechem.proxy.getCurrentSaveDir() + "/data/" + Compendium.Config.playerResearchData));
             JsonWriter jWriter = new JsonWriter(new OutputStreamWriter(outputStream));
             jWriter.setIndent("    ");
             jWriter.beginObject();
-            for (Map.Entry<UUID, Set<String>> entry : ResearchRegistry.getInstance().getPlayerResearchMap().entrySet())
-            {
+            for (Map.Entry<UUID, Set<String>> entry : ResearchRegistry.getInstance().getPlayerResearchMap().entrySet()) {
                 jWriter.name(entry.getKey().toString()).beginObject();
                 // @TODO: maybe find a way to add this for readability
                 //jWriter.name("displayName").value();
                 jWriter.name("research").beginArray();
-                for (String research : entry.getValue())
-                {
+                for (String research : entry.getValue()) {
                     jWriter.value(research);
                 }
                 jWriter.endArray();
@@ -50,15 +49,12 @@ public class ResearchHandler
             }
             jWriter.endObject();
             jWriter.close();
-            try
-            {
+            try {
                 outputStream.close();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 LogHelper.exception("Cannot close stream!", e, Level.WARN);
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -69,8 +65,7 @@ public class ResearchHandler
     public static void readPlayerResearch()
     {
         String fileName = Minechem.proxy.getCurrentSaveDir() + "/data/" + Compendium.Config.playerResearchData;
-        if (FileHelper.doesFileExist(fileName))
-        {
+        if (FileHelper.doesFileExist(fileName)) {
             InputStream inputStream = FileHelper.getFile(fileName);
             readPlayerResearch(inputStream);
         }
@@ -83,18 +78,15 @@ public class ResearchHandler
 
         Set<Map.Entry<String, JsonElement>> playerSet = parser.parse(jReader).getAsJsonObject().entrySet();
         int count = 0;
-        for (Map.Entry<String, JsonElement> playerEntry : playerSet)
-        {
-            if (!playerEntry.getValue().isJsonObject())
-            {
+        for (Map.Entry<String, JsonElement> playerEntry : playerSet) {
+            if (!playerEntry.getValue().isJsonObject()) {
                 continue;
             }
             JsonObject playerObject = playerEntry.getValue().getAsJsonObject();
-            for (JsonElement research : playerObject.getAsJsonArray("research"))
-            {
+            for (JsonElement research : playerObject.getAsJsonArray("research")) {
                 ResearchRegistry.getInstance().addResearch(
-                    UUID.fromString(playerEntry.getKey()),
-                    research.getAsString()
+                        UUID.fromString(playerEntry.getKey()),
+                        research.getAsString()
                 );
             }
             count++;

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import minechem.Compendium;
 import minechem.helper.LogHelper;
 import minechem.registry.ElementRegistry;
@@ -86,8 +87,7 @@ public class Molecule extends ChemicalBase
      */
     private static int toInteger(String string)
     {
-        if (isNull(string))
-        {
+        if (isNull(string)) {
             return 1;
         }
         return Integer.valueOf(string);
@@ -110,8 +110,7 @@ public class Molecule extends ChemicalBase
 
     private static boolean put(ChemicalStructure structure, ChemicalBase chemical, int multiplier)
     {
-        if (chemical == null)
-        {
+        if (chemical == null) {
             return false;
         }
         structure.add(chemical, multiplier);
@@ -129,28 +128,23 @@ public class Molecule extends ChemicalBase
 
     private static ChemicalStructure parseStructure(String formula)
     {
-        if (isNull(formula))
-        {
+        if (isNull(formula)) {
             throw new NullPointerException("Can't parse null or empty formula");
         }
         ChemicalStructure structure = new ChemicalStructure();
         Matcher matcher = molecule.matcher(formula);
-        while (matcher.find())
-        {
+        while (matcher.find()) {
             int multiplier = toInteger(matcher.group(5));
             Element element = toElement(matcher.group(2));
-            if (put(structure, element, multiplier))
-            {
+            if (put(structure, element, multiplier)) {
                 continue;
             }
             Molecule chemMolecule = toMolecule(parseStructure(matcher.group(3)).getFormula(), false);
-            if (put(structure, chemMolecule, multiplier))
-            {
+            if (put(structure, chemMolecule, multiplier)) {
                 continue;
             }
             Molecule definedMolecule = toMolecule(matcher.group(4), true);
-            if (put(structure, definedMolecule, multiplier))
-            {
+            if (put(structure, definedMolecule, multiplier)) {
                 continue;
             }
             throw new IllegalArgumentException("Error parsing " + formula);

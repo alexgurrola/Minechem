@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
 import minechem.Compendium;
 import minechem.Config;
 import org.apache.commons.io.FileUtils;
@@ -30,16 +31,13 @@ public class FileHelper
         URL source = classFromJar.getResource(Compendium.Config.assetPrefix + fileSource);
         File destination = new File(fileDestination);
 
-        try
-        {
+        try {
             FileUtils.copyURLToFile(source, destination);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             LogHelper.exception("Couldn't load file from jar!", e, Level.WARN);
             LogHelper.info("This is a bug, please report it to the mod author!");
 
-            if (Config.debugMode)
-            {
+            if (Config.debugMode) {
                 throw new RuntimeException(e);
             }
         }
@@ -56,11 +54,9 @@ public class FileHelper
     {
         LogHelper.debug("Reading file " + file + " from jar");
         URL url = classFromJar.getResource(Compendium.Config.assetPrefix + file);
-        try
-        {
+        try {
             return url.openStream();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             LogHelper.exception("Couldn't read file from jar!", e, Level.WARN);
             LogHelper.info("This is a bug, please report it to the mod author!");
             throw new RuntimeException(e);
@@ -79,23 +75,19 @@ public class FileHelper
     {
         File dataFile = new File(file[1]);
 
-        if (!dataFile.isFile() || alwaysCopy)
-        {
+        if (!dataFile.isFile() || alwaysCopy) {
             FileHelper.copyFromJar(classFromJar, file[0], file[1]);
 
             // If the file was copied, get the file again
             dataFile = new File(file[1]);
         }
 
-        if (dataFile.isFile())
-        {
+        if (dataFile.isFile()) {
             LogHelper.debug("JSON file exists");
             InputStream stream = null;
-            try
-            {
+            try {
                 stream = new FileInputStream(dataFile);
-            } catch (FileNotFoundException e)
-            {
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
             return stream;
@@ -112,12 +104,10 @@ public class FileHelper
      */
     public static boolean doesFileExistInJar(Class<?> classFromJar, String fileSource)
     {
-        try
-        {
+        try {
             URL source = classFromJar.getResource(Compendium.Config.assetPrefix + fileSource);
             return source != null;
-        } catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             return false;
         }
     }
@@ -130,12 +120,10 @@ public class FileHelper
      */
     public static boolean doesFileExist(String file)
     {
-        try
-        {
+        try {
             new FileInputStream(FileUtils.getFile(file));
             return true;
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             return false;
         }
     }
@@ -148,11 +136,9 @@ public class FileHelper
      */
     public static FileInputStream getFile(String file)
     {
-        try
-        {
+        try {
             return new FileInputStream(FileUtils.getFile(file));
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

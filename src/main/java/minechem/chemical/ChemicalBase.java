@@ -1,6 +1,7 @@
 package minechem.chemical;
 
 import java.util.List;
+
 import minechem.helper.Jenkins;
 import minechem.item.chemical.ChemicalItem;
 import net.minecraft.item.ItemStack;
@@ -49,8 +50,7 @@ public abstract class ChemicalBase
 
     public static ChemicalBase readFromNBT(NBTTagCompound tag)
     {
-        if (tag != null && tag.hasKey("fullName"))
-        {
+        if (tag != null && tag.hasKey("fullName")) {
             return Jenkins.get(tag.getString("fullName"));
         }
         return null;
@@ -58,8 +58,7 @@ public abstract class ChemicalBase
 
     public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        if (tag == null)
-        {
+        if (tag == null) {
             tag = new NBTTagCompound();
         }
         tag.setString("fullName", this.fullName);

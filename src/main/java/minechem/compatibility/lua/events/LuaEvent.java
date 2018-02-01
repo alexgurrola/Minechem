@@ -20,17 +20,14 @@ public abstract class LuaEvent
 
     public void announce(TileEntity te, Object... message)
     {
-        if (!(te instanceof TilePeripheralBase))
-        {
+        if (!(te instanceof TilePeripheralBase)) {
             return;
         }
         TilePeripheralBase cTE = (TilePeripheralBase) te;
-        if (ModList.computercraft.isLoaded())
-        {
+        if (ModList.computercraft.isLoaded()) {
             computerCraftAnnounce(cTE, message);
         }
-        if (ModList.opencomputers.isLoaded())
-        {
+        if (ModList.opencomputers.isLoaded()) {
             openComputersAnnounce(cTE, message);
         }
     }
@@ -38,8 +35,7 @@ public abstract class LuaEvent
     @Optional.Method(modid = Compendium.Naming.Mods.computerCraft)
     public void computerCraftAnnounce(TilePeripheralBase te, Object... message)
     {
-        for (Object computer : te.getComputers())
-        {
+        for (Object computer : te.getComputers()) {
             ((IComputerAccess) computer).queueEvent(name, message);
         }
     }
@@ -47,8 +43,7 @@ public abstract class LuaEvent
     @Optional.Method(modid = Compendium.Naming.Mods.openComputers)
     public void openComputersAnnounce(TilePeripheralBase te, Object... message)
     {
-        for (Object context : te.getContext())
-        {
+        for (Object context : te.getContext()) {
             ((Context) context).signal(name, message);
         }
     }

@@ -38,8 +38,7 @@ public enum InstructionNode implements IInsnList
         return LoadingPlugin.runtimeDeobfEnabled ? obfBefore : before;
     }
 
-    static
-    {
+    static {
         RECOLOUR.insnList = createRenderHook();
         RESET.insnList = createResetHook();
         ICON.insnList = createIconHook();

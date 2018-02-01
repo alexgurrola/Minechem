@@ -1,6 +1,7 @@
 package minechem.chemical.process;
 
 import java.util.Random;
+
 import minechem.chemical.ChemicalBase;
 
 public class ChemicalMultiProcess extends ChemicalProcess
@@ -23,8 +24,7 @@ public class ChemicalMultiProcess extends ChemicalProcess
     @Override
     public ChemicalBase[] getOutput(ChemicalProcessType type, int level)
     {
-        if (super.getOutput(type, level) != empty)
-        {
+        if (super.getOutput(type, level) != empty) {
             return outputs[new Random().nextInt(outputs.length)];
         }
         return empty;

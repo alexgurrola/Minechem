@@ -1,6 +1,7 @@
 package minechem.chemical.process;
 
 import java.util.Random;
+
 import minechem.chemical.ChemicalBase;
 
 public class ChemicalChanceProcess extends ChemicalProcess
@@ -19,12 +20,10 @@ public class ChemicalChanceProcess extends ChemicalProcess
     {
         super(type, level, components);
         this.chance = chance;
-        if (this.chance > 1)
-        {
+        if (this.chance > 1) {
             this.chance = 1;
         }
-        if (this.chance < 0)
-        {
+        if (this.chance < 0) {
             this.chance = 0;
         }
     }
@@ -32,8 +31,7 @@ public class ChemicalChanceProcess extends ChemicalProcess
     @Override
     public ChemicalBase[] getOutput(ChemicalProcessType type, int level)
     {
-        if (new Random().nextFloat() > chance)
-        {
+        if (new Random().nextFloat() > chance) {
             return super.getOutput(type, level);
         }
         return empty;

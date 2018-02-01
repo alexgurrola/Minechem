@@ -159,8 +159,7 @@ public class BasicInventory implements IInventory
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
-        if (inventory.length >= slot)
-        {
+        if (inventory.length >= slot) {
             inventory[slot] = stack;
             markDirty();
         }

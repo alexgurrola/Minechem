@@ -4,11 +4,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Set;
+
 import minechem.Compendium;
 import minechem.Config;
 import minechem.helper.FileHelper;
@@ -26,13 +28,10 @@ public class ElementHandler
         fileDestSource[1] = Compendium.Config.configPrefix + Compendium.Config.dataJsonPrefix + Compendium.Config.elementsDataJson;
         InputStream inputStream = FileHelper.getJsonFile(MoleculeHandler.class, fileDestSource, Config.useDefaultElements);
         readFromStream(inputStream);
-        if (inputStream != null)
-        {
-            try
-            {
+        if (inputStream != null) {
+            try {
                 inputStream.close();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 LogHelper.exception("Cannot close stream!", e, Level.WARN);
             }
         }
@@ -45,20 +44,18 @@ public class ElementHandler
 
         Set<Map.Entry<String, JsonElement>> elementsSet = parser.parse(jReader).getAsJsonObject().entrySet();
         int count = 0;
-        for (Map.Entry<String, JsonElement> elementEntry : elementsSet)
-        {
-            if (!elementEntry.getValue().isJsonObject())
-            {
+        for (Map.Entry<String, JsonElement> elementEntry : elementsSet) {
+            if (!elementEntry.getValue().isJsonObject()) {
                 continue;
             }
             JsonObject elementObject = elementEntry.getValue().getAsJsonObject();
             ElementRegistry.getInstance().registerElement(
-                Integer.parseInt(elementEntry.getKey()),
-                elementObject.get("longName").getAsString(),
-                elementObject.get("shortName").getAsString(),
-                elementObject.get("form").getAsString(),
-                elementObject.get("type").getAsString(),
-                Integer.parseInt(elementObject.get("neutrons").getAsString())
+                    Integer.parseInt(elementEntry.getKey()),
+                    elementObject.get("longName").getAsString(),
+                    elementObject.get("shortName").getAsString(),
+                    elementObject.get("form").getAsString(),
+                    elementObject.get("type").getAsString(),
+                    Integer.parseInt(elementObject.get("neutrons").getAsString())
             );
             count++;
         }

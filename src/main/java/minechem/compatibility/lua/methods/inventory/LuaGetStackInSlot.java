@@ -16,12 +16,11 @@ public class LuaGetStackInSlot extends LuaInventoryMethod
     public Object[] action(TileEntity te, Object[] args) throws Exception
     {
         ItemStack stack = ((IInventory) te).getStackInSlot(((Number) args[0]).intValue());
-        if (stack != null)
-        {
+        if (stack != null) {
             return new Object[]
-            {
-                LuaParser.toLua(stack)
-            };
+                    {
+                            LuaParser.toLua(stack)
+                    };
         }
         return new Object[0];
     }

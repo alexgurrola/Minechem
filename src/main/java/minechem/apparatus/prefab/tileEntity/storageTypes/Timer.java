@@ -21,8 +21,7 @@ public class Timer
 
     public boolean update()
     {
-        if (counter++ == reset)
-        {
+        if (counter++ == reset) {
             counter = 0;
             return true;
         }
@@ -46,12 +45,10 @@ public class Timer
     public static Timer nbtToTimer(NBTTagCompound compound)
     {
         NBTTagCompound timer = compound;
-        if (compound.hasKey(Compendium.NBTTags.timer, Compendium.NBTTags.tagCompound))
-        {
+        if (compound.hasKey(Compendium.NBTTags.timer, Compendium.NBTTags.tagCompound)) {
             timer = compound.getCompoundTag(Compendium.NBTTags.timer);
         }
-        if (timer.hasKey(Compendium.NBTTags.count) && timer.hasKey(Compendium.NBTTags.reset))
-        {
+        if (timer.hasKey(Compendium.NBTTags.count) && timer.hasKey(Compendium.NBTTags.reset)) {
             return new Timer(timer.getInteger(Compendium.NBTTags.reset), timer.getInteger(Compendium.NBTTags.count));
         }
         return null;

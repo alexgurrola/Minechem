@@ -25,11 +25,9 @@ public class GuiHandler implements IGuiHandler
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity != null)
-        {
+        if (tileEntity != null) {
             // use instanceof to return the correct GUI object
-            if (tileEntity instanceof OpticalMicroscopeTileEntity)
-            {
+            if (tileEntity instanceof OpticalMicroscopeTileEntity) {
                 return new OpticalMicroscopeGUI(player.inventory, (OpticalMicroscopeTileEntity) tileEntity);
             }
         }
@@ -51,11 +49,9 @@ public class GuiHandler implements IGuiHandler
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity != null)
-        {
+        if (tileEntity != null) {
             // use instanceof to return the correct container object
-            if (tileEntity instanceof OpticalMicroscopeTileEntity)
-            {
+            if (tileEntity instanceof OpticalMicroscopeTileEntity) {
                 return new OpticalMicroscopeContainer(player.inventory, (OpticalMicroscopeTileEntity) tileEntity);
             }
         }

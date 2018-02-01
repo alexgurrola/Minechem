@@ -3,6 +3,7 @@ package minechem.registry;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+
 import minechem.Compendium;
 import minechem.advancement.ElementAdvancement;
 import minechem.advancement.ElementAdvancementList;
@@ -19,14 +20,13 @@ public class AdvancementRegistry
     private static AdvancementRegistry instance;
     private Map<Element, Advancement> elementsAdvancementMap;
     private Map<String, Advancement> minechemAdvancementMap;
-    public AdvancementList elementsPage, minechemPage;
+    public AdvancementList elementList, minechemList;
 
     private static Advancement nullAdvancement = null;
 
     public static AdvancementRegistry getInstance()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new AdvancementRegistry();
         }
         return instance;
@@ -42,7 +42,7 @@ public class AdvancementRegistry
      * Adds default advancement for an {@link minechem.chemical.Element}
      *
      * @param element the element to create an advancement for
-     * @return the added {@link net.minecraft.stats.Advancement}
+     * @return the added {@link net.minecraft.advancements.Advancement}
      */
     public Advancement addAdvancement(Element element)
     {
@@ -53,14 +53,14 @@ public class AdvancementRegistry
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList} with given prerequisite {@link net.minecraft.stats.Advancement}
+     * Creates and adds an {@link net.minecraft.advancements.Advancement} to the {@link net.minecraft.advancements.AdvancementList} with given prerequisite {@link net.minecraft.advancements.Advancement}
      *
      * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Advancement}
-     * @return the added {@link net.minecraft.stats.Advancement}
+     * @param prerequisite     the prerequisite {@link net.minecraft.advancements.Advancement}
+     * @return the added {@link net.minecraft.advancements.Advancement}
      */
     public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack, Advancement prerequisite)
     {
@@ -78,39 +78,37 @@ public class AdvancementRegistry
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList} with given prerequisite {@link net.minecraft.stats.Advancement}
+     * Creates and adds an {@link net.minecraft.advancements.Advancement} to the {@link net.minecraft.advancements.AdvancementList} with given prerequisite {@link net.minecraft.advancements.Advancement}
      *
      * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Advancement}
-     * @param isSpecial        is this a special {@link net.minecraft.stats.Advancement} ?
-     * @return the added {@link net.minecraft.stats.Advancement}
+     * @param prerequisite     the prerequisite {@link net.minecraft.advancements.Advancement}
+     * @param isSpecial        is this a special {@link net.minecraft.advancements.Advancement} ?
+     * @return the added {@link net.minecraft.advancements.Advancement}
      */
     public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack, Advancement prerequisite, boolean isSpecial)
     {
         String statName = Compendium.Naming.id + "." + name;
         Advancement advancement = new Advancement("advancement." + statName, statName, column, row, displayItemStack, prerequisite);
-        if (isSpecial)
-        {
+        if (isSpecial) {
             advancement.setSpecial();
         }
-        if (prerequisite == null)
-        {
+        if (prerequisite == null) {
             advancement.initIndependentStat();
         }
         return addAdvancement(advancement);
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList}
+     * Creates and adds an {@link net.minecraft.advancements.Advancement} to the {@link net.minecraft.advancements.AdvancementList}
      *
      * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @return the added {@link net.minecraft.stats.Advancement}
+     * @return the added {@link net.minecraft.advancements.Advancement}
      */
     public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack)
     {
@@ -128,10 +126,10 @@ public class AdvancementRegistry
     }
 
     /**
-     * Add an {@link net.minecraft.stats.Advancement} to the minechem {@link net.minecraftforge.common.AdvancementList}
+     * Add an {@link net.minecraft.advancements.Advancement} to the minechem {@link net.minecraft.advancements.AdvancementList}
      *
-     * @param advancement the {@link net.minecraft.stats.Advancement} to add
-     * @return the added {@link net.minecraft.stats.Advancement}
+     * @param advancement the {@link net.minecraft.advancements.Advancement} to add
+     * @return the added {@link net.minecraft.advancements.Advancement}
      */
     public Advancement addAdvancement(Advancement advancement)
     {
@@ -142,8 +140,8 @@ public class AdvancementRegistry
     /**
      * Gets the advancement for a specific {@link minechem.chemical.Element}
      *
-     * @param element the element to find an {@link net.minecraft.stats.Advancement for}
-     * @return can be null if the {@link minechem.chemical.Element} has no {@link net.minecraft.stats.Advancement}
+     * @param element the element to find an {@link net.minecraft.advancements.Advancement for}
+     * @return can be null if the {@link minechem.chemical.Element} has no {@link net.minecraft.advancements.Advancement}
      */
     public Advancement getAdvancement(Element element)
     {
@@ -151,7 +149,7 @@ public class AdvancementRegistry
     }
 
     /**
-     * Get a minechem {@link net.minecraft.stats.Advancement} for the given name
+     * Get a minechem {@link net.minecraft.advancements.Advancement} for the given name
      *
      * @param name the name of the advancement
      * @return can be null if the name does not exist in the registry
@@ -167,12 +165,11 @@ public class AdvancementRegistry
     public void registerElementAdvancements()
     {
         Collection<Advancement> advancements = elementsAdvancementMap.values();
-        for (Advancement advancement : advancements)
-        {
+        for (Advancement advancement : advancements) {
             advancement.registerStat();
         }
-        elementsPage = new ElementAdvancementList("Periodic Table", advancements.toArray(new Advancement[advancements.size()]));
-        AdvancementList.registerAdvancementList(elementsPage);
+        elementList = new ElementAdvancementList("Periodic Table", advancements.toArray(new Advancement[advancements.size()]));
+        AdvancementList.registerAdvancementList(elementList);
     }
 
     /**
@@ -181,11 +178,10 @@ public class AdvancementRegistry
     public void registerMinechemAdvancements()
     {
         Collection<Advancement> advancements = minechemAdvancementMap.values();
-        for (Advancement advancement : advancements)
-        {
+        for (Advancement advancement : advancements) {
             advancement.registerStat();
         }
-        minechemPage = new AdvancementList(Compendium.Naming.name, advancements.toArray(new Advancement[advancements.size()]));
-        AdvancementList.registerAdvancementList(minechemPage);
+        minechemList = new AdvancementList(Compendium.Naming.name, advancements.toArray(new Advancement[advancements.size()]));
+        AdvancementList.registerAdvancementList(minechemList);
     }
 }

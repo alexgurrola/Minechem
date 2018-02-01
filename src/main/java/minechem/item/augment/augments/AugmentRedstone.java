@@ -9,9 +9,9 @@ import net.minecraft.util.EnumFacing;
 public class AugmentRedstone extends AugmentBase
 {
     private static final int[] levels = new int[]
-    {
-        5, 10, 15
-    };
+            {
+                    5, 10, 15
+            };
 
     public AugmentRedstone()
     {
@@ -37,10 +37,8 @@ public class AugmentRedstone extends AugmentBase
         x += dir.offsetX;
         y += dir.offsetY;
         z += dir.offsetZ;
-        if (!world.isRemote && player != null && player.canPlayerEdit(x, y, z, side, null))
-        {
-            if (world.isAirBlock(x, y, z))
-            {
+        if (!world.isRemote && player != null && player.canPlayerEdit(x, y, z, side, null)) {
+            if (world.isAirBlock(x, y, z)) {
                 world.setBlock(x, y, z, BlockRegistry.blockRedstone, levels[level], 7);
             }
         }

@@ -14,8 +14,8 @@ public class LuaGetInventorySize extends LuaInventoryMethod
     public Object[] action(TileEntity te, Object[] args) throws Exception
     {
         return new Object[]
-        {
-            ((IInventory) te).getSizeInventory()
-        };
+                {
+                        ((IInventory) te).getSizeInventory()
+                };
     }
 }

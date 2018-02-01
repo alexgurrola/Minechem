@@ -17,8 +17,7 @@ public class IconLayer implements ILayer
     public void render(int z, int colour)
     {
         RenderHelper.resetOpenGLColour();
-        if (this.colour)
-        {
+        if (this.colour) {
             RenderHelper.setOpenGLColour(colour);
         }
         RenderHelper.drawTexturedRectUV(0, 0, z, 16, 16, this.iIcon);
@@ -28,8 +27,7 @@ public class IconLayer implements ILayer
     public void render2D(int colour)
     {
         RenderHelper.resetOpenGLColour();
-        if (this.colour)
-        {
+        if (this.colour) {
             RenderHelper.setOpenGLColour(colour);
         }
         RenderHelper.drawTextureIn2D(this.iIcon);
@@ -39,8 +37,7 @@ public class IconLayer implements ILayer
     public void render3D(int colour)
     {
         RenderHelper.resetOpenGLColour();
-        if (this.colour)
-        {
+        if (this.colour) {
             RenderHelper.setOpenGLColour(colour);
         }
         RenderHelper.drawTextureIn3D(this.iIcon);

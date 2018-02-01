@@ -24,13 +24,11 @@ public class AugmentRecipe implements IRecipe
     public boolean matches(InventoryCrafting crafting, World world)
     {
         ItemStack augmented = getAugmentable(crafting);
-        if (augmented == null)
-        {
+        if (augmented == null) {
             return false;
         }
         ItemStack augmentItem = getItem(crafting);
-        if (augmentItem == null)
-        {
+        if (augmentItem == null) {
             return false;
         }
         return ((IAugmentedItem) augmented.getItem()).canHaveAugment(augmented, AugmentRegistry.getAugment(augmentItem));
@@ -39,20 +37,15 @@ public class AugmentRecipe implements IRecipe
     private ItemStack getAugmentable(IInventory crafting)
     {
         ItemStack wrapper = null;
-        for (int i = 0; i < crafting.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < crafting.getSizeInventory(); i++) {
             ItemStack itemStack = crafting.getStackInSlot(i);
-            if (itemStack == null)
-            {
+            if (itemStack == null) {
                 continue;
             }
-            if (itemStack.getItem() instanceof IAugmentedItem)
-            {
-                if (wrapper == null)
-                {
+            if (itemStack.getItem() instanceof IAugmentedItem) {
+                if (wrapper == null) {
                     wrapper = itemStack;
-                } else
-                {
+                } else {
                     return null;
                 }
             }
@@ -63,20 +56,15 @@ public class AugmentRecipe implements IRecipe
     private ItemStack getItem(IInventory crafting)
     {
         ItemStack item = null;
-        for (int i = 0; i < crafting.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < crafting.getSizeInventory(); i++) {
             ItemStack itemStack = crafting.getStackInSlot(i);
-            if (itemStack == null)
-            {
+            if (itemStack == null) {
                 continue;
             }
-            if (AugmentRegistry.getAugment(itemStack) != null)
-            {
-                if (item == null)
-                {
+            if (AugmentRegistry.getAugment(itemStack) != null) {
+                if (item == null) {
                     item = itemStack;
-                } else
-                {
+                } else {
                     return null;
                 }
             }
@@ -88,13 +76,11 @@ public class AugmentRecipe implements IRecipe
     public ItemStack getCraftingResult(InventoryCrafting crafting)
     {
         ItemStack augment = getAugmentable(crafting);
-        if (augment == null)
-        {
+        if (augment == null) {
             return null;
         }
         ItemStack item = getItem(crafting);
-        if (item == null)
-        {
+        if (item == null) {
             return null;
         }
         ItemStack result = augment.copy();
@@ -103,7 +89,8 @@ public class AugmentRecipe implements IRecipe
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canFit(int width, int height)
+    {
         return false;
     }
 
@@ -120,18 +107,21 @@ public class AugmentRecipe implements IRecipe
     }
 
     @Override
-    public IRecipe setRegistryName(ResourceLocation name) {
+    public IRecipe setRegistryName(ResourceLocation name)
+    {
         return null;
     }
 
     @Nullable
     @Override
-    public ResourceLocation getRegistryName() {
+    public ResourceLocation getRegistryName()
+    {
         return null;
     }
 
     @Override
-    public Class<IRecipe> getRegistryType() {
+    public Class<IRecipe> getRegistryType()
+    {
         return null;
     }
 }

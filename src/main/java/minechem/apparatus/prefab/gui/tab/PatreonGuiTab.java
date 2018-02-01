@@ -1,7 +1,9 @@
 package minechem.apparatus.prefab.gui.tab;
 
 import static codechicken.lib.gui.GuiDraw.fontRenderer;
+
 import java.util.List;
+
 import minechem.Compendium;
 import minechem.Config;
 import minechem.apparatus.prefab.gui.container.BasicGuiContainer;
@@ -32,8 +34,7 @@ public class PatreonGuiTab extends BasicGuiTab
     public void draw()
     {
         super.draw();
-        if (isEnabled() && isFullyOpened())
-        {
+        if (isEnabled() && isFullyOpened()) {
             getFontRenderer().drawStringWithShadow(linkText, getLinkX(), getLinkY(), linkColor);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
@@ -42,8 +43,7 @@ public class PatreonGuiTab extends BasicGuiTab
     @Override
     public void addTooltip(List<String> tooltip)
     {
-        if (isEnabled() && isFullyOpened() && isLinkAtOffsetPosition(gui.getMouseX(), gui.getMouseY()))
-        {
+        if (isEnabled() && isFullyOpened() && isLinkAtOffsetPosition(gui.getMouseX(), gui.getMouseY())) {
             tooltip.add(link);
         }
     }
@@ -71,14 +71,10 @@ public class PatreonGuiTab extends BasicGuiTab
 
     public boolean isLinkAtOffsetPosition(int mouseX, int mouseY)
     {
-        if (mouseX >= getLinkX())
-        {
-            if (mouseX <= getLinkX() + fontRenderer.getStringWidth(linkText))
-            {
-                if (mouseY >= getLinkY())
-                {
-                    if (mouseY <= getLinkY() + StringHelper.getSplitStringHeight(fontRenderer, linkText, fontRenderer.getStringWidth(linkText)))
-                    {
+        if (mouseX >= getLinkX()) {
+            if (mouseX <= getLinkX() + fontRenderer.getStringWidth(linkText)) {
+                if (mouseY >= getLinkY()) {
+                    if (mouseY <= getLinkY() + StringHelper.getSplitStringHeight(fontRenderer, linkText, fontRenderer.getStringWidth(linkText))) {
                         return true;
                     }
                 }

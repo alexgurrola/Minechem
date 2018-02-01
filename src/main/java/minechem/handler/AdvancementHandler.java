@@ -17,8 +17,7 @@ public class AdvancementHandler
 
     private static void initElements()
     {
-        for (Element element : ElementRegistry.getInstance().getElements())
-        {
+        for (Element element : ElementRegistry.getInstance().getElements()) {
             AdvancementRegistry.getInstance().addAdvancement(element);
         }
         AdvancementRegistry.getInstance().registerElementAdvancements();

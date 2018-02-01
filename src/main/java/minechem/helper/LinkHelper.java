@@ -1,10 +1,12 @@
 package minechem.helper;
 
 import net.minecraftforge.fml.client.FMLClientHandler;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import net.minecraft.client.gui.GuiConfirmOpenLink;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -45,10 +47,8 @@ public class LinkHelper
         @Override
         public void confirmClicked(boolean confirm, int id)
         {
-            if (id == 0)
-            {
-                if (confirm)
-                {
+            if (id == 0) {
+                if (confirm) {
                     LinkHelper.openLink(url);
                 }
 
@@ -64,14 +64,11 @@ public class LinkHelper
      */
     private static void openLink(String link)
     {
-        try
-        {
+        try {
             Desktop.getDesktop().browse(new URI(link));
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             LogHelper.exception("Cannot open URL:" + link, e, Level.WARN);
-        } catch (URISyntaxException e)
-        {
+        } catch (URISyntaxException e) {
             LogHelper.exception("Cannot open URL:" + link, e, Level.WARN);
         }
     }
@@ -104,15 +101,12 @@ public class LinkHelper
      */
     public static void openLink(String link, GuiScreen gui)
     {
-        if (allowLinks())
-        {
-            if (promptOnChatLinks())
-            {
+        if (allowLinks()) {
+            if (promptOnChatLinks()) {
                 OpenURLCallback callback = new OpenURLCallback(link, gui);
                 GuiConfirmOpenLink confirmOpenLink = new GuiConfirmOpenLink(callback, link, 0, false);
                 FMLClientHandler.instance().getClient().displayGuiScreen(confirmOpenLink);
-            } else
-            {
+            } else {
                 LinkHelper.openLink(link);
             }
         }

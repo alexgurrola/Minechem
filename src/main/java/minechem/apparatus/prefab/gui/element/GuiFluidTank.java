@@ -2,6 +2,7 @@ package minechem.apparatus.prefab.gui.element;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import minechem.helper.ColourHelper;
 import minechem.helper.LocalizationHelper;
 import minechem.Compendium;
@@ -77,25 +78,20 @@ public class GuiFluidTank extends GuiElement
         int iconWidthRemainder = (width - 2) % 16;
         FluidStack fluidStack = tank.getFluid();
 
-        if (fluidStack != null && fluidStack.amount > 0)
-        {
+        if (fluidStack != null && fluidStack.amount > 0) {
             bindTexture(TextureMap.locationBlocksTexture);
 
             IIcon fluidIcon = fluidStack.getFluid().getStillIcon();
             // Top left corner
             drawTexturedModelRectFromIcon(guiLeft + posX + 1, guiTop + posY + 2, fluidIcon, iconWidthRemainder, iconHeightRemainder);
-            for (int i = 0; i <= (width - 4) / 16; i++)
-            {
+            for (int i = 0; i <= (width - 4) / 16; i++) {
                 // Top right only draw when more then 1 pass is needed
-                if (i > 0)
-                {
+                if (i > 0) {
                     drawTexturedModelRectFromIcon(guiLeft + posX + 1 + (i - 1) * 16 + iconWidthRemainder, guiTop + posY + 2, fluidIcon, 16, iconHeightRemainder);
                 }
-                for (int ii = 0; ii < (height - 6) / 16; ii++)
-                {
+                for (int ii = 0; ii < (height - 6) / 16; ii++) {
                     // Bottom right only draw when more then 1 pass is needed
-                    if (i > 0)
-                    {
+                    if (i > 0) {
                         drawTexturedModelRectFromIcon(guiLeft + posX + 1 + (i - 1) * 16 + iconWidthRemainder, guiTop + posY + 2 + ii * 16 + iconHeightRemainder, fluidIcon, 16, 16);
                     }
                     // Bottom left
@@ -117,21 +113,17 @@ public class GuiFluidTank extends GuiElement
 
     public void drawTooltip(int mouseX, int mouseY)
     {
-        if (!mouseInTank(mouseX, mouseY))
-        {
+        if (!mouseInTank(mouseX, mouseY)) {
             return;
         }
 
         List<String> description = new ArrayList<String>();
         FluidStack fluidStack = tank.getFluid();
 
-        if (fluidStack == null || fluidStack.getFluid() == null)
-        {
+        if (fluidStack == null || fluidStack.getFluid() == null) {
             description.add(LocalizationHelper.getLocalString("gui.element.tank.empty"));
-        } else
-        {
-            if (fluidStack.amount > 0)
-            {
+        } else {
+            if (fluidStack.amount > 0) {
                 String amountToText = fluidStack.amount + LocalizationHelper.getLocalString("gui.element.tank.mB");
 
                 description.add(fluidStack.getLocalizedName());

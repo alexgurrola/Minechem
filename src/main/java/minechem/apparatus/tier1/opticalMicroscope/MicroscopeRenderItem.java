@@ -21,16 +21,14 @@ public class MicroscopeRenderItem extends RenderItem
     @Override
     public void renderItemAndEffectIntoGUI(FontRenderer fontRenderer, TextureManager textureManager, ItemStack stack, int xPosition, int yPosition)
     {
-        if (stack == null)
-        {
+        if (stack == null) {
             return;
         }
 
         RenderHelper.enableGUIStandardItemLighting();
 
         Slot slot = microscopeGui.inventorySlots.getSlotFromInventory(microscopeGui.opticalMicroscope, 0);
-        if (slot.getStack() != null)
-        {
+        if (slot.getStack() != null) {
             GL11.glPushMatrix();
             RenderHelper.setScissor(microscopeGui.getXSize(), microscopeGui.getYSize(), OpticalMicroscopeGUI.eyePieceX, OpticalMicroscopeGUI.eyePieceY, OpticalMicroscopeGUI.eyePieceW, OpticalMicroscopeGUI.eyePieceH);
             int renderX = microscopeGui.getGuiLeft() + slot.xDisplayPosition;
@@ -43,8 +41,7 @@ public class MicroscopeRenderItem extends RenderItem
             GL11.glPopMatrix();
         }
 
-        if (stack == microscopeGui.getContainer().getInventoryPlayer().getItemStack() && microscopeGui.isMouseInMicroscope())
-        {
+        if (stack == microscopeGui.getContainer().getInventoryPlayer().getItemStack() && microscopeGui.isMouseInMicroscope()) {
             GL11.glPushMatrix();
             RenderHelper.setScissor(microscopeGui.getXSize(), microscopeGui.getYSize(), OpticalMicroscopeGUI.eyePieceX, OpticalMicroscopeGUI.eyePieceY, OpticalMicroscopeGUI.eyePieceW, OpticalMicroscopeGUI.eyePieceH);
             GL11.glTranslatef(xPosition, yPosition, 0.0F);

@@ -45,8 +45,7 @@ public enum CodeBlock implements IInsnList
         return linesAfterEnd;
     }
 
-    static
-    {
+    static {
         BACKGROUND.insnList = createBackgroundHook();
         CLAMP_ZOOM.insnList = createClampHook();
         RENDER_OVERLAY.insnList = createRenderOverlayHook();

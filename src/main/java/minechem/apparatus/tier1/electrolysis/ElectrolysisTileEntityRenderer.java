@@ -22,8 +22,7 @@ public class ElectrolysisTileEntityRenderer extends BasicTileEntityRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float scale)
     {
-        if (tileEntity instanceof ElectrolysisTileEntity)
-        {
+        if (tileEntity instanceof ElectrolysisTileEntity) {
             GL11.glPushMatrix();
             GL11.glTranslated(x + xOffset, y + yOffset, z + zOffset);
             GL11.glRotatef(180f, 0f, 0f, 1f);

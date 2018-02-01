@@ -375,8 +375,7 @@ public class ElectrolysisModel extends BasicModel
         cable2m2.rotateAngleZ = 0F;
         cable2m2.renderWithRotation(rotation);
 
-        if (leftTube)
-        {
+        if (leftTube) {
             jar2.rotateAngleX = 0F;
             jar2.rotateAngleY = 0F;
             jar2.rotateAngleZ = -3.141592F;
@@ -423,8 +422,7 @@ public class ElectrolysisModel extends BasicModel
             jar2m8.renderWithRotation(rotation);
         }
 
-        if (rightTube)
-        {
+        if (rightTube) {
 
             jar3.rotateAngleX = 0F;
             jar3.rotateAngleY = 0F;

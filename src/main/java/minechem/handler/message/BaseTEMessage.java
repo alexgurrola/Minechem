@@ -1,5 +1,6 @@
 package minechem.handler.message;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
@@ -26,9 +27,10 @@ public abstract class BaseTEMessage<T extends TileEntity> extends BaseMessage im
      */
     public BaseTEMessage(T entity)
     {
-        this.posX = entity.xCoord;
-        this.posY = entity.yCoord;
-        this.posZ = entity.zCoord;
+        BlockPos pos = entity.getPos();
+        this.posX = pos.getX();
+        this.posY = pos.getY();
+        this.posZ = pos.getZ();
     }
 
     /**

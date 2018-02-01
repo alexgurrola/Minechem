@@ -23,13 +23,11 @@ public class WrapperRecipe implements IRecipe
     public boolean matches(InventoryCrafting crafting, World world)
     {
         ItemStack wrapper = getWrapper(crafting);
-        if (wrapper == null)
-        {
+        if (wrapper == null) {
             return false;
         }
         ItemStack item = getItem(crafting);
-        if (item == null)
-        {
+        if (item == null) {
             return false;
         }
         return ((WrapperItem) wrapper.getItem()).isWrappable(item);
@@ -38,20 +36,15 @@ public class WrapperRecipe implements IRecipe
     private ItemStack getWrapper(IInventory crafting)
     {
         ItemStack wrapper = null;
-        for (int i = 0; i < crafting.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < crafting.getSizeInventory(); i++) {
             ItemStack itemStack = crafting.getStackInSlot(i);
-            if (itemStack == null)
-            {
+            if (itemStack == null) {
                 continue;
             }
-            if (itemStack.getItem() instanceof WrapperItem)
-            {
-                if (wrapper == null)
-                {
+            if (itemStack.getItem() instanceof WrapperItem) {
+                if (wrapper == null) {
                     wrapper = itemStack;
-                } else
-                {
+                } else {
                     return null;
                 }
             }
@@ -62,20 +55,15 @@ public class WrapperRecipe implements IRecipe
     private ItemStack getItem(IInventory crafting)
     {
         ItemStack item = null;
-        for (int i = 0; i < crafting.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < crafting.getSizeInventory(); i++) {
             ItemStack itemStack = crafting.getStackInSlot(i);
-            if (itemStack == null)
-            {
+            if (itemStack == null) {
                 continue;
             }
-            if (!(itemStack.getItem() instanceof WrapperItem))
-            {
-                if (item == null)
-                {
+            if (!(itemStack.getItem() instanceof WrapperItem)) {
+                if (item == null) {
                     item = itemStack;
-                } else
-                {
+                } else {
                     return null;
                 }
             }
@@ -87,13 +75,11 @@ public class WrapperRecipe implements IRecipe
     public ItemStack getCraftingResult(InventoryCrafting crafting)
     {
         ItemStack wrapper = getWrapper(crafting);
-        if (wrapper == null)
-        {
+        if (wrapper == null) {
             return null;
         }
         ItemStack item = getItem(crafting);
-        if (item == null)
-        {
+        if (item == null) {
             return null;
         }
         ItemStack result = wrapper.copy();
@@ -102,7 +88,8 @@ public class WrapperRecipe implements IRecipe
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canFit(int width, int height)
+    {
         return false;
     }
 
@@ -119,18 +106,21 @@ public class WrapperRecipe implements IRecipe
     }
 
     @Override
-    public IRecipe setRegistryName(ResourceLocation name) {
+    public IRecipe setRegistryName(ResourceLocation name)
+    {
         return null;
     }
 
     @Nullable
     @Override
-    public ResourceLocation getRegistryName() {
+    public ResourceLocation getRegistryName()
+    {
         return null;
     }
 
     @Override
-    public Class<IRecipe> getRegistryType() {
+    public Class<IRecipe> getRegistryType()
+    {
         return null;
     }
 }

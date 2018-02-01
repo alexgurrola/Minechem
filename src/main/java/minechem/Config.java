@@ -3,9 +3,11 @@ package minechem;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -41,8 +43,7 @@ public class Config
     public static void init()
     {
 
-        if (config == null)
-        {
+        if (config == null) {
             config = new Configuration(new File(Compendium.Config.configPrefix + "Minechem.cfg"));
             loadConfig();
         }
@@ -91,8 +92,7 @@ public class Config
         playerPrivateKnowledge = prop.getBoolean();
         configList.add(prop.getName());
 
-        if (config.hasChanged())
-        {
+        if (config.hasChanged()) {
             config.save();
         }
     }
@@ -100,8 +100,7 @@ public class Config
     @SubscribeEvent
     public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
     {
-        if (event.getModID().equalsIgnoreCase(Compendium.Naming.id))
-        {
+        if (event.getModID().equalsIgnoreCase(Compendium.Naming.id)) {
             loadConfig();
         }
     }

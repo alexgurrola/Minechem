@@ -2,7 +2,9 @@ package minechem.item.chemical;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.List;
+
 import minechem.Compendium;
 import minechem.chemical.ChemicalBase;
 import minechem.helper.Jenkins;
@@ -51,16 +53,13 @@ public class ChemicalItem extends BasicItem
         tube = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString);
         dust = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString + "_dust");
         moleculeSymbol = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString + "_molecule");
-        for (int i = 0; i < liquid.length; i++)
-        {
+        for (int i = 0; i < liquid.length; i++) {
             liquid[i] = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString + "_liquid" + (i + 1));
         }
-        for (int i = 0; i < gas.length; i++)
-        {
+        for (int i = 0; i < gas.length; i++) {
             gas[i] = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString + "_gas" + (i + 1));
         }
-        for (int i = 0; i < plasma.length; i++)
-        {
+        for (int i = 0; i < plasma.length; i++) {
             plasma[i] = iconRegister.registerIcon(Compendium.Naming.id + ":" + iconString + "_plasma" + (i + 1));
         }
     }
@@ -68,11 +67,9 @@ public class ChemicalItem extends BasicItem
     @Override
     public String getItemStackDisplayName(ItemStack itemStack)
     {
-        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("fullName"))
-        {
+        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("fullName")) {
             return itemStack.getTagCompound().getString("fullName");
-        } else
-        {
+        } else {
             return "Generic ChemicalItem";
         }
     }
@@ -82,8 +79,7 @@ public class ChemicalItem extends BasicItem
     {
         super.addInformation(itemStack, player, tooltip, bool);
         ChemicalBase chemicalBase = getChemicalBase(itemStack);
-        if (chemicalBase != null)
-        {
+        if (chemicalBase != null) {
             tooltip.addAll(chemicalBase.getToolTip());
         }
     }
@@ -93,8 +89,7 @@ public class ChemicalItem extends BasicItem
     {
         ItemStack itemStack;
         NBTTagCompound tagCompound;
-        for (ChemicalBase element : Jenkins.getAll())
-        {
+        for (ChemicalBase element : Jenkins.getAll()) {
             itemStack = new ItemStack(this);
             tagCompound = new NBTTagCompound();
             element.writeToNBT(tagCompound);
@@ -107,8 +102,7 @@ public class ChemicalItem extends BasicItem
     public int getColorFromItemStack(ItemStack itemStack, int renderPass)
     {
         ChemicalBase chemicalBase = getChemicalBase(itemStack);
-        if (chemicalBase != null)
-        {
+        if (chemicalBase != null) {
             return chemicalBase.getColour();
         }
         return super.getColorFromItemStack(itemStack, renderPass);

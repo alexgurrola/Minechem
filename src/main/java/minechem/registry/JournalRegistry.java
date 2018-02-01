@@ -1,6 +1,7 @@
 package minechem.registry;
 
 import java.util.List;
+
 import minechem.handler.StructuredJournalHandler;
 import minechem.item.journal.pages.IJournalPage;
 import minechem.item.journal.pages.SectionPage;
@@ -25,8 +26,7 @@ public class JournalRegistry
     public static IJournalPage addPage(String chapter, IJournalPage page)
     {
         IJournalPage section = journal.getPage(chapter);
-        if (section != null && section.hasSubPages())
-        {
+        if (section != null && section.hasSubPages()) {
             page.setChapter(chapter);
             section.addSubPage(page);
         }

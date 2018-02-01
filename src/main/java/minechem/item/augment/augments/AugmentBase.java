@@ -46,8 +46,7 @@ public abstract class AugmentBase implements IAugment
     {
         NBTTagCompound augment = stack.getTagCompound().getCompoundTag(this.getKey());
         ItemStack augmentItem = ItemStack.loadItemStackFromNBT(augment.getCompoundTag(Compendium.NBTTags.item));
-        if (augmentItem == null || augmentItem.getItem() == null)
-        {
+        if (augmentItem == null || augmentItem.getItem() == null) {
             return -1;
         }
         return dischargeAugment(augmentItem, level, false);
@@ -88,8 +87,7 @@ public abstract class AugmentBase implements IAugment
     {
         NBTTagCompound augment = stack.getTagCompound().getCompoundTag(this.getKey());
         ItemStack augmentItem = ItemStack.loadItemStackFromNBT(augment.getCompoundTag(Compendium.NBTTags.item));
-        if (augmentItem == null || augmentItem.getItem() == null)
-        {
+        if (augmentItem == null || augmentItem.getItem() == null) {
             return -1;
         }
         int discharged = dischargeAugment(augmentItem, level, true);
@@ -107,32 +105,24 @@ public abstract class AugmentBase implements IAugment
      */
     public int dischargeAugment(ItemStack stack, int level, boolean discharge)
     {
-        if (stack.getItem() instanceof IFluidContainerItem)
-        {
-            while (!this.drain((IFluidContainerItem) stack.getItem(), stack, this.getVolumeConsumed(level), false) && level >= 0)
-            {
+        if (stack.getItem() instanceof IFluidContainerItem) {
+            while (!this.drain((IFluidContainerItem) stack.getItem(), stack, this.getVolumeConsumed(level), false) && level >= 0) {
                 level--;
             }
-            if (discharge && level >= 0)
-            {
+            if (discharge && level >= 0) {
                 drain((IFluidContainerItem) stack.getItem(), stack, this.getVolumeConsumed(level), true);
             }
             return level;
-        } else if (stack.getItem() instanceof IAugmentItem)
-        {
-            if (discharge)
-            {
+        } else if (stack.getItem() instanceof IAugmentItem) {
+            if (discharge) {
                 return ((IAugmentItem) stack.getItem()).consumeLevel(stack, this, this.getVolumeConsumed(level));
             }
             return ((IAugmentItem) stack.getItem()).getMaxLevel(stack, this, this.getVolumeConsumed(level));
-        } else if (stack.isItemStackDamageable())
-        {
-            while (this.getDamageDone(level) > stack.getMaxDamage() - stack.getItemDamage() && level >= 0)
-            {
+        } else if (stack.isItemStackDamageable()) {
+            while (this.getDamageDone(level) > stack.getMaxDamage() - stack.getItemDamage() && level >= 0) {
                 level--;
             }
-            if (discharge && level >= 0)
-            {
+            if (discharge && level >= 0) {
                 stack.attemptDamageItem(this.getDamageDone(level), rand);
             }
             return level;

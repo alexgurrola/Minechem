@@ -2,6 +2,7 @@ package minechem.chemical;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+
 import minechem.helper.ColourHelper;
 
 /**
@@ -33,8 +34,7 @@ public class ChemicalStructure
      */
     public void add(ChemicalBase chemicalBase, int count)
     {
-        if (count < 1)
-        {
+        if (count < 1) {
             throw new IllegalArgumentException("Count can't be less than zero");
         }
         this.internalStructure.add(new ChemicalBaseSet(chemicalBase, count));
@@ -68,20 +68,16 @@ public class ChemicalStructure
     public String getFormula()
     {
         String formula = "";
-        for (ChemicalBaseSet chemicalBaseSet : internalStructure)
-        {
+        for (ChemicalBaseSet chemicalBaseSet : internalStructure) {
             boolean molecule = chemicalBaseSet.chemical instanceof Molecule;
-            if (molecule)
-            {
+            if (molecule) {
                 formula += "(";
             }
             formula += chemicalBaseSet.chemical.getFormula();
-            if (molecule)
-            {
+            if (molecule) {
                 formula += ")";
             }
-            if (chemicalBaseSet.count > 1)
-            {
+            if (chemicalBaseSet.count > 1) {
                 formula += chemicalBaseSet.count;
             }
         }
@@ -91,8 +87,7 @@ public class ChemicalStructure
     private void calcColour()
     {
         int[] colours = new int[internalStructure.size()];
-        for (int i = 0; i < internalStructure.size(); i++)
-        {
+        for (int i = 0; i < internalStructure.size(); i++) {
             colours[i] = internalStructure.get(i).chemical.getColour();
         }
         colour = ColourHelper.blend(colours);
@@ -100,8 +95,7 @@ public class ChemicalStructure
 
     public int getColour()
     {
-        if (colour == 0)
-        {
+        if (colour == 0) {
             calcColour();
         }
         return this.colour;

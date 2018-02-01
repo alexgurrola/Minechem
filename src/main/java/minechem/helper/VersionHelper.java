@@ -2,6 +2,7 @@ package minechem.helper;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,13 +25,10 @@ public class VersionHelper
     public static boolean isModVersionAccepted(String modId, int[] versionInt, String deliminator)
     {
         String version = getModVersion(modId);
-        if (!version.isEmpty())
-        {
+        if (!version.isEmpty()) {
             String[] split = version.split(deliminator);
-            for (int i = 0; i < split.length && i < versionInt.length; i++)
-            {
-                if (compareStringInt(split[i], versionInt[i]))
-                {
+            for (int i = 0; i < split.length && i < versionInt.length; i++) {
+                if (compareStringInt(split[i], versionInt[i])) {
                     return false;
                 }
             }
@@ -57,15 +55,11 @@ public class VersionHelper
     public static boolean isModVersionAccepted(String modId, Pattern regex, int... comparators)
     {
         String version = getModVersion(modId);
-        if (!version.isEmpty())
-        {
+        if (!version.isEmpty()) {
             Matcher match = regex.matcher(version);
-            if (match.find())
-            {
-                for (int i = 0; i < comparators.length && i < match.groupCount(); i++)
-                {
-                    if (compareStringInt(match.group(i), comparators[i]))
-                    {
+            if (match.find()) {
+                for (int i = 0; i < comparators.length && i < match.groupCount(); i++) {
+                    if (compareStringInt(match.group(i), comparators[i])) {
                         return false;
                     }
                 }
@@ -77,12 +71,9 @@ public class VersionHelper
 
     private static String getModVersion(String modId)
     {
-        if (Loader.isModLoaded(modId))
-        {
-            for (ModContainer mod : Loader.instance().getActiveModList())
-            {
-                if (mod.getModId().equals(modId))
-                {
+        if (Loader.isModLoaded(modId)) {
+            for (ModContainer mod : Loader.instance().getActiveModList()) {
+                if (mod.getModId().equals(modId)) {
                     return mod.getVersion();
                 }
             }
@@ -92,14 +83,11 @@ public class VersionHelper
 
     private static boolean compareStringInt(String string, int val)
     {
-        try
-        {
-            if (Integer.valueOf(string) >= val)
-            {
+        try {
+            if (Integer.valueOf(string) >= val) {
                 return true;
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
         }
         return false;
     }

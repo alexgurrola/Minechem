@@ -20,8 +20,7 @@ public class TextLayer implements ILayer
     public void render(int z, int colour)
     {
         RenderHelper.resetOpenGLColour();
-        if (this.colour)
-        {
+        if (this.colour) {
             RenderHelper.setOpenGLColour(colour);
         }
         this.font.printWithZ(this.text, 1, 2, z, 0x000000);
@@ -38,8 +37,7 @@ public class TextLayer implements ILayer
     public void render3D(int colour)
     {
         RenderHelper.resetOpenGLColour();
-        if (this.colour)
-        {
+        if (this.colour) {
             RenderHelper.setOpenGLColour(colour);
         }
         float scale = 0.0325F;

@@ -56,8 +56,7 @@ public class BlockRedstone extends Block
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand)
     {
-        if (world.getBlock(x, y, z) == this)
-        {
+        if (world.getBlock(x, y, z) == this) {
             world.setBlockToAir(x, y, z);
             secondOrderNotify(world, x, y, z);
         }

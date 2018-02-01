@@ -74,8 +74,7 @@ public enum ModList
 
     public static void loadCompatibility()
     {
-        for (ModList mod : values())
-        {
+        for (ModList mod : values()) {
             mod.load();
         }
     }

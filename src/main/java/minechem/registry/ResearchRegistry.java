@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ResearchRegistry
@@ -14,8 +15,7 @@ public class ResearchRegistry
 
     public static ResearchRegistry getInstance()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new ResearchRegistry();
         }
         return instance;
@@ -34,13 +34,11 @@ public class ResearchRegistry
      */
     public void addResearch(UUID playerUUID, String pageName)
     {
-        if (!JournalRegistry.hasPage(pageName))
-        {
+        if (!JournalRegistry.hasPage(pageName)) {
             return;
         }
         Set<String> pages = playerResearchMap.get(playerUUID);
-        if (pages == null)
-        {
+        if (pages == null) {
             pages = new LinkedHashSet<String>();
         }
         pages.add(pageName);

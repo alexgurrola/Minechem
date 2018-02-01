@@ -41,13 +41,11 @@ public class Minechem
         // Register instance.
         INSTANCE = this;
 
-        try
-        {
+        try {
             // Shouldn't we be using Loader.isModLoaded here?
             Class.forName("cofh.redstoneflux.api.IEnergyHandler");
             isCoFHAAPILoaded = true;
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             isCoFHAAPILoaded = false;
         }
 

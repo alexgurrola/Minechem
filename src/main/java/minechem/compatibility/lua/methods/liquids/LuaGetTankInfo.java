@@ -2,6 +2,7 @@ package minechem.compatibility.lua.methods.liquids;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import minechem.Compendium;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -19,30 +20,25 @@ public class LuaGetTankInfo extends LuaFluidMethod
     public Object[] action(TileEntity te, Object[] args) throws Exception
     {
         EnumFacing direction;
-        if (args.length == 0)
-        {
+        if (args.length == 0) {
             direction = EnumFacing.UNKNOWN;
-        } else
-        {
+        } else {
             direction = EnumFacing.valueOf((String) args[1]);
-            if (direction == null)
-            {
+            if (direction == null) {
                 throw new Exception("Invalid Direction");
             }
         }
         return new Object[]
-        {
-            tanksToMap(((IFluidHandler) te).getTankInfo(direction))
-        };
+                {
+                        tanksToMap(((IFluidHandler) te).getTankInfo(direction))
+                };
     }
 
     public static Map<Number, Object> tanksToMap(FluidTankInfo[] tanks)
     {
         Map<Number, Object> result = new HashMap<Number, Object>();
-        for (int i = 0; i < tanks.length; i++)
-        {
-            if (tanks[i] != null)
-            {
+        for (int i = 0; i < tanks.length; i++) {
+            if (tanks[i] != null) {
                 result.put(i, getTankMap(tanks[i]));
             }
         }
@@ -52,8 +48,7 @@ public class LuaGetTankInfo extends LuaFluidMethod
     public static Map<String, Object> getTankMap(FluidTankInfo tank)
     {
         Map<String, Object> result = new HashMap<String, Object>();
-        if (tank.fluid != null)
-        {
+        if (tank.fluid != null) {
             result.put(Compendium.NBTTags.fluid, tank.fluid.getFluid().getName());
             result.put(Compendium.NBTTags.amount, tank.fluid.amount);
         }

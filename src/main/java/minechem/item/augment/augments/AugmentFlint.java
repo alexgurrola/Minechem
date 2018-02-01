@@ -26,10 +26,8 @@ public class AugmentFlint extends AugmentBase
         x += dir.offsetX;
         y += dir.offsetY;
         z += dir.offsetZ;
-        if (!world.isRemote && player != null && player.isSneaking() && player.canPlayerEdit(x, y, z, side, null) && world.isAirBlock(x, y, z) && Blocks.fire.canPlaceBlockAt(world, x, y, z))
-        {
-            if (consumeAugment(stack, level) > -1)
-            {
+        if (!world.isRemote && player != null && player.isSneaking() && player.canPlayerEdit(x, y, z, side, null) && world.isAirBlock(x, y, z) && Blocks.fire.canPlaceBlockAt(world, x, y, z)) {
+            if (consumeAugment(stack, level) > -1) {
                 world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "fire.ignite", 1.0F, rand.nextFloat() * 0.4F + 0.8F);
                 world.setBlock(x, y, z, Blocks.fire);
             }

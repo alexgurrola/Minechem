@@ -34,8 +34,7 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public boolean canDrain(EnumFacing from, Fluid fluid)
     {
-        if (fluid != null && fluid.getID() == tank.getFluid().getFluidID())
-        {
+        if (fluid != null && fluid.getID() == tank.getFluid().getFluidID()) {
             return tank.getFluidAmount() > 0;
         }
         return false;
@@ -51,13 +50,10 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public boolean canFill(EnumFacing from, Fluid fluid)
     {
-        if (tank != null)
-        {
-            if (tank.getFluid().getFluidID() == fluid.getID())
-            {
+        if (tank != null) {
+            if (tank.getFluid().getFluidID() == fluid.getID()) {
                 return tank.getFluidAmount() < tank.getCapacity();
-            } else if (tank.getFluidAmount() == 0)
-            {
+            } else if (tank.getFluidAmount() == 0) {
                 return true;
             }
         }
@@ -75,8 +71,7 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain)
     {
-        if (resource != null && resource.isFluidEqual(tank.getFluid()))
-        {
+        if (resource != null && resource.isFluidEqual(tank.getFluid())) {
             return tank.drain(resource.amount, doDrain);
         }
         return null;
@@ -93,8 +88,7 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public FluidStack drain(EnumFacing from, int amount, boolean doDrain)
     {
-        if (amount <= tank.getFluidAmount())
-        {
+        if (amount <= tank.getFluidAmount()) {
             return tank.drain(amount, doDrain);
         }
         return tank.drain(tank.getFluidAmount(), doDrain);
@@ -111,10 +105,8 @@ public class BasicFluidTank implements IFluidHandler
     @Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill)
     {
-        if (tank != null & resource != null)
-        {
-            if (tank.getFluidAmount() > 0 && resource.isFluidEqual(tank.getFluid()) || tank.getFluidAmount() == 0)
-            {
+        if (tank != null & resource != null) {
+            if (tank.getFluidAmount() > 0 && resource.isFluidEqual(tank.getFluid()) || tank.getFluidAmount() == 0) {
                 return tank.fill(resource, doFill);
 
             }

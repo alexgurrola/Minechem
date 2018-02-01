@@ -28,8 +28,7 @@ public class JournalText extends JournalElement
     @Override
     public Element getElement(EntityPlayer player)
     {
-        if (isUnlocked(player, getKey()))
-        {
+        if (isUnlocked(player, getKey())) {
             String s = LocalizationHelper.getLocalString(textKey);
             return s.isEmpty() ? new Image(Compendium.Resource.GUI.noContent, 301, 294, AlignmentMode.JUSTIFY) : new Paragraph(new FormattedString(s));
         }
@@ -39,8 +38,7 @@ public class JournalText extends JournalElement
     @Override
     public Element getElement(String[] keys)
     {
-        if (isUnlocked(keys, getKey()))
-        {
+        if (isUnlocked(keys, getKey())) {
             String s = LocalizationHelper.getLocalString(textKey);
             return s.isEmpty() ? new Image(Compendium.Resource.GUI.noContent, 301, 294, AlignmentMode.JUSTIFY) : new Paragraph(new FormattedString(s));
         }

@@ -3,6 +3,7 @@ package minechem.proxy.client.font;
 import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -223,11 +225,9 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
     {
         BufferedImage bufferedimage;
 
-        try
-        {
+        try {
             bufferedimage = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(this.locationFontTexture).getInputStream());
-        } catch (IOException ioexception)
-        {
+        } catch (IOException ioexception) {
             throw new RuntimeException(ioexception);
         }
 
@@ -241,37 +241,30 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         float f = 8.0F / (float) l;
         int i1 = 0;
 
-        while (i1 < 256)
-        {
+        while (i1 < 256) {
             int j1 = i1 % 16;
             int k1 = i1 / 16;
 
-            if (i1 == 32)
-            {
+            if (i1 == 32) {
                 this.charWidth[i1] = 3 + b0;
             }
 
             int l1 = l - 1;
 
-            while (true)
-            {
-                if (l1 >= 0)
-                {
+            while (true) {
+                if (l1 >= 0) {
                     int i2 = j1 * l + l1;
                     boolean flag = true;
 
-                    for (int j2 = 0; j2 < k && flag; ++j2)
-                    {
+                    for (int j2 = 0; j2 < k && flag; ++j2) {
                         int k2 = (k1 * l + j2) * i;
 
-                        if ((aint[i2 + k2] >> 24 & 255) != 0)
-                        {
+                        if ((aint[i2 + k2] >> 24 & 255) != 0) {
                             flag = false;
                         }
                     }
 
-                    if (flag)
-                    {
+                    if (flag) {
                         --l1;
                         continue;
                     }
@@ -287,32 +280,27 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
 
     private void readGlyphSizes()
     {
-        try
-        {
+        try {
             InputStream inputstream = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("font/glyph_sizes.bin")).getInputStream();
             inputstream.read(this.glyphWidth);
-        } catch (IOException ioexception)
-        {
+        } catch (IOException ioexception) {
             throw new RuntimeException(ioexception);
         }
     }
 
     private void initBaseColors(GameSettings gameSettings)
     {
-        for (int i = 0; i < 32; ++i)
-        {
+        for (int i = 0; i < 32; ++i) {
             int j = (i >> 3 & 1) * 85;
             int k = (i >> 2 & 1) * 170 + j;
             int l = (i >> 1 & 1) * 170 + j;
             int i1 = (i & 1) * 170 + j;
 
-            if (i == 6)
-            {
+            if (i == 6) {
                 k += 85;
             }
 
-            if (gameSettings.anaglyph)
-            {
+            if (gameSettings.anaglyph) {
                 int j1 = (k * 30 + l * 59 + i1 * 11) / 100;
                 int k1 = (k * 30 + l * 70) / 100;
                 int l1 = (k * 30 + i1 * 70) / 100;
@@ -321,8 +309,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
                 i1 = l1;
             }
 
-            if (i >= 16)
-            {
+            if (i >= 16) {
                 k /= 4;
                 l /= 4;
                 i1 /= 4;
@@ -370,8 +357,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
 
     private ResourceLocation getUnicodePageLocation(int location)
     {
-        if (unicodePageLocations[location] == null)
-        {
+        if (unicodePageLocations[location] == null) {
             unicodePageLocations[location] = new ResourceLocation(String.format("textures/font/unicode_page_%02x.png", Integer.valueOf(location)));
         }
 
@@ -391,11 +377,9 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private float renderUnicodeChar(char unicodeChar, boolean italics)
     {
-        if (this.glyphWidth[unicodeChar] == 0)
-        {
+        if (this.glyphWidth[unicodeChar] == 0) {
             return 0.0F;
-        } else
-        {
+        } else {
             int i = unicodeChar / 256;
             this.loadGlyphTexture(i);
             int j = this.glyphWidth[unicodeChar] >>> 4;
@@ -450,12 +434,10 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         this.resetStyles();
         int l;
 
-        if (dropShadow)
-        {
+        if (dropShadow) {
             l = this.renderString(string, x + 1, y + 1, color, true);
             l = Math.max(l, this.renderString(string, x, y, color, false));
-        } else
-        {
+        } else {
             l = this.renderString(string, x, y, color, false);
         }
 
@@ -467,13 +449,11 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private String bidiReorder(String string)
     {
-        try
-        {
+        try {
             Bidi bidi = new Bidi((new ArabicShaping(8)).shape(string), 127);
             bidi.setReorderingMode(0);
             return bidi.writeReordered(2);
-        } catch (ArabicShapingException arabicshapingexception)
-        {
+        } catch (ArabicShapingException arabicshapingexception) {
             return string;
         }
     }
@@ -495,63 +475,49 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private void renderStringAtPos(String sting, boolean p_78255_2_)
     {
-        for (int i = 0; i < sting.length(); ++i)
-        {
+        for (int i = 0; i < sting.length(); ++i) {
             char c0 = sting.charAt(i);
             int j;
             int k;
 
-            if (c0 == 167 && i + 1 < sting.length())
-            {
+            if (c0 == 167 && i + 1 < sting.length()) {
                 j = "0123456789abcdefklmnor".indexOf(sting.toLowerCase().charAt(i + 1));
 
-                if (j < 16)
-                {
+                if (j < 16) {
                     this.resetStyles();
 
-                    if (j < 0 || j > 15)
-                    {
+                    if (j < 0 || j > 15) {
                         j = 15;
                     }
 
-                    if (p_78255_2_)
-                    {
+                    if (p_78255_2_) {
                         j += 16;
                     }
 
                     k = this.colorCode[j];
                     this.textColor = k;
                     GL11.glColor4f((float) (k >> 16) / 255.0F, (float) (k >> 8 & 255) / 255.0F, (float) (k & 255) / 255.0F, this.alpha);
-                } else if (j == 16)
-                {
+                } else if (j == 16) {
                     this.randomStyle = true;
-                } else if (j == 17)
-                {
+                } else if (j == 17) {
                     this.boldStyle = true;
-                } else if (j == 18)
-                {
+                } else if (j == 18) {
                     this.strikethroughStyle = true;
-                } else if (j == 19)
-                {
+                } else if (j == 19) {
                     this.underlineStyle = true;
-                } else if (j == 20)
-                {
+                } else if (j == 20) {
                     this.italicStyle = true;
-                } else if (j == 21)
-                {
+                } else if (j == 21) {
                     this.resetStyles();
                     GL11.glColor4f(this.red, this.blue, this.green, this.alpha);
                 }
 
                 ++i;
-            } else
-            {
+            } else {
                 j = UNICHARS.indexOf(c0);
 
-                if (this.randomStyle && j != -1)
-                {
-                    do
-                    {
+                if (this.randomStyle && j != -1) {
+                    do {
                         k = this.fontRandom.nextInt(this.charWidth.length);
                     }
                     while (this.charWidth[j] != this.charWidth[k]);
@@ -562,26 +528,22 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
                 float f1 = this.unicodeFlag ? 0.5F : 1.0F;
                 boolean flag1 = (c0 == 0 || j == -1 || this.unicodeFlag) && p_78255_2_;
 
-                if (flag1)
-                {
+                if (flag1) {
                     this.posX -= f1;
                     this.posY -= f1;
                 }
 
                 float f = this.renderCharAtPos(j, c0, this.italicStyle);
 
-                if (flag1)
-                {
+                if (flag1) {
                     this.posX += f1;
                     this.posY += f1;
                 }
 
-                if (this.boldStyle)
-                {
+                if (this.boldStyle) {
                     this.posX += f1;
 
-                    if (flag1)
-                    {
+                    if (flag1) {
                         this.posX -= f1;
                         this.posY -= f1;
                     }
@@ -589,8 +551,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
                     this.renderCharAtPos(j, c0, this.italicStyle);
                     this.posX -= f1;
 
-                    if (flag1)
-                    {
+                    if (flag1) {
                         this.posX += f1;
                         this.posY += f1;
                     }
@@ -600,8 +561,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
 
                 Tessellator tessellator;
 
-                if (this.strikethroughStyle)
-                {
+                if (this.strikethroughStyle) {
                     tessellator = Tessellator.instance;
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tessellator.startDrawingQuads();
@@ -613,8 +573,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
 
-                if (this.underlineStyle)
-                {
+                if (this.underlineStyle) {
                     tessellator = Tessellator.instance;
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tessellator.startDrawingQuads();
@@ -637,8 +596,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private int renderStringAligned(String string, int x, int y, int maxWidth, int color, boolean dropShadow)
     {
-        if (this.bidiFlag)
-        {
+        if (this.bidiFlag) {
             int i1 = this.getStringWidth(this.bidiReorder(string));
             x = x + maxWidth - i1;
         }
@@ -651,23 +609,18 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private int renderString(String string, int x, int y, int color, boolean p_78258_5_)
     {
-        if (string == null)
-        {
+        if (string == null) {
             return 0;
-        } else
-        {
-            if (this.bidiFlag)
-            {
+        } else {
+            if (this.bidiFlag) {
                 string = this.bidiReorder(string);
             }
 
-            if ((color & -67108864) == 0)
-            {
+            if ((color & -67108864) == 0) {
                 color |= -16777216;
             }
 
-            if (p_78258_5_)
-            {
+            if (p_78258_5_) {
                 color = (color & 16579836) >> 2 | color & -16777216;
             }
 
@@ -688,32 +641,25 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     public int getStringWidth(String string)
     {
-        if (string == null)
-        {
+        if (string == null) {
             return 0;
-        } else
-        {
+        } else {
             int i = 0;
             boolean flag = false;
 
-            for (int j = 0; j < string.length(); ++j)
-            {
+            for (int j = 0; j < string.length(); ++j) {
                 char c0 = string.charAt(j);
                 int k = this.getCharWidth(c0);
 
-                if (k < 0 && j < string.length() - 1)
-                {
+                if (k < 0 && j < string.length() - 1) {
                     ++j;
                     c0 = string.charAt(j);
 
-                    if (c0 != 108 && c0 != 76)
-                    {
-                        if (c0 == 114 || c0 == 82)
-                        {
+                    if (c0 != 108 && c0 != 76) {
+                        if (c0 == 114 || c0 == 82) {
                             flag = false;
                         }
-                    } else
-                    {
+                    } else {
                         flag = true;
                     }
 
@@ -722,8 +668,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
 
                 i += k;
 
-                if (flag && k > 0)
-                {
+                if (flag && k > 0) {
                     ++i;
                 }
             }
@@ -743,28 +688,23 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         } else if (c == 32) //size of a space
         {
             return 4;
-        } else
-        {
+        } else {
             int i = UNICHARS.indexOf(c);
 
-            if (c > 0 && i != -1 && !this.unicodeFlag)
-            {
+            if (c > 0 && i != -1 && !this.unicodeFlag) {
                 return this.charWidth[i];
-            } else if (this.glyphWidth[c] != 0)
-            {
+            } else if (this.glyphWidth[c] != 0) {
                 int j = this.glyphWidth[c] >>> 4;
                 int k = this.glyphWidth[c] & 15;
 
-                if (k > 7)
-                {
+                if (k > 7) {
                     k = 15;
                     j = 0;
                 }
 
                 ++k;
                 return (k - j) / 2 + 1;
-            } else
-            {
+            } else {
                 return 0;
             }
         }
@@ -790,48 +730,37 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         boolean flag1 = false;
         boolean flag2 = false;
 
-        for (int i1 = k; i1 >= 0 && i1 < string.length() && j < newLength; i1 += l)
-        {
+        for (int i1 = k; i1 >= 0 && i1 < string.length() && j < newLength; i1 += l) {
             char c0 = string.charAt(i1);
             int j1 = this.getCharWidth(c0);
 
-            if (flag1)
-            {
+            if (flag1) {
                 flag1 = false;
 
-                if (c0 != 108 && c0 != 76)
-                {
-                    if (c0 == 114 || c0 == 82)
-                    {
+                if (c0 != 108 && c0 != 76) {
+                    if (c0 == 114 || c0 == 82) {
                         flag2 = false;
                     }
-                } else
-                {
+                } else {
                     flag2 = true;
                 }
-            } else if (j1 < 0)
-            {
+            } else if (j1 < 0) {
                 flag1 = true;
-            } else
-            {
+            } else {
                 j += j1;
 
-                if (flag2)
-                {
+                if (flag2) {
                     ++j;
                 }
             }
 
-            if (j > newLength)
-            {
+            if (j > newLength) {
                 break;
             }
 
-            if (reverse)
-            {
+            if (reverse) {
                 stringbuilder.insert(0, c0);
-            } else
-            {
+            } else {
                 stringbuilder.append(c0);
             }
         }
@@ -844,8 +773,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
      */
     private String trimStringNewline(String string)
     {
-        while (string != null && string.endsWith("\n"))
-        {
+        while (string != null && string.endsWith("\n")) {
             string = string.substring(0, string.length() - 1);
         }
 
@@ -870,8 +798,7 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
     {
         List list = this.listFormattedStringToWidth(string, maxWidth);
 
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); y += this.FONT_HEIGHT)
-        {
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); y += this.FONT_HEIGHT) {
             String s1 = (String) iterator.next();
             this.renderStringAligned(s1, x, y, maxWidth, this.textColor, dropShadow);
         }
@@ -924,11 +851,9 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
     {
         int j = this.sizeStringToWidth(string, maxWidth);
 
-        if (string.length() <= j)
-        {
+        if (string.length() <= j) {
             return string;
-        } else
-        {
+        } else {
             String s1 = string.substring(0, j);
             char c0 = string.charAt(j);
             boolean flag = c0 == 32 || c0 == 10;
@@ -947,29 +872,23 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         int l = 0;
         int i1 = -1;
 
-        for (boolean flag = false; l < stringLength; ++l)
-        {
+        for (boolean flag = false; l < stringLength; ++l) {
             char c0 = string.charAt(l);
 
-            switch (c0)
-            {
+            switch (c0) {
                 case 10:
                     --l;
                     break;
                 case 167:
-                    if (l < stringLength - 1)
-                    {
+                    if (l < stringLength - 1) {
                         ++l;
                         char c1 = string.charAt(l);
 
-                        if (c1 != 108 && c1 != 76)
-                        {
-                            if (c1 == 114 || c1 == 82 || isFormatColor(c1))
-                            {
+                        if (c1 != 108 && c1 != 76) {
+                            if (c1 == 114 || c1 == 82 || isFormatColor(c1)) {
                                 flag = false;
                             }
-                        } else
-                        {
+                        } else {
                             flag = true;
                         }
                     }
@@ -980,21 +899,18 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
                 default:
                     k += this.getCharWidth(c0);
 
-                    if (flag)
-                    {
+                    if (flag) {
                         ++k;
                     }
             }
 
-            if (c0 == 10)
-            {
+            if (c0 == 10) {
                 ++l;
                 i1 = l;
                 break;
             }
 
-            if (k > width)
-            {
+            if (k > width) {
                 break;
             }
         }
@@ -1027,17 +943,13 @@ public class EnhancedFontRenderer implements IResourceManagerReloadListener
         int i = -1;
         int j = string.length();
 
-        while ((i = string.indexOf(167, i + 1)) != -1)
-        {
-            if (i < j - 1)
-            {
+        while ((i = string.indexOf(167, i + 1)) != -1) {
+            if (i < j - 1) {
                 char c0 = string.charAt(i + 1);
 
-                if (isFormatColor(c0))
-                {
+                if (isFormatColor(c0)) {
                     s1 = "\u00a7" + c0;
-                } else if (isFormatSpecial(c0))
-                {
+                } else if (isFormatSpecial(c0)) {
                     s1 = s1 + "\u00a7" + c0;
                 }
             }

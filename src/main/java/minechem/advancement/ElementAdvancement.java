@@ -16,7 +16,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
 /**
- * {@link net.minecraft.stats.Advancement} wrapper for {@link minechem.chemical.Element}s
+ * {@link net.minecraft.advancements.Advancement} wrapper for {@link minechem.chemical.Element}s
  */
 public class ElementAdvancement extends Advancement implements IAdvancementRenderer
 {
@@ -63,8 +63,7 @@ public class ElementAdvancement extends Advancement implements IAdvancementRende
     @Override
     public int recolourBackground(float greyScale)
     {
-        if (greyScale != 1.0F)
-        {
+        if (greyScale != 1.0F) {
             return ColourHelper.blend(getColour(element), ColourHelper.RGB(greyScale, greyScale, greyScale));
         }
         return getColour(element);
@@ -72,8 +71,7 @@ public class ElementAdvancement extends Advancement implements IAdvancementRende
 
     private int getColour(Element element)
     {
-        switch (element.type)
-        {
+        switch (element.type) {
             case alkaliMetal:
                 return ColourHelper.RGB("#F63FFF");
             case alkalineEarth:
@@ -108,12 +106,10 @@ public class ElementAdvancement extends Advancement implements IAdvancementRende
     @Override
     public void renderIcon(FontRenderer fontRenderer, TextureManager textureManager, ItemStack itemStack, int left, int top)
     {
-        if (regularFont == null)
-        {
+        if (regularFont == null) {
             regularFont = new Font(fontRenderer);
         }
-        if (smallFont == null)
-        {
+        if (smallFont == null) {
             smallFont = new Font(fontRenderer).setFontSize(8);
         }
         regularFont.print(element.shortName, left + 10 - (element.shortName.length() - 1) * 5, top + 8, Compendium.Color.TrueColor.white, true);

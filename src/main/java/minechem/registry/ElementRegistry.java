@@ -3,6 +3,7 @@ package minechem.registry;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+
 import minechem.chemical.Element;
 
 public class ElementRegistry
@@ -19,8 +20,7 @@ public class ElementRegistry
      */
     public static ElementRegistry getInstance()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new ElementRegistry();
         }
         return instance;
@@ -81,8 +81,7 @@ public class ElementRegistry
      */
     public Element getElement(String abbr)
     {
-        if (abbr == null)
-        {
+        if (abbr == null) {
             return null;
         }
         return abbrElementMap.get(abbr);
@@ -96,8 +95,7 @@ public class ElementRegistry
      */
     public Element getElementByName(String fullName)
     {
-        if (fullName == null)
-        {
+        if (fullName == null) {
             return null;
         }
         return nameElementMap.get(fullName.toLowerCase());

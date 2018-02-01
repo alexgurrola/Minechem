@@ -41,8 +41,7 @@ public abstract class BasicTileEntityRenderer extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float scale)
     {
-        if (tileEntity instanceof BasicInventoryTileEntity)
-        {
+        if (tileEntity instanceof BasicInventoryTileEntity) {
             GL11.glPushMatrix();
             GL11.glTranslated(x + xOffset, y + yOffset, z + zOffset);
             GL11.glRotatef(180f, 0f, 0f, 1f);

@@ -3,7 +3,9 @@ package minechem.apparatus.prefab.gui.tab;
 import cofh.core.gui.GuiContainerCore;
 import cofh.core.gui.element.tab.TabBase;
 import cofh.core.util.helpers.MathHelper;
+
 import java.util.List;
+
 import minechem.Compendium;
 import minechem.helper.LocalizationHelper;
 import org.lwjgl.opengl.GL11;
@@ -22,13 +24,13 @@ public abstract class BasicGuiTab extends TabBase
     protected String tabTooltip;
     protected boolean enabled = true;
 
-    public BasicGuiTab(GuiContainerCore  gui, String tabText)
+    public BasicGuiTab(GuiContainerCore gui, String tabText)
     {
         this(gui, tabText, 1);
 
     }
 
-    public BasicGuiTab(GuiContainerCore  gui, String tabText, int side)
+    public BasicGuiTab(GuiContainerCore gui, String tabText, int side)
     {
         super(gui, side);
         textColor = Compendium.Color.TrueColor.white;
@@ -43,15 +45,12 @@ public abstract class BasicGuiTab extends TabBase
     public void draw()
     {
         super.draw();
-        if (isEnabled())
-        {
+        if (isEnabled()) {
             drawBackground();
             drawTabIcon(getIcon());
-            if (isFullyOpened())
-            {
+            if (isFullyOpened()) {
                 getFontRenderer().drawStringWithShadow(getTitle(), posXOffset() + 18, this.posY + 6, this.headerColor);
-                for (int i = this.firstLine; i < this.firstLine + this.numLines; i++)
-                {
+                for (int i = this.firstLine; i < this.firstLine + this.numLines; i++) {
                     getFontRenderer().drawString(this.tabText.get(i), posXOffset() + 2, this.posY + 20 + (i - this.firstLine) * getFontRenderer().FONT_HEIGHT, this.textColor, true);
                 }
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -69,8 +68,7 @@ public abstract class BasicGuiTab extends TabBase
 
     public String getTooltip()
     {
-        if (!isFullyOpened())
-        {
+        if (!isFullyOpened()) {
             LocalizationHelper.getLocalString(this.tabTooltip);
         }
         return null;
@@ -80,26 +78,21 @@ public abstract class BasicGuiTab extends TabBase
     @Override
     public boolean onMousePressed(int x, int y, int z)
     {
-        if (!isFullyOpened())
-        {
+        if (!isFullyOpened()) {
             return false;
         }
-        if (this.side == LEFT)
-        {
+        if (this.side == LEFT) {
             x += this.currentWidth;
         }
         x -= this.currentShiftX;
         y -= this.currentShiftY;
 
-        if (x < 108)
-        {
+        if (x < 108) {
             return false;
         }
-        if (y < 52)
-        {
+        if (y < 52) {
             this.firstLine = MathHelper.clampI(this.firstLine - 1, 0, this.maxFirstLine);
-        } else
-        {
+        } else {
             this.firstLine = MathHelper.clampI(this.firstLine + 1, 0, this.maxFirstLine);
         }
         return true;
@@ -114,10 +107,8 @@ public abstract class BasicGuiTab extends TabBase
     @Override
     public boolean isFullyOpened()
     {
-        if (this.currentWidth >= this.maxWidth)
-        {
-            if (this.currentHeight >= this.maxHeight)
-            {
+        if (this.currentWidth >= this.maxWidth) {
+            if (this.currentHeight >= this.maxHeight) {
                 return true;
             }
         }

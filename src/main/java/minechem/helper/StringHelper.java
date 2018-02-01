@@ -1,6 +1,7 @@
 package minechem.helper;
 
 import java.util.List;
+
 import net.minecraft.client.gui.FontRenderer;
 
 public class StringHelper
@@ -22,24 +23,18 @@ public class StringHelper
     {
         StringBuilder result = new StringBuilder();
         String value;
-        for (Object object : objects)
-        {
-            if (object != null && object.getClass().isArray())
-            {
+        for (Object object : objects) {
+            if (object != null && object.getClass().isArray()) {
                 StringBuilder intermediate = new StringBuilder();
                 intermediate.append("[");
-                for (Object o : ArrayHelper.convertToArray(object))
-                {
+                for (Object o : ArrayHelper.convertToArray(object)) {
                     intermediate.append(toString(separator, o)).append(separator);
                 }
                 value = intermediate.substring(0, intermediate.length() - separator.length()) + "]";
-            }
-            else
-            {
+            } else {
                 value = String.valueOf(object);
             }
-            if (value.equals("%"))
-            {
+            if (value.equals("%")) {
                 value = "%%"; // fixes issue wit formatter
             }
             result.append(value).append(separator);

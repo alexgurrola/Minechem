@@ -32,19 +32,15 @@ public class AugmentRegistry
 
     public static IAugment getAugment(ItemStack augmentItem)
     {
-        if (augmentItem == null)
-        {
+        if (augmentItem == null) {
             return null;
         }
         Item item = augmentItem.getItem();
-        if (item instanceof IFluidContainerItem)
-        {
+        if (item instanceof IFluidContainerItem) {
             return fluidAugmentMap.get(((IFluidContainerItem) item).getFluid(augmentItem));
-        } else if (item instanceof IAugmentItem)
-        {
+        } else if (item instanceof IAugmentItem) {
             return getAugment(((IAugmentItem) item).getAugmentKey(augmentItem));
-        } else
-        {
+        } else {
             return itemStackAugmentMap.get(augmentItem);
         }
     }
@@ -56,8 +52,7 @@ public class AugmentRegistry
      */
     public static void registerAugment(IAugment augment)
     {
-        if (!augmentKeyMap.containsKey(augment.getKey()))
-        {
+        if (!augmentKeyMap.containsKey(augment.getKey())) {
             augmentKeyMap.put(augment.getKey(), augment);
         }
     }
@@ -69,8 +64,7 @@ public class AugmentRegistry
      */
     public static void registerAugment(Fluid fluid, IAugment augment)
     {
-        if (!fluidAugmentMap.containsKey(fluid))
-        {
+        if (!fluidAugmentMap.containsKey(fluid)) {
             registerAugment(augment);
             fluidAugmentMap.put(fluid, augment);
         }
@@ -78,8 +72,7 @@ public class AugmentRegistry
 
     public static void registerAugment(ItemStack stack, IAugment augment)
     {
-        if (!itemStackAugmentMap.containsKey(stack))
-        {
+        if (!itemStackAugmentMap.containsKey(stack)) {
             registerAugment(augment);
             itemStackAugmentMap.put(stack, augment);
         }

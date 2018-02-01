@@ -1,6 +1,7 @@
 package minechem.item.augment;
 
 import java.util.Map;
+
 import minechem.item.augment.augments.IAugment;
 import net.minecraft.item.ItemStack;
 

@@ -52,11 +52,9 @@ public class AdvancementMessage extends BaseTEMessage implements IMessageHandler
     @Override
     public IMessage onMessage(AdvancementMessage message, MessageContext ctx)
     {
-        if (message.isElement)
-        {
+        if (message.isElement) {
             AdvancementHelper.giveAdvancement(getServerPlayer(ctx), AdvancementHelper.getAdvancement(ElementRegistry.getInstance().getElement(message.advancement)));
-        } else
-        {
+        } else {
             AdvancementHelper.giveAdvancement(getServerPlayer(ctx), AdvancementHelper.getAdvancement(message.advancement));
         }
         return null;

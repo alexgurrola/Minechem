@@ -1,6 +1,7 @@
 package minechem.apparatus.prefab.gui.element;
 
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -101,19 +102,16 @@ public abstract class GuiElement extends Gui
      */
     protected void drawHoveringText(List<String> tooltip, int x, int y, FontRenderer fontrenderer)
     {
-        if (!tooltip.isEmpty())
-        {
+        if (!tooltip.isEmpty()) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
             int k = 0;
 
-            for (String line : tooltip)
-            {
+            for (String line : tooltip) {
                 int l = fontrenderer.getStringWidth(line);
 
-                if (l > k)
-                {
+                if (l > k) {
                     k = l;
                 }
             }
@@ -122,8 +120,7 @@ public abstract class GuiElement extends Gui
             int j1 = y - 12;
             int k1 = 8;
 
-            if (tooltip.size() > 1)
-            {
+            if (tooltip.size() > 1) {
                 k1 += 2 + (tooltip.size() - 1) * 10;
             }
 
@@ -141,13 +138,11 @@ public abstract class GuiElement extends Gui
             this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
             this.drawGradientRect(i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
 
-            for (int k2 = 0; k2 < tooltip.size(); ++k2)
-            {
+            for (int k2 = 0; k2 < tooltip.size(); ++k2) {
                 String s1 = tooltip.get(k2);
                 fontrenderer.drawStringWithShadow(s1, i1, j1, -1);
 
-                if (k2 == 0)
-                {
+                if (k2 == 0) {
                     j1 += 2;
                 }
 

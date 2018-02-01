@@ -3,6 +3,7 @@ package minechem.registry;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+
 import minechem.chemical.Molecule;
 import minechem.helper.LogHelper;
 
@@ -14,8 +15,7 @@ public class MoleculeRegistry
 
     public static MoleculeRegistry getInstance()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new MoleculeRegistry();
         }
         return instance;
@@ -49,15 +49,12 @@ public class MoleculeRegistry
      */
     public boolean registerMolecule(String fullName, String form, int colour, String formula)
     {
-        try
-        {
+        try {
             registerMolecule(Molecule.parseMolecule(fullName, form, colour, formula));
-        } catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             //Cannot read the compound formula - not actually an error as it might just not have parsed a sub-compound - returns true to include molecule for next parsing
             return true;
-        } catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             LogHelper.warn(fullName + " has a null or empty formula");
         }
         return false;
@@ -71,8 +68,7 @@ public class MoleculeRegistry
      */
     public Molecule getMoleculeByName(String name)
     {
-        if (name == null)
-        {
+        if (name == null) {
             return null;
         }
         return nameMoleculeMap.get(name.toLowerCase());
@@ -86,8 +82,7 @@ public class MoleculeRegistry
      */
     public Molecule getMoleculeByFormula(String formula)
     {
-        if (formula == null)
-        {
+        if (formula == null) {
             return null;
         }
         return formulaMoleculeMap.get(formula);

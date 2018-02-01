@@ -35,12 +35,10 @@ public class BasicEnergy
 
     public boolean consumeEnergy(int energy)
     {
-        if (freeEnergy)
-        {
+        if (freeEnergy) {
             return true;
         }
-        if (hasEnergy(energy))
-        {
+        if (hasEnergy(energy)) {
             this.stored -= energy;
             return true;
         }
@@ -50,8 +48,7 @@ public class BasicEnergy
     public int extractEnergy(int energy, boolean doExtract)
     {
         int amount = Math.min(this.stored, Math.min(energy, maxOutput));
-        if (doExtract)
-        {
+        if (doExtract) {
             this.stored -= amount;
         }
         return amount;
@@ -59,12 +56,10 @@ public class BasicEnergy
 
     public boolean generateEnergy(int energy)
     {
-        if (freeEnergy)
-        {
+        if (freeEnergy) {
             return true;
         }
-        if (this.stored == this.capacity)
-        {
+        if (this.stored == this.capacity) {
             return false;
         }
         this.stored = Math.min(this.capacity, this.stored + energy);
@@ -99,8 +94,7 @@ public class BasicEnergy
     public int inputEnergy(int energy, boolean doInsert)
     {
         int amount = Math.min(energy, Math.min(this.maxInput, this.capacity - this.stored));
-        if (doInsert)
-        {
+        if (doInsert) {
             this.stored += amount;
         }
         return amount;
@@ -116,8 +110,7 @@ public class BasicEnergy
     public void setCapacity(int capacity)
     {
         this.capacity = capacity;
-        if (this.stored > this.capacity)
-        {
+        if (this.stored > this.capacity) {
             this.stored = this.capacity;
         }
     }

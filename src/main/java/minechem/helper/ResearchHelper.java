@@ -9,11 +9,9 @@ public class ResearchHelper
 {
     public static void addResearch(EntityPlayer player, String key, boolean isRemote)
     {
-        if (isRemote)
-        {
+        if (isRemote) {
             MessageHandler.INSTANCE.sendToServer(new ResearchMessage(key));
-        } else
-        {
+        } else {
             ResearchRegistry.getInstance().addResearch(player, key);
         }
     }

@@ -10,10 +10,10 @@ import net.minecraft.entity.player.EntityPlayer;
 public class AdvancementHelper
 {
     /**
-     * Short hand for getting an {@link net.minecraft.stats.Advancement} from the {@link minechem.registry.AdvancementRegistry} by name
+     * Short hand for getting an {@link net.minecraft.advancements.Advancement} from the {@link minechem.registry.AdvancementRegistry} by name
      *
      * @param name the advancement name
-     * @return the {@link net.minecraft.stats.Advancement} or null if the name does not exist
+     * @return the {@link net.minecraft.advancements.Advancement} or null if the name does not exist
      */
     public static Advancement getAdvancement(String name)
     {
@@ -21,10 +21,10 @@ public class AdvancementHelper
     }
 
     /**
-     * Short hand for getting an {@link net.minecraft.stats.Advancement} from the {@link minechem.registry.AdvancementRegistry} by {@link minechem.chemical.Element}
+     * Short hand for getting an {@link net.minecraft.advancements.Advancement} from the {@link minechem.registry.AdvancementRegistry} by {@link minechem.chemical.Element}
      *
      * @param element an {@link minechem.chemical.Element}
-     * @return the {@link net.minecraft.stats.Advancement} or null if the {@link minechem.chemical.Element} does not exist
+     * @return the {@link net.minecraft.advancements.Advancement} or null if the {@link minechem.chemical.Element} does not exist
      */
     public static Advancement getAdvancement(Element element)
     {
@@ -32,48 +32,44 @@ public class AdvancementHelper
     }
 
     /**
-     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement} for an {@link minechem.chemical.Element} It will send an
+     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.advancements.Advancement} for an {@link minechem.chemical.Element} It will send an
      * {@link minechem.handler.message.AdvancementMessage} when the world is remote
      *
-     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Advancement}
-     * @param element  the {@link minechem.chemical.Element} to give the {@link net.minecraft.stats.Advancement} for
+     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.advancements.Advancement}
+     * @param element  the {@link minechem.chemical.Element} to give the {@link net.minecraft.advancements.Advancement} for
      * @param isRemote {@link net.minecraft.world.World#isRemote} is the to pass argument here
      */
     public static void giveAdvancement(EntityPlayer player, Element element, boolean isRemote)
     {
-        if (isRemote)
-        {
+        if (isRemote) {
             MessageHandler.INSTANCE.sendToServer(new AdvancementMessage(element));
-        } else
-        {
+        } else {
             giveAdvancement(player, getAdvancement(element));
         }
     }
 
     /**
-     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement} wih given name It will send an {@link minechem.handler.message.AdvancementMessage} when the
+     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.advancements.Advancement} wih given name It will send an {@link minechem.handler.message.AdvancementMessage} when the
      * world is remote
      *
-     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Advancement}
-     * @param name     the name of the {@link net.minecraft.stats.Advancement} to give
+     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.advancements.Advancement}
+     * @param name     the name of the {@link net.minecraft.advancements.Advancement} to give
      * @param isRemote {@link net.minecraft.world.World#isRemote} is the to pass argument here
      */
     public static void giveAdvancement(EntityPlayer player, String name, boolean isRemote)
     {
-        if (isRemote)
-        {
+        if (isRemote) {
             MessageHandler.INSTANCE.sendToServer(new AdvancementMessage(name));
-        } else
-        {
+        } else {
             giveAdvancement(player, getAdvancement(name));
         }
     }
 
     /**
-     * Grants the {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement}
+     * Grants the {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.advancements.Advancement}
      *
-     * @param player      the {@link net.minecraft.entity.player.EntityPlayer} to grant the {@link net.minecraft.stats.Advancement}
-     * @param advancement the {@link net.minecraft.stats.Advancement} to grant
+     * @param player      the {@link net.minecraft.entity.player.EntityPlayer} to grant the {@link net.minecraft.advancements.Advancement}
+     * @param advancement the {@link net.minecraft.advancements.Advancement} to grant
      */
     public static void giveAdvancement(EntityPlayer player, Advancement advancement)
     {

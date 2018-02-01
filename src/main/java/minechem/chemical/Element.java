@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import minechem.Compendium;
 import minechem.helper.ColourHelper;
 import minechem.helper.LogHelper;
@@ -15,9 +16,9 @@ public class Element extends ChemicalBase implements Comparable<Element>
 {
     private static final Matcher SHELL_ORDER = Pattern.compile("\\d+([a-z])").matcher("1s2s2p3s3p4s3d4p5s4d5p6s4f5d6p7s5f6d7p8s5g6f7d8p9s"); //Handles up to atomic number 170
     private static final int[] SUB_SHELL_ELECTRONS = new int[]
-    {
-        2, 6, 10, 14, 18
-    };
+            {
+                    2, 6, 10, 14, 18
+            };
     private static final String SUB_SHELL_STRING = "spdfg"; //Super Powered Dog Fights God
 
     public static enum Type
@@ -63,8 +64,7 @@ public class Element extends ChemicalBase implements Comparable<Element>
     {
         SHELL_ORDER.reset();
         int electronCount = atomicNumber, subShell = 0;
-        while (electronCount > 0 && SHELL_ORDER.find())
-        {
+        while (electronCount > 0 && SHELL_ORDER.find()) {
             subShell = SUB_SHELL_STRING.indexOf(SHELL_ORDER.group(1));
             electronCount -= SUB_SHELL_ELECTRONS[subShell];
         }
@@ -142,8 +142,7 @@ public class Element extends ChemicalBase implements Comparable<Element>
     private int setColour()
     {
         int tone = 0;
-        switch (this.type)
-        {
+        switch (this.type) {
             case alkaliMetal:
                 tone = ColourHelper.RGB("#F63FFF");
                 break;

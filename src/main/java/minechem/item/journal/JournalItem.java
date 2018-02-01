@@ -2,6 +2,7 @@ package minechem.item.journal;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,16 +38,12 @@ public class JournalItem extends BasicItem
     @SideOnly(Side.CLIENT)
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if (player.isSneaking())
-        {
-            if (!Config.playerPrivateKnowledge)
-            {
+        if (player.isSneaking()) {
+            if (!Config.playerPrivateKnowledge) {
                 writeKnowledge(stack, player, world.isRemote);
             }
-        } else
-        {
-            if (world.isRemote)
-            {
+        } else {
+            if (world.isRemote) {
                 Minecraft.getMinecraft().displayGuiScreen(new JournalGUI(player, getKnowledgeKeys(stack), getAuthors(stack)));
             }
         }
@@ -63,51 +60,42 @@ public class JournalItem extends BasicItem
      */
     public void writeKnowledge(ItemStack itemStack, EntityPlayer player, boolean isRemote)
     {
-        if (isRemote)
-        {
+        if (isRemote) {
             MessageHandler.INSTANCE.sendToServer(new JournalMessage(player));
             return;
         }
 
         NBTTagCompound tagCompound = itemStack.stackTagCompound;
         Set<String> playerKnowledge = ResearchRegistry.getInstance().getResearchFor(player);
-        if (playerKnowledge == null)
-        {
+        if (playerKnowledge == null) {
             return;
         }
         Set<String> bookKnowledge = new LinkedHashSet<String>();
-        if (tagCompound == null)
-        {
+        if (tagCompound == null) {
             tagCompound = new NBTTagCompound();
-        } else if (tagCompound.hasKey("research"))
-        {
+        } else if (tagCompound.hasKey("research")) {
             NBTTagList bookKnowledgeTag = tagCompound.getTagList("research", 8);
-            for (int i = 0; i < bookKnowledgeTag.tagCount(); i++)
-            {
+            for (int i = 0; i < bookKnowledgeTag.tagCount(); i++) {
                 bookKnowledge.add(bookKnowledgeTag.getStringTagAt(i));
             }
         }
         bookKnowledge.addAll(playerKnowledge);
         NBTTagList bookKnowledgeTag = new NBTTagList();
-        for (String knowledgeKey : bookKnowledge)
-        {
+        for (String knowledgeKey : bookKnowledge) {
             bookKnowledgeTag.appendTag(new NBTTagString(knowledgeKey));
         }
         tagCompound.setTag("research", bookKnowledgeTag);
 
         Set<String> authors = new LinkedHashSet<String>();
-        if (tagCompound.hasKey("authors"))
-        {
+        if (tagCompound.hasKey("authors")) {
             NBTTagList authorsTag = tagCompound.getTagList("authors", 8);
-            for (int i = 0; i < authorsTag.tagCount(); i++)
-            {
+            for (int i = 0; i < authorsTag.tagCount(); i++) {
                 authors.add(authorsTag.getStringTagAt(i));
             }
         }
         authors.add(player.getDisplayName());
         NBTTagList authorsTag = new NBTTagList();
-        for (String author : authors)
-        {
+        for (String author : authors) {
             authorsTag.appendTag(new NBTTagString(author));
         }
         tagCompound.setTag("authors", authorsTag);
@@ -122,12 +110,10 @@ public class JournalItem extends BasicItem
      */
     public String[] getAuthors(ItemStack itemStack)
     {
-        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("authors"))
-        {
+        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("authors")) {
             NBTTagList authorsTag = itemStack.stackTagCompound.getTagList("authors", 8);
             String[] authors = new String[authorsTag.tagCount()];
-            for (int i = 0; i < authorsTag.tagCount(); i++)
-            {
+            for (int i = 0; i < authorsTag.tagCount(); i++) {
                 authors[i] = authorsTag.getStringTagAt(i);
             }
             return ArrayHelper.removeNulls(authors, String.class);
@@ -143,12 +129,10 @@ public class JournalItem extends BasicItem
      */
     public String[] getKnowledgeKeys(ItemStack itemStack)
     {
-        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("research"))
-        {
+        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("research")) {
             NBTTagList authorsTag = itemStack.stackTagCompound.getTagList("research", 8);
             String[] knowledgeKeys = new String[authorsTag.tagCount()];
-            for (int i = 0; i < authorsTag.tagCount(); i++)
-            {
+            for (int i = 0; i < authorsTag.tagCount(); i++) {
                 knowledgeKeys[i] = authorsTag.getStringTagAt(i);
             }
             return ArrayHelper.removeNulls(knowledgeKeys, String.class);
@@ -168,16 +152,13 @@ public class JournalItem extends BasicItem
     public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean bool)
     {
         super.addInformation(itemStack, player, lines, bool);
-        if (!Config.playerPrivateKnowledge)
-        {
+        if (!Config.playerPrivateKnowledge) {
             String[] authors = getAuthors(itemStack);
-            if (authors == null || authors.length < 1)
-            {
+            if (authors == null || authors.length < 1) {
                 return;
             }
             lines.add(LocalizationHelper.getLocalString("gui.journal.writtenBy") + ":");
-            for (String author : authors)
-            {
+            for (String author : authors) {
                 lines.add("- " + author);
             }
         }

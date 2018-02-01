@@ -31,8 +31,7 @@ public class AugmentTnt extends AugmentBase
 
     public void createExplosion(World world, Entity entity, double x, double y, double z, float radius, ItemStack stack, int level)
     {
-        if (!world.isRemote)
-        {
+        if (!world.isRemote) {
             consumeAugment(stack, level);
             world.newExplosion(entity, x, y, z, radius, false, false);
         }

@@ -1,6 +1,7 @@
 package minechem.helper;
 
 import java.util.Random;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -9,8 +10,7 @@ public class ItemHelper
 {
     public static void throwItemStack(World world, ItemStack itemStack, double x, double y, double z)
     {
-        if (itemStack != null)
-        {
+        if (itemStack != null) {
             Random random = new Random();
             float xFloat = random.nextFloat() * 0.8F + 0.1F;
             float yFloat = random.nextFloat() * 0.8F + 0.1F;

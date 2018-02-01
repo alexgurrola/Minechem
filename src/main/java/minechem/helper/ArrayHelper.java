@@ -20,10 +20,8 @@ public class ArrayHelper
     public static <T> T[] removeNulls(T[] array, Class<T> type)
     {
         List<T> list = new LinkedList<T>();
-        for (T value : array)
-        {
-            if (value != null)
-            {
+        for (T value : array) {
+            if (value != null) {
                 list.add(value);
             }
         }
@@ -32,23 +30,21 @@ public class ArrayHelper
 
     /**
      * Converts an {@link java.lang.Object} to an array of the type
+     *
      * @param array the {@link java.lang.Object} representation of the array
      * @return an {@link java.lang.Object}[]
      */
-    public static Object[] convertToArray(Object array) {
+    public static Object[] convertToArray(Object array)
+    {
         Class ofArray = array.getClass().getComponentType();
-        if (ofArray.isPrimitive())
-        {
+        if (ofArray.isPrimitive()) {
             List arrayList = new ArrayList();
             int length = Array.getLength(array);
-            for (int i = 0; i < length; i++)
-            {
+            for (int i = 0; i < length; i++) {
                 arrayList.add(Array.get(array, i));
             }
             return arrayList.toArray();
-        }
-        else
-        {
+        } else {
             return (Object[]) array;
         }
     }

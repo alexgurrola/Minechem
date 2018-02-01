@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 
 /**
- * This can be applied and will be hooked into the render code of an {@link net.minecraft.stats.Advancement} during the rendering in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
+ * This can be applied and will be hooked into the render code of an {@link net.minecraft.advancements.Advancement} during the rendering in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
  */
 public interface IAdvancementRenderer
 {
     /**
-     * Recolour the background of the {@link net.minecraft.stats.Advancement} icon in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
+     * Recolour the background of the {@link net.minecraft.advancements.Advancement} icon in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
      *
      * @param greyScale the current gray scale
      * @return the int colour you want the background to be

@@ -19,11 +19,9 @@ public class AugmentUnstable extends AugmentBase
     @Override
     public boolean onEntityItemUpdate(ItemStack stack, EntityItem entityItem, int level)
     {
-        if (!entityItem.worldObj.isRemote && rand.nextFloat() < multiplier * 0.001)
-        {
+        if (!entityItem.worldObj.isRemote && rand.nextFloat() < multiplier * 0.001) {
             consumeAugment(stack, level);
-            if (level < 0)
-            {
+            if (level < 0) {
                 return false;
             }
             entityItem.worldObj.createExplosion(null, entityItem.posX, entityItem.posY, entityItem.posZ, (level * multiplier) + 1, true);
@@ -34,11 +32,9 @@ public class AugmentUnstable extends AugmentBase
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean bool, int level)
     {
-        if (!entity.worldObj.isRemote && rand.nextFloat() < multiplier * 0.001)
-        {
+        if (!entity.worldObj.isRemote && rand.nextFloat() < multiplier * 0.001) {
             consumeAugment(stack, level);
-            if (level < 0)
-            {
+            if (level < 0) {
                 return;
             }
             entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(entity, null), multiplier * (level + 1));

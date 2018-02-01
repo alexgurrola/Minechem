@@ -8,7 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- *
  * @author jakimfett
  */
 public class ElectricCrucibleBlock extends BasicBlockContainer

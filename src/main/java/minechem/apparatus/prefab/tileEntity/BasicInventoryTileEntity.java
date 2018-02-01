@@ -155,8 +155,7 @@ public abstract class BasicInventoryTileEntity extends TilePeripheralBase implem
 
         NBTTagList nbttaglist = nbttagcompound.getTagList(inventory.getInventoryName(), Constants.NBT.TAG_COMPOUND);
 
-        for (int i = 0; i < inventory.getInventory().length; i++)
-        {
+        for (int i = 0; i < inventory.getInventory().length; i++) {
             inventory.setInventorySlotContents(i, ItemStack.loadItemStackFromNBT(nbttaglist.getCompoundTagAt(i)));
         }
 
@@ -188,15 +187,12 @@ public abstract class BasicInventoryTileEntity extends TilePeripheralBase implem
         super.writeToNBT(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (ItemStack stack : inventory.getInventory())
-        {
-            if (stack != null)
-            {
+        for (ItemStack stack : inventory.getInventory()) {
+            if (stack != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                 stack.writeToNBT(nbttagcompound1);
                 nbttaglist.appendTag(nbttagcompound1);
-            } else
-            {
+            } else {
                 nbttaglist.appendTag(new NBTTagCompound());
             }
         }

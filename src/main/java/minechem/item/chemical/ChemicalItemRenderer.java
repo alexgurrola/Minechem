@@ -2,6 +2,7 @@ package minechem.item.chemical;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import minechem.chemical.ChemicalBase;
 import minechem.chemical.Element;
 import minechem.helper.MathHelper;
@@ -23,12 +24,10 @@ public class ChemicalItemRenderer implements IItemRenderer
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
         ChemicalBase chemicalBase = ChemicalItem.getChemicalBase(item);
-        if (chemicalBase == null)
-        {
+        if (chemicalBase == null) {
             return false;
         }
-        switch (type)
-        {
+        switch (type) {
             case ENTITY:
             case EQUIPPED:
             case EQUIPPED_FIRST_PERSON:
@@ -43,12 +42,10 @@ public class ChemicalItemRenderer implements IItemRenderer
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
     {
         ChemicalBase chemicalBase = ChemicalItem.getChemicalBase(item);
-        if (chemicalBase == null)
-        {
+        if (chemicalBase == null) {
             return false;
         }
-        switch (helper)
-        {
+        switch (helper) {
             case ENTITY_BOBBING:
             case ENTITY_ROTATION:
                 return true;
@@ -70,8 +67,7 @@ public class ChemicalItemRenderer implements IItemRenderer
         float duration = 1500;
         float t = Minecraft.getSystemTime() % duration;
         int frame;
-        switch (chemicalBase.form)
-        {
+        switch (chemicalBase.form) {
             case solid:
                 layers.add(new IconLayer(item.dust, true));
                 break;
@@ -91,15 +87,12 @@ public class ChemicalItemRenderer implements IItemRenderer
                 layers.add(new IconLayer(item.plasma[frame], true));
                 break;
         }
-        if (chemicalBase.isElement())
-        {
+        if (chemicalBase.isElement()) {
             layers.add(new TextLayer(((Element) chemicalBase).shortName, false, font));
-        } else
-        {
+        } else {
             layers.add(new IconLayer(item.moleculeSymbol, false));
         }
-        switch (type)
-        {
+        switch (type) {
             case INVENTORY:
                 renderItemInInventory(chemicalBase, layers.toArray(new ILayer[layers.size()]));
                 break;
@@ -109,16 +102,14 @@ public class ChemicalItemRenderer implements IItemRenderer
                 break;
             case ENTITY:
                 EntityItem entityItem = (EntityItem) data[1];
-                if (entityItem.worldObj == null)
-                {
+                if (entityItem.worldObj == null) {
                     float angle = (Minecraft.getSystemTime() % 8000L) / 8000.0F * 360.0F;
                     GL11.glPushMatrix();
                     GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F);
                     GL11.glTranslatef(-0.2F, -0.5F, 0.0F);
                     renderItemAsEntity(chemicalBase, layers.toArray(new ILayer[layers.size()]));
                     GL11.glPopMatrix();
-                } else
-                {
+                } else {
                     renderItemAsEntity(chemicalBase, layers.toArray(new ILayer[layers.size()]));
                 }
                 break;
@@ -130,16 +121,14 @@ public class ChemicalItemRenderer implements IItemRenderer
 
     private void renderItemInInventory(ChemicalBase chemicalBase, ILayer... layers)
     {
-        for (ILayer layer : layers)
-        {
+        for (ILayer layer : layers) {
             layer.render(5, chemicalBase.getColour());
         }
     }
 
     private void renderItemInEquipped(ChemicalBase chemicalBase, ILayer... layers)
     {
-        for (ILayer layer : layers)
-        {
+        for (ILayer layer : layers) {
             layer.render2D(chemicalBase.getColour());
         }
     }
@@ -147,8 +136,7 @@ public class ChemicalItemRenderer implements IItemRenderer
     private void renderItemAsEntity(ChemicalBase chemicalBase, ILayer... layers)
     {
         GL11.glPushMatrix();
-        for (ILayer layer : layers)
-        {
+        for (ILayer layer : layers) {
             layer.render3D(chemicalBase.getColour());
         }
         GL11.glPopMatrix();

@@ -39,38 +39,33 @@ public class JournalGUI extends BookGUI
     public JournalGUI(EntityPlayer who, String[] knowledgeKeys, String[] authors)
     {
         super(UpMode.TWOUP, new Layout[]
-        {
-            new Layout(10, 5), new Layout(138, 5)
-        });
+                {
+                        new Layout(10, 5), new Layout(138, 5)
+                });
 
         authorList = authors;
 
-        try
-        {
+        try {
             /* Create a document */
             Document document = new Document();
-            try
-            {
+            try {
                 /* Copy the list of elements */
                 List<Element> elements;
-                if (Config.playerPrivateKnowledge)
-                {
+                if (Config.playerPrivateKnowledge) {
                     elements = JournalRegistry.getJournalFor(who);
-                } else
-                {
+                } else {
                     elements = JournalRegistry.getJournalFor(knowledgeKeys);
                 }
                 /* Write elements => document */
                 document.pushAll(elements);
-            } catch (Throwable thrown)
-            {
+            } catch (Throwable thrown) {
                 LogHelper.exception(thrown, Level.WARN);
             }
 
             /* Set up page formatting */
             TextFormat defaultFormat = new TextFormat(Fontbox.fromName("Note this"));
             TextFormat headingFormat = new TextFormat(Fontbox.fromName("Ampersand"));
-            
+
             PageProperties properties = new PageProperties(221, 380, defaultFormat);
             properties.headingFormat(headingFormat);
             properties.bothMargin(2).lineheightSize(4).spaceSize(4).densitiy(0.33f);
@@ -82,11 +77,9 @@ public class JournalGUI extends BookGUI
 
             /* Update system pages */
             changePages(writer.pages(), writer.index());
-        } catch (LayoutException layout)
-        {
+        } catch (LayoutException layout) {
             LogHelper.exception(layout, Level.ERROR);
-        } catch (IOException ioex)
-        {
+        } catch (IOException ioex) {
             LogHelper.exception(ioex, Level.ERROR);
         }
     }
@@ -99,13 +92,11 @@ public class JournalGUI extends BookGUI
 
     private void drawFoldedPages()
     {
-        if (ptr > 1)
-        {
+        if (ptr > 1) {
             // Draw folded page on the left
             drawTexturedModalRect(5, 163, 0, 188, 21, 21);
         }
-        if (ptr + 2 < pages.size())
-        {
+        if (ptr + 2 < pages.size()) {
             // Draw folded page on the right
             drawTexturedModalRect(230, 160, 21, 188, 21, 21);
         }
@@ -117,7 +108,6 @@ public class JournalGUI extends BookGUI
     }
 
     /**
-     *
      * @param c
      * @param keycode
      */
@@ -126,12 +116,10 @@ public class JournalGUI extends BookGUI
     {
         super.keyTyped(c, keycode);
         /* Don't listen to KEY_LEFT or KEY_RIGHT; already handled */
-        if (keycode == Keyboard.KEY_DOWN)
-        {
+        if (keycode == Keyboard.KEY_DOWN) {
             previous();
         }
-        if (keycode == Keyboard.KEY_UP)
-        {
+        if (keycode == Keyboard.KEY_UP) {
             next();
         }
     }
@@ -142,13 +130,11 @@ public class JournalGUI extends BookGUI
         super.mouseClicked(mouseX, mouseY, mouseButton);
         mouseX -= left;
         mouseY -= top;
-        if (wasRightTabClicked(mouseX, mouseY, mouseButton))
-        {
+        if (wasRightTabClicked(mouseX, mouseY, mouseButton)) {
             next();
         }
 
-        if (wasLeftTabClicked(mouseX, mouseY, mouseButton))
-        {
+        if (wasLeftTabClicked(mouseX, mouseY, mouseButton)) {
             previous();
         }
 
@@ -157,12 +143,9 @@ public class JournalGUI extends BookGUI
 
     private boolean wasRightTabClicked(int mouseX, int mouseY, int mouseButton)
     {
-        if (mouseButton == 0)
-        {
-            if (mouseX >= 230 && mouseX <= 230 + 21)
-            {
-                if (mouseY >= 160 && mouseY <= 160 + 21)
-                {
+        if (mouseButton == 0) {
+            if (mouseX >= 230 && mouseX <= 230 + 21) {
+                if (mouseY >= 160 && mouseY <= 160 + 21) {
                     return true;
                 }
             }
@@ -172,12 +155,9 @@ public class JournalGUI extends BookGUI
 
     private boolean wasLeftTabClicked(int mouseX, int mouseY, int mouseButton)
     {
-        if (mouseButton == 0)
-        {
-            if (mouseX >= 5 && mouseX <= 5 + 21)
-            {
-                if (mouseY >= 163 && mouseY <= 163 + 21)
-                {
+        if (mouseButton == 0) {
+            if (mouseX >= 5 && mouseX <= 5 + 21) {
+                if (mouseY >= 163 && mouseY <= 163 + 21) {
                     return true;
                 }
             }
@@ -199,8 +179,7 @@ public class JournalGUI extends BookGUI
         GL11.glTranslatef(left = width / 2 - 128, top = height / 2 - 94, 0.0f);
         RenderHelper.bindTexture(Compendium.Resource.GUI.journal);
         drawJournalBackground();
-        if (pages != null)
-        {
+        if (pages != null) {
             drawFoldedPages();
         }
     }

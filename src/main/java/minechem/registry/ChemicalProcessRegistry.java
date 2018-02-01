@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
 import minechem.chemical.ChemicalBase;
 import minechem.chemical.process.ChemicalProcess;
 import minechem.chemical.process.ChemicalProcessComboType;
@@ -25,8 +26,7 @@ public class ChemicalProcessRegistry
 
     public static ChemicalProcessRegistry getInstance()
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new ChemicalProcessRegistry();
         }
         return instance;
@@ -47,11 +47,9 @@ public class ChemicalProcessRegistry
      */
     public ChemicalProcessType addProcess(String name)
     {
-        if (name != null && !name.isEmpty())
-        {
+        if (name != null && !name.isEmpty()) {
             ChemicalProcessType result = new ChemicalProcessType(name);
-            if (processTypes.get(result) == null && processNames.get(name) == null)
-            {
+            if (processTypes.get(result) == null && processNames.get(name) == null) {
                 processTypes.put(result, name.toLowerCase());
                 processNames.put(name.toLowerCase(), result);
                 return result;
@@ -68,19 +66,16 @@ public class ChemicalProcessRegistry
      */
     public ChemicalProcessComboType addProcess(ChemicalProcessType... childTypes)
     {
-        if (childTypes != null)
-        {
+        if (childTypes != null) {
             List<ChemicalProcessType> list = Arrays.asList(childTypes);
             list.removeAll(Arrays.asList(new ChemicalProcessType[]
-            {
-                null
-            })); // no nulls allowed
-            if (list.size() > 1)
-            {
+                    {
+                            null
+                    })); // no nulls allowed
+            if (list.size() > 1) {
                 Collections.sort(list);
                 ChemicalProcessComboType result = new ChemicalProcessComboType(list.toArray(new ChemicalProcessType[list.size()]));
-                if (processTypes.get(result) == null && processNames.get(result.getName()) == null)
-                {
+                if (processTypes.get(result) == null && processNames.get(result.getName()) == null) {
                     processTypes.put(result, result.getName().toLowerCase());
                     processNames.put(result.getName().toLowerCase(), result);
                     return result;
@@ -110,13 +105,11 @@ public class ChemicalProcessRegistry
     public void addItemProcess(ItemStack itemStack, ChemicalProcess process)
     {
         Map<ChemicalProcessType, Set<ChemicalProcess>> chemicalTypes = itemProcessMap.get(itemStack);
-        if (chemicalTypes == null)
-        {
+        if (chemicalTypes == null) {
             chemicalTypes = new HashMap<ChemicalProcessType, Set<ChemicalProcess>>();
         }
         Set<ChemicalProcess> processes = chemicalTypes.get(process.getType());
-        if (processes == null)
-        {
+        if (processes == null) {
             processes = new HashSet<ChemicalProcess>();
         }
         processes.add(process);
@@ -135,18 +128,15 @@ public class ChemicalProcessRegistry
     public ChemicalBase[] getOutput(ItemStack itemStack, ChemicalProcessType processType, int level)
     {
         Map<ChemicalProcessType, Set<ChemicalProcess>> chemicalTypes = itemProcessMap.get(itemStack);
-        if (itemStack == null)
-        {
+        if (itemStack == null) {
             return ChemicalProcess.empty;
         }
         Set<ChemicalProcess> processes = chemicalTypes.get(processType);
-        if (processType == null)
-        {
+        if (processType == null) {
             return ChemicalProcess.empty;
         }
         List<ChemicalBase> output = new ArrayList<ChemicalBase>();
-        for (ChemicalProcess process : processes)
-        {
+        for (ChemicalProcess process : processes) {
             output.addAll(Arrays.asList(process.getOutput(processType, level)));
         }
         return output.toArray(new ChemicalBase[output.size()]);

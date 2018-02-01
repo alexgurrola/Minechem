@@ -1,6 +1,7 @@
 package minechem.apparatus.prefab.block;
 
 import java.util.ArrayList;
+
 import minechem.Compendium;
 import minechem.Minechem;
 import minechem.helper.ItemHelper;
@@ -81,23 +82,17 @@ public abstract class BasicBlockContainer extends BlockContainer
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metaData)
     {
-        if (block instanceof BasicBlockContainer)
-        {
+        if (block instanceof BasicBlockContainer) {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
-            if (tileEntity != null)
-            {
+            if (tileEntity != null) {
                 ArrayList<ItemStack> droppedStacks = new ArrayList<ItemStack>();
 
-                if (dropInventory())
-                {
-                    if (tileEntity instanceof IInventory)
-                    {
+                if (dropInventory()) {
+                    if (tileEntity instanceof IInventory) {
                         IInventory inventory = (IInventory) tileEntity;
-                        for (int i = 0; i < inventory.getSizeInventory(); i++)
-                        {
+                        for (int i = 0; i < inventory.getSizeInventory(); i++) {
                             ItemStack stack = inventory.getStackInSlot(i);
-                            if (stack != null)
-                            {
+                            if (stack != null) {
                                 droppedStacks.add(stack);
                             }
                         }
@@ -105,8 +100,7 @@ public abstract class BasicBlockContainer extends BlockContainer
                 }
 
                 addStacksDroppedOnBlockBreak(tileEntity, droppedStacks);
-                for (ItemStack itemstack : droppedStacks)
-                {
+                for (ItemStack itemstack : droppedStacks) {
                     ItemHelper.throwItemStack(world, itemstack, x, y, z);
                 }
                 super.breakBlock(world, x, y, z, block, metaData);
@@ -174,11 +168,9 @@ public abstract class BasicBlockContainer extends BlockContainer
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity != null && !player.isSneaking())
-        {
+        if (tileEntity != null && !player.isSneaking()) {
             acquireResearch(player, world);
-            if (!world.isRemote)
-            {
+            if (!world.isRemote) {
                 player.openGui(Minechem.INSTANCE, 0, world, x, y, z);
             }
             return true;

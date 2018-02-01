@@ -19,12 +19,9 @@ public class LogHelper
      */
     public static void debug(Object obj)
     {
-        if (Config.debugMode)
-        {
+        if (Config.debugMode) {
             log(Level.INFO, obj);
-        }
-        else
-        {
+        } else {
             log(Level.DEBUG, obj);
         }
     }

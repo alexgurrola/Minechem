@@ -19,18 +19,14 @@ public class LocalizationHelper
 
     public static String getLocalString(String key, boolean capitalize)
     {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             String localString;
-            if (I18n.canTranslate(key))
-            {
+            if (I18n.canTranslate(key)) {
                 localString = I18n.translateToLocal(key);
-            } else
-            {
+            } else {
                 localString = I18n.translateToFallback(key);
             }
-            if (capitalize)
-            {
+            if (capitalize) {
                 localString = localString.toUpperCase();
             }
             return localString;
@@ -45,25 +41,19 @@ public class LocalizationHelper
 
     public static String getFormattedString(String key, boolean capitalize, Object... objects)
     {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             String localString;
-            if (I18n.canTranslate(key))
-            {
+            if (I18n.canTranslate(key)) {
                 localString = I18n.translateToLocalFormatted(key, objects);
-            } else
-            {
+            } else {
                 localString = I18n.translateToFallback(key);
-                try
-                {
+                try {
                     localString = String.format(localString, objects);
-                } catch (IllegalFormatException illegalformatexception)
-                {
+                } catch (IllegalFormatException illegalformatexception) {
                     return "Format error: " + key;
                 }
             }
-            if (capitalize)
-            {
+            if (capitalize) {
                 localString = localString.toUpperCase();
             }
             return localString;

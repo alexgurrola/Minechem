@@ -2,13 +2,15 @@ package minechem.asm;
 
 import codechicken.core.launch.DepLoader;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+
 import java.util.Map;
+
 import net.minecraftforge.classloading.FMLForgePlugin;
 
 @IFMLLoadingPlugin.TransformerExclusions(
-    {
-        "minechem.asm."
-    })
+        {
+                "minechem.asm."
+        })
 public class LoadingPlugin implements IFMLLoadingPlugin
 {
     public static boolean runtimeDeobfEnabled = FMLForgePlugin.RUNTIME_DEOBF;
@@ -22,9 +24,9 @@ public class LoadingPlugin implements IFMLLoadingPlugin
     public String[] getASMTransformerClass()
     {
         return new String[]
-        {
-            getAccessTransformerClass()
-        };
+                {
+                        getAccessTransformerClass()
+                };
     }
 
     @Override
