@@ -1,4 +1,4 @@
-package minechem.achievement;
+package minechem.advancement;
 
 import java.util.Random;
 import minechem.asm.MinechemHooks;
@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 
-public class MinecraftAchievementPage
+public class MinecraftAdvancementList
 {
     public static void drawBackground(Minecraft mc, float z, float scale, int columnWidth, int rowHeight)
     {

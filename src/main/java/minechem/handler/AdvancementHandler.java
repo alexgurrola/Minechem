@@ -1,13 +1,13 @@
 package minechem.handler;
 
 import minechem.chemical.Element;
-import minechem.registry.AchievementRegistry;
+import minechem.registry.AdvancementRegistry;
 import minechem.registry.BlockRegistry;
 import minechem.registry.ElementRegistry;
 import minechem.registry.ItemRegistry;
-import net.minecraft.stats.Achievement;
+import net.minecraft.advancements.Advancement;
 
-public class AchievementHandler
+public class AdvancementHandler
 {
     public static void init()
     {
@@ -19,17 +19,17 @@ public class AchievementHandler
     {
         for (Element element : ElementRegistry.getInstance().getElements())
         {
-            AchievementRegistry.getInstance().addAchievement(element);
+            AdvancementRegistry.getInstance().addAdvancement(element);
         }
-        AchievementRegistry.getInstance().registerElementAchievements();
+        AdvancementRegistry.getInstance().registerElementAdvancements();
     }
 
     private static void initMinechem()
     {
-        Achievement journal = AchievementRegistry.getInstance().addAchievement(ItemRegistry.journal.getUnlocalizedName(), 0, 0, ItemRegistry.journal);
-        Achievement microscope = AchievementRegistry.getInstance().addAchievement(BlockRegistry.opticalMicroscope.getUnlocalizedName(), 1, 3, BlockRegistry.opticalMicroscope, journal);
-        Achievement electrolysis = AchievementRegistry.getInstance().addAchievement(BlockRegistry.electrolysisBlock.getUnlocalizedName(), 3, 3, BlockRegistry.electrolysisBlock, microscope);
-        Achievement crucible = AchievementRegistry.getInstance().addAchievement(BlockRegistry.electricCrucibleBlock.getUnlocalizedName(), -2, 3, BlockRegistry.electricCrucibleBlock, microscope);
-        AchievementRegistry.getInstance().registerMinechemAchievements();
+        Advancement journal = AdvancementRegistry.getInstance().addAdvancement(ItemRegistry.journal.getUnlocalizedName(), 0, 0, ItemRegistry.journal);
+        Advancement microscope = AdvancementRegistry.getInstance().addAdvancement(BlockRegistry.opticalMicroscope.getUnlocalizedName(), 1, 3, BlockRegistry.opticalMicroscope, journal);
+        Advancement electrolysis = AdvancementRegistry.getInstance().addAdvancement(BlockRegistry.electrolysisBlock.getUnlocalizedName(), 3, 3, BlockRegistry.electrolysisBlock, microscope);
+        Advancement crucible = AdvancementRegistry.getInstance().addAdvancement(BlockRegistry.electricCrucibleBlock.getUnlocalizedName(), -2, 3, BlockRegistry.electricCrucibleBlock, microscope);
+        AdvancementRegistry.getInstance().registerMinechemAdvancements();
     }
 }

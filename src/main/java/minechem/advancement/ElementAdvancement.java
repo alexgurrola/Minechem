@@ -1,7 +1,7 @@
-package minechem.achievement;
+package minechem.advancement;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import minechem.Compendium;
 import minechem.chemical.Element;
 import minechem.helper.ColourHelper;
@@ -10,27 +10,27 @@ import minechem.proxy.client.font.Font;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
 /**
- * {@link net.minecraft.stats.Achievement} wrapper for {@link minechem.chemical.Element}s
+ * {@link net.minecraft.stats.Advancement} wrapper for {@link minechem.chemical.Element}s
  */
-public class ElementAchievement extends Achievement implements IAchievementRenderer
+public class ElementAdvancement extends Advancement implements IAdvancementRenderer
 {
-    private final static String achievementPrefix = "achievement.";
-    private final static String defaultElementTitle = "achievement.minechem.element";
-    private final static String defaultElementDescription = "achievement.minechem.element.desc";
-    private final static Achievement nullAchievement = null;
+    private final static String advancementPrefix = "advancement.";
+    private final static String defaultElementTitle = "advancement.minechem.element";
+    private final static String defaultElementDescription = "advancement.minechem.element.desc";
+    private final static Advancement nullAdvancement = null;
 
     private final Element element;
     private static Font regularFont, smallFont;
 
-    public ElementAchievement(Element element, int row, int column)
+    public ElementAdvancement(Element element, int row, int column)
     {
-        super(achievementPrefix + element.shortName, element.shortName, column, row, element.getItemStack(), nullAchievement);
+        super(advancementPrefix + element.shortName, element.shortName, column, row, element.getItemStack(), nullAdvancement);
         this.element = element;
         this.initIndependentStat();
     }
@@ -48,7 +48,7 @@ public class ElementAchievement extends Achievement implements IAchievementRende
      * @return an {@link net.minecraft.util.IChatComponent}
      */
     @Override
-    public IChatComponent func_150951_e()
+    public TextComponent func_150951_e()
     {
         IChatComponent iChatComponent = new ChatComponentTranslation(defaultElementTitle, element.shortName);
         iChatComponent.getChatStyle().setColor(this.getSpecial() ? EnumChatFormatting.DARK_PURPLE : EnumChatFormatting.GREEN);
@@ -56,7 +56,7 @@ public class ElementAchievement extends Achievement implements IAchievementRende
     }
 
     /**
-     * Background colour for the achievement icon
+     * Background colour for the advancement icon
      *
      * @return an int representation of the colour
      */

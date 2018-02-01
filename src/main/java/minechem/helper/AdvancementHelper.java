@@ -2,81 +2,81 @@ package minechem.helper;
 
 import minechem.chemical.Element;
 import minechem.handler.MessageHandler;
-import minechem.handler.message.AchievementMessage;
-import minechem.registry.AchievementRegistry;
+import minechem.handler.message.AdvancementMessage;
+import minechem.registry.AdvancementRegistry;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.stats.Achievement;
 
-public class AchievementHelper
+public class AdvancementHelper
 {
     /**
-     * Short hand for getting an {@link net.minecraft.stats.Achievement} from the {@link minechem.registry.AchievementRegistry} by name
+     * Short hand for getting an {@link net.minecraft.stats.Advancement} from the {@link minechem.registry.AdvancementRegistry} by name
      *
-     * @param name the achievement name
-     * @return the {@link net.minecraft.stats.Achievement} or null if the name does not exist
+     * @param name the advancement name
+     * @return the {@link net.minecraft.stats.Advancement} or null if the name does not exist
      */
-    public static Achievement getAchievement(String name)
+    public static Advancement getAdvancement(String name)
     {
-        return AchievementRegistry.getInstance().getAchievement(name);
+        return AdvancementRegistry.getInstance().getAdvancement(name);
     }
 
     /**
-     * Short hand for getting an {@link net.minecraft.stats.Achievement} from the {@link minechem.registry.AchievementRegistry} by {@link minechem.chemical.Element}
+     * Short hand for getting an {@link net.minecraft.stats.Advancement} from the {@link minechem.registry.AdvancementRegistry} by {@link minechem.chemical.Element}
      *
      * @param element an {@link minechem.chemical.Element}
-     * @return the {@link net.minecraft.stats.Achievement} or null if the {@link minechem.chemical.Element} does not exist
+     * @return the {@link net.minecraft.stats.Advancement} or null if the {@link minechem.chemical.Element} does not exist
      */
-    public static Achievement getAchievement(Element element)
+    public static Advancement getAdvancement(Element element)
     {
-        return AchievementRegistry.getInstance().getAchievement(element);
+        return AdvancementRegistry.getInstance().getAdvancement(element);
     }
 
     /**
-     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Achievement} for an {@link minechem.chemical.Element} It will send an
-     * {@link minechem.handler.message.AchievementMessage} when the world is remote
+     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement} for an {@link minechem.chemical.Element} It will send an
+     * {@link minechem.handler.message.AdvancementMessage} when the world is remote
      *
-     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Achievement}
-     * @param element  the {@link minechem.chemical.Element} to give the {@link net.minecraft.stats.Achievement} for
+     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Advancement}
+     * @param element  the {@link minechem.chemical.Element} to give the {@link net.minecraft.stats.Advancement} for
      * @param isRemote {@link net.minecraft.world.World#isRemote} is the to pass argument here
      */
-    public static void giveAchievement(EntityPlayer player, Element element, boolean isRemote)
+    public static void giveAdvancement(EntityPlayer player, Element element, boolean isRemote)
     {
         if (isRemote)
         {
-            MessageHandler.INSTANCE.sendToServer(new AchievementMessage(element));
+            MessageHandler.INSTANCE.sendToServer(new AdvancementMessage(element));
         } else
         {
-            giveAchievement(player, getAchievement(element));
+            giveAdvancement(player, getAdvancement(element));
         }
     }
 
     /**
-     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Achievement} wih given name It will send an {@link minechem.handler.message.AchievementMessage} when the
+     * Give a {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement} wih given name It will send an {@link minechem.handler.message.AdvancementMessage} when the
      * world is remote
      *
-     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Achievement}
-     * @param name     the name of the {@link net.minecraft.stats.Achievement} to give
+     * @param player   the {@link net.minecraft.entity.player.EntityPlayer} to grand the {@link net.minecraft.stats.Advancement}
+     * @param name     the name of the {@link net.minecraft.stats.Advancement} to give
      * @param isRemote {@link net.minecraft.world.World#isRemote} is the to pass argument here
      */
-    public static void giveAchievement(EntityPlayer player, String name, boolean isRemote)
+    public static void giveAdvancement(EntityPlayer player, String name, boolean isRemote)
     {
         if (isRemote)
         {
-            MessageHandler.INSTANCE.sendToServer(new AchievementMessage(name));
+            MessageHandler.INSTANCE.sendToServer(new AdvancementMessage(name));
         } else
         {
-            giveAchievement(player, getAchievement(name));
+            giveAdvancement(player, getAdvancement(name));
         }
     }
 
     /**
-     * Grants the {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Achievement}
+     * Grants the {@link net.minecraft.entity.player.EntityPlayer} an {@link net.minecraft.stats.Advancement}
      *
-     * @param player      the {@link net.minecraft.entity.player.EntityPlayer} to grant the {@link net.minecraft.stats.Achievement}
-     * @param achievement the {@link net.minecraft.stats.Achievement} to grant
+     * @param player      the {@link net.minecraft.entity.player.EntityPlayer} to grant the {@link net.minecraft.stats.Advancement}
+     * @param advancement the {@link net.minecraft.stats.Advancement} to grant
      */
-    public static void giveAchievement(EntityPlayer player, Achievement achievement)
+    public static void giveAdvancement(EntityPlayer player, Advancement advancement)
     {
-        player.triggerAchievement(achievement);
+        player.triggerAdvancement(advancement);
     }
 }

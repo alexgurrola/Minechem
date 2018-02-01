@@ -1,16 +1,16 @@
-package minechem.achievement;
+package minechem.advancement;
 
 import minechem.Compendium;
 import minechem.proxy.client.render.RenderHelper;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementList;
 import net.minecraft.client.Minecraft;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
 
-public class ElementAchievementPage extends AchievementPage implements IAchievementPageRenderer
+public class ElementAdvancementList extends AdvancementList implements IAdvancementListRenderer
 {
-    public ElementAchievementPage(String name, Achievement... achievements)
+    public ElementAdvancementList(String name, Advancement... advancements)
     {
-        super(name, achievements);
+        super(name, advancements);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class ElementAchievementPage extends AchievementPage implements IAchievem
         int k = (columnWidth + 288);
         int l = (rowHeight + 288);
         RenderHelper.setScissor(254, 200, 0, 0, 250, 200);
-        RenderHelper.drawTexturedRectUV(-10 - k, 50 - l, z, 0, 0, 640, 480, 640, 480, Compendium.Resource.GUI.achievements);
+        RenderHelper.drawTexturedRectUV(-10 - k, 50 - l, z, 0, 0, 640, 480, 640, 480, Compendium.Resource.GUI.advancements);
         RenderHelper.stopScissor();
     }
 

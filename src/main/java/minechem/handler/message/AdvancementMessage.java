@@ -1,35 +1,35 @@
 package minechem.handler.message;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import minechem.chemical.Element;
-import minechem.helper.AchievementHelper;
+import minechem.helper.AdvancementHelper;
 import minechem.registry.ElementRegistry;
 
 /**
- * Used for triggering achievements from Client only code
+ * Used for triggering advancements from Client only code
  */
-public class AchievementMessage extends BaseTEMessage implements IMessageHandler<AchievementMessage, IMessage>
+public class AdvancementMessage extends BaseTEMessage implements IMessageHandler<AdvancementMessage, IMessage>
 {
-    private String achievement;
+    private String advancement;
     private boolean isElement;
 
-    public AchievementMessage()
+    public AdvancementMessage()
     {
 
     }
 
-    public AchievementMessage(String achievement)
+    public AdvancementMessage(String advancement)
     {
-        this.achievement = achievement;
+        this.advancement = advancement;
         this.isElement = false;
     }
 
-    public AchievementMessage(Element element)
+    public AdvancementMessage(Element element)
     {
-        this.achievement = element.shortName;
+        this.advancement = element.shortName;
         this.isElement = true;
     }
 
@@ -38,26 +38,26 @@ public class AchievementMessage extends BaseTEMessage implements IMessageHandler
     {
         this.isElement = buf.readBoolean();
         int length = buf.readInt();
-        this.achievement = new String(buf.readBytes(length).array());
+        this.advancement = new String(buf.readBytes(length).array());
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeBoolean(this.isElement);
-        buf.writeInt(this.achievement.length());
-        buf.writeBytes(this.achievement.getBytes());
+        buf.writeInt(this.advancement.length());
+        buf.writeBytes(this.advancement.getBytes());
     }
 
     @Override
-    public IMessage onMessage(AchievementMessage message, MessageContext ctx)
+    public IMessage onMessage(AdvancementMessage message, MessageContext ctx)
     {
         if (message.isElement)
         {
-            AchievementHelper.giveAchievement(getServerPlayer(ctx), AchievementHelper.getAchievement(ElementRegistry.getInstance().getElement(message.achievement)));
+            AdvancementHelper.giveAdvancement(getServerPlayer(ctx), AdvancementHelper.getAdvancement(ElementRegistry.getInstance().getElement(message.advancement)));
         } else
         {
-            AchievementHelper.giveAchievement(getServerPlayer(ctx), AchievementHelper.getAchievement(message.achievement));
+            AdvancementHelper.giveAdvancement(getServerPlayer(ctx), AdvancementHelper.getAdvancement(message.advancement));
         }
         return null;
     }

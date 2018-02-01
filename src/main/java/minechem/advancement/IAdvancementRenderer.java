@@ -1,16 +1,16 @@
-package minechem.achievement;
+package minechem.advancement;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 
 /**
- * This can be applied and will be hooked into the render code of an {@link net.minecraft.stats.Achievement} during the rendering in the {@link net.minecraft.client.gui.achievement.GuiAchievement}
+ * This can be applied and will be hooked into the render code of an {@link net.minecraft.stats.Advancement} during the rendering in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
  */
-public interface IAchievementRenderer
+public interface IAdvancementRenderer
 {
     /**
-     * Recolour the background of the {@link net.minecraft.stats.Achievement} icon in the {@link net.minecraft.client.gui.achievement.GuiAchievement}
+     * Recolour the background of the {@link net.minecraft.stats.Advancement} icon in the {@link net.minecraft.client.gui.advancement.GuiAdvancement}
      *
      * @param greyScale the current gray scale
      * @return the int colour you want the background to be
@@ -30,8 +30,8 @@ public interface IAchievementRenderer
      * @param fontRenderer
      * @param textureManager
      * @param itemStack
-     * @param left           left of the achievement icon
-     * @param top            top of the achievement icon
+     * @param left           left of the advancement icon
+     * @param top            top of the advancement icon
      */
     public void renderIcon(FontRenderer fontRenderer, TextureManager textureManager, ItemStack itemStack, int left, int top);
 }

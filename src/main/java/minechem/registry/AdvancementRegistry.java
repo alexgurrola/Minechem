@@ -4,188 +4,188 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 import minechem.Compendium;
-import minechem.achievement.ElementAchievement;
-import minechem.achievement.ElementAchievementPage;
+import minechem.advancement.ElementAdvancement;
+import minechem.advancement.ElementAdvancementList;
 import minechem.chemical.Element;
 import minechem.helper.PeriodicTableHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementList;
 
-public class AchievementRegistry
+public class AdvancementRegistry
 {
-    private static AchievementRegistry instance;
-    private Map<Element, Achievement> elementsAchievementMap;
-    private Map<String, Achievement> minechemAchievementMap;
-    public AchievementPage elementsPage, minechemPage;
+    private static AdvancementRegistry instance;
+    private Map<Element, Advancement> elementsAdvancementMap;
+    private Map<String, Advancement> minechemAdvancementMap;
+    public AdvancementList elementsPage, minechemPage;
 
-    private static Achievement nullAchievement = null;
+    private static Advancement nullAdvancement = null;
 
-    public static AchievementRegistry getInstance()
+    public static AdvancementRegistry getInstance()
     {
         if (instance == null)
         {
-            instance = new AchievementRegistry();
+            instance = new AdvancementRegistry();
         }
         return instance;
     }
 
-    private AchievementRegistry()
+    private AdvancementRegistry()
     {
-        elementsAchievementMap = new TreeMap<Element, Achievement>();
-        minechemAchievementMap = new TreeMap<String, Achievement>();
+        elementsAdvancementMap = new TreeMap<Element, Advancement>();
+        minechemAdvancementMap = new TreeMap<String, Advancement>();
     }
 
     /**
-     * Adds default achievement for an {@link minechem.chemical.Element}
+     * Adds default advancement for an {@link minechem.chemical.Element}
      *
-     * @param element the element to create an achievement for
-     * @return the added {@link net.minecraft.stats.Achievement}
+     * @param element the element to create an advancement for
+     * @return the added {@link net.minecraft.stats.Advancement}
      */
-    public Achievement addAchievement(Element element)
+    public Advancement addAdvancement(Element element)
     {
         int[] position = PeriodicTableHelper.getPosition(element);
-        ElementAchievement achievement = new ElementAchievement(element, position[0] - 5, position[1] - 8);
-        elementsAchievementMap.put(element, achievement);
-        return achievement;
+        ElementAdvancement advancement = new ElementAdvancement(element, position[0] - 5, position[1] - 8);
+        elementsAdvancementMap.put(element, advancement);
+        return advancement;
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Achievement} to the {@link net.minecraftforge.common.AchievementPage} with given prerequisite {@link net.minecraft.stats.Achievement}
+     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList} with given prerequisite {@link net.minecraft.stats.Advancement}
      *
-     * @param name             the name for the achievement
+     * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Achievement}
-     * @return the added {@link net.minecraft.stats.Achievement}
+     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Advancement}
+     * @return the added {@link net.minecraft.stats.Advancement}
      */
-    public Achievement addAchievement(String name, int row, int column, ItemStack displayItemStack, Achievement prerequisite)
+    public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack, Advancement prerequisite)
     {
-        return addAchievement(name, row, column, displayItemStack, prerequisite, false);
+        return addAdvancement(name, row, column, displayItemStack, prerequisite, false);
     }
 
-    public Achievement addAchievement(String name, int row, int column, Item displayItem, Achievement prerequisite)
+    public Advancement addAdvancement(String name, int row, int column, Item displayItem, Advancement prerequisite)
     {
-        return addAchievement(name, row, column, new ItemStack(displayItem), prerequisite);
+        return addAdvancement(name, row, column, new ItemStack(displayItem), prerequisite);
     }
 
-    public Achievement addAchievement(String name, int row, int column, Block displayBlock, Achievement prerequisite)
+    public Advancement addAdvancement(String name, int row, int column, Block displayBlock, Advancement prerequisite)
     {
-        return addAchievement(name, row, column, new ItemStack(displayBlock), prerequisite);
+        return addAdvancement(name, row, column, new ItemStack(displayBlock), prerequisite);
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Achievement} to the {@link net.minecraftforge.common.AchievementPage} with given prerequisite {@link net.minecraft.stats.Achievement}
+     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList} with given prerequisite {@link net.minecraft.stats.Advancement}
      *
-     * @param name             the name for the achievement
+     * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Achievement}
-     * @param isSpecial        is this a special {@link net.minecraft.stats.Achievement} ?
-     * @return the added {@link net.minecraft.stats.Achievement}
+     * @param prerequisite     the prerequisite {@link net.minecraft.stats.Advancement}
+     * @param isSpecial        is this a special {@link net.minecraft.stats.Advancement} ?
+     * @return the added {@link net.minecraft.stats.Advancement}
      */
-    public Achievement addAchievement(String name, int row, int column, ItemStack displayItemStack, Achievement prerequisite, boolean isSpecial)
+    public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack, Advancement prerequisite, boolean isSpecial)
     {
         String statName = Compendium.Naming.id + "." + name;
-        Achievement achievement = new Achievement("achievement." + statName, statName, column, row, displayItemStack, prerequisite);
+        Advancement advancement = new Advancement("advancement." + statName, statName, column, row, displayItemStack, prerequisite);
         if (isSpecial)
         {
-            achievement.setSpecial();
+            advancement.setSpecial();
         }
         if (prerequisite == null)
         {
-            achievement.initIndependentStat();
+            advancement.initIndependentStat();
         }
-        return addAchievement(achievement);
+        return addAdvancement(advancement);
     }
 
     /**
-     * Creates and adds an {@link net.minecraft.stats.Achievement} to the {@link net.minecraftforge.common.AchievementPage}
+     * Creates and adds an {@link net.minecraft.stats.Advancement} to the {@link net.minecraftforge.common.AdvancementList}
      *
-     * @param name             the name for the achievement
+     * @param name             the name for the advancement
      * @param row              the row to display
      * @param column           the column display
      * @param displayItemStack the {@link net.minecraft.item.ItemStack} to display
-     * @return the added {@link net.minecraft.stats.Achievement}
+     * @return the added {@link net.minecraft.stats.Advancement}
      */
-    public Achievement addAchievement(String name, int row, int column, ItemStack displayItemStack)
+    public Advancement addAdvancement(String name, int row, int column, ItemStack displayItemStack)
     {
-        return addAchievement(name, row, column, displayItemStack, nullAchievement, false);
+        return addAdvancement(name, row, column, displayItemStack, nullAdvancement, false);
     }
 
-    public Achievement addAchievement(String name, int row, int column, Item displayItem)
+    public Advancement addAdvancement(String name, int row, int column, Item displayItem)
     {
-        return addAchievement(name, row, column, new ItemStack(displayItem), nullAchievement, false);
+        return addAdvancement(name, row, column, new ItemStack(displayItem), nullAdvancement, false);
     }
 
-    public Achievement addAchievement(String name, int row, int column, Block displayBlock)
+    public Advancement addAdvancement(String name, int row, int column, Block displayBlock)
     {
-        return addAchievement(name, row, column, new ItemStack(displayBlock), nullAchievement, false);
+        return addAdvancement(name, row, column, new ItemStack(displayBlock), nullAdvancement, false);
     }
 
     /**
-     * Add an {@link net.minecraft.stats.Achievement} to the minechem {@link net.minecraftforge.common.AchievementPage}
+     * Add an {@link net.minecraft.stats.Advancement} to the minechem {@link net.minecraftforge.common.AdvancementList}
      *
-     * @param achievement the {@link net.minecraft.stats.Achievement} to add
-     * @return the added {@link net.minecraft.stats.Achievement}
+     * @param advancement the {@link net.minecraft.stats.Advancement} to add
+     * @return the added {@link net.minecraft.stats.Advancement}
      */
-    public Achievement addAchievement(Achievement achievement)
+    public Advancement addAdvancement(Advancement advancement)
     {
-        minechemAchievementMap.put(achievement.statId, achievement);
-        return achievement;
+        minechemAdvancementMap.put(advancement.statId, advancement);
+        return advancement;
     }
 
     /**
-     * Gets the achievement for a specific {@link minechem.chemical.Element}
+     * Gets the advancement for a specific {@link minechem.chemical.Element}
      *
-     * @param element the element to find an {@link net.minecraft.stats.Achievement for}
-     * @return can be null if the {@link minechem.chemical.Element} has no {@link net.minecraft.stats.Achievement}
+     * @param element the element to find an {@link net.minecraft.stats.Advancement for}
+     * @return can be null if the {@link minechem.chemical.Element} has no {@link net.minecraft.stats.Advancement}
      */
-    public Achievement getAchievement(Element element)
+    public Advancement getAdvancement(Element element)
     {
-        return elementsAchievementMap.get(element);
+        return elementsAdvancementMap.get(element);
     }
 
     /**
-     * Get a minechem {@link net.minecraft.stats.Achievement} for the given name
+     * Get a minechem {@link net.minecraft.stats.Advancement} for the given name
      *
-     * @param name the name of the achievement
+     * @param name the name of the advancement
      * @return can be null if the name does not exist in the registry
      */
-    public Achievement getAchievement(String name)
+    public Advancement getAdvancement(String name)
     {
-        return minechemAchievementMap.get("achievement." + Compendium.Naming.id + "." + name);
+        return minechemAdvancementMap.get("advancement." + Compendium.Naming.id + "." + name);
     }
 
     /**
-     * Registers {@link minechem.achievement.ElementAchievement}s to the periodic table page
+     * Registers {@link minechem.advancement.ElementAdvancement}s to the periodic table page
      */
-    public void registerElementAchievements()
+    public void registerElementAdvancements()
     {
-        Collection<Achievement> achievements = elementsAchievementMap.values();
-        for (Achievement achievement : achievements)
+        Collection<Advancement> advancements = elementsAdvancementMap.values();
+        for (Advancement advancement : advancements)
         {
-            achievement.registerStat();
+            advancement.registerStat();
         }
-        elementsPage = new ElementAchievementPage("Periodic Table", achievements.toArray(new Achievement[achievements.size()]));
-        AchievementPage.registerAchievementPage(elementsPage);
+        elementsPage = new ElementAdvancementList("Periodic Table", advancements.toArray(new Advancement[advancements.size()]));
+        AdvancementList.registerAdvancementList(elementsPage);
     }
 
     /**
-     * Registers {@link minechem.achievement.ElementAchievement}s to the minechem page
+     * Registers {@link minechem.advancement.ElementAdvancement}s to the minechem page
      */
-    public void registerMinechemAchievements()
+    public void registerMinechemAdvancements()
     {
-        Collection<Achievement> achievements = minechemAchievementMap.values();
-        for (Achievement achievement : achievements)
+        Collection<Advancement> advancements = minechemAdvancementMap.values();
+        for (Advancement advancement : advancements)
         {
-            achievement.registerStat();
+            advancement.registerStat();
         }
-        minechemPage = new AchievementPage(Compendium.Naming.name, achievements.toArray(new Achievement[achievements.size()]));
-        AchievementPage.registerAchievementPage(minechemPage);
+        minechemPage = new AdvancementList(Compendium.Naming.name, advancements.toArray(new Advancement[advancements.size()]));
+        AdvancementList.registerAdvancementList(minechemPage);
     }
 }
