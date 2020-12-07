@@ -14,7 +14,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-        classpath 'de.undercouch:gradle-download-task:1.2'
+        classpath 'de.undercouch:gradle-download-task:4.1.1'
     }
 }
 
